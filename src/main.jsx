@@ -14,11 +14,11 @@ const router = createBrowserRouter([
     path: "/",
     children: [
       {
-        path: "home",
+        path: "/",
         element: <Homepage />,
         children: [
           {
-            path: "create_post",
+            path: "/create_post",
             element: <CreatePost />,
           },
           {
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
             element: <Feed />,
           },
           {
-            path: ":postID",
+            path: "/:postID",
             element: <Post />,
           },
         ],
