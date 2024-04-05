@@ -9,7 +9,6 @@ export async function fetchData(endpoint, method, data) {
         body: data,
       }
     );
-    if (!response.ok) throw Error;
     return response;
   } catch (err) {
     if (err) return err;
