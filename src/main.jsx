@@ -28,6 +28,7 @@ const router = createBrowserRouter([
           { path: "/posts/:postID", element: <Post /> },
         ],
       },
+      // {path: "signup"}
     ],
   },
   // login
