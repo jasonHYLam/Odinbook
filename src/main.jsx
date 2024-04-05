@@ -6,7 +6,9 @@ import { Homepage } from "./components/homepage/Homepage.jsx";
 import { CreatePost } from "./components/homepage/createPost/CreatePost.jsx";
 import { Feed } from "./components/homepage/feed/Feed.jsx";
 import { Post } from "./components/homepage/post/Post.jsx";
-// import
+import { PersonalProfile } from "./components/homepage/personalProfile/PersonalProfile.jsx";
+import { SearchAddUsers } from "./components/homepage/searchAddUsers/SearchAddUsers.jsx";
+import { UserProfile } from "./components/homepage/userProfile/UserProfile.jsx";
 
 import "./index.css";
 
@@ -18,9 +20,12 @@ const router = createBrowserRouter([
         path: "/",
         element: <Homepage />,
         children: [
-          { path: "/create_post", element: <CreatePost /> },
           { path: "/", element: <Feed /> },
-          { path: "/:postID", element: <Post /> },
+          { path: "/create_post", element: <CreatePost /> },
+          { path: "/me", element: <PersonalProfile /> },
+          { path: "/search_users", element: <SearchAddUsers /> },
+          { path: "/users/:userID", element: <PersonalProfile /> },
+          { path: "/posts/:postID", element: <Post /> },
         ],
       },
     ],
