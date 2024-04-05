@@ -17,6 +17,8 @@ export function Signup() {
     console.log("we good");
   }
 
+  console.log(errors);
+
   return (
     <main>
       <p>Signup</p>
@@ -30,13 +32,13 @@ export function Signup() {
         <input
           type="password"
           placeholder="Password"
-          {...register("username", { required: true })}
+          {...register("password", { required: true })}
         />
 
         <input
           type="password"
           placeholder="Confirm password"
-          {...register("username", {
+          {...register("confirmPassword", {
             required: true,
             validate: (val) => {
               if (getValues("password") !== val) {
