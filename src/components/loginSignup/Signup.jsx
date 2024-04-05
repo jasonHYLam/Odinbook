@@ -1,7 +1,7 @@
 import { fetchData } from "../../helper/helperUtils";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export function Signup() {
   const USERNAME_MIN = 3;
@@ -20,9 +20,10 @@ export function Signup() {
   async function submitSignupData(data) {
     const dataToSubmit = JSON.stringify(data);
     const response = await fetchData("/auth/signup", "POST", dataToSubmit);
-    if (!response.ok) {
-      navigate("");
+    if (!response.ok || response instanceof Error) {
+      navigate("/error");
     }
+
     console.log("we good");
   }
 
@@ -92,6 +93,7 @@ export function Signup() {
               <span>{errors.confirmPassword.message}</span>
             )}
         </section>
+        <Link to="/login">Got an account? Login</Link>
       </form>
     </main>
   );
