@@ -1,4 +1,4 @@
-export function userProfile() {
+export function UserProfile() {
   return (
     <main>
       <p>it's me userProfile</p>
