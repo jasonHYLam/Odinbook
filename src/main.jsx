@@ -9,6 +9,8 @@ import { Post } from "./components/homepage/post/Post.jsx";
 import { PersonalProfile } from "./components/homepage/personalProfile/PersonalProfile.jsx";
 import { SearchAddUsers } from "./components/homepage/searchAddUsers/SearchAddUsers.jsx";
 import { UserProfile } from "./components/homepage/userProfile/UserProfile.jsx";
+import { Login } from "./components/loginSignup/Login.jsx";
+import { Signup } from "./components/loginSignup/Signup.jsx";
 
 import "./index.css";
 
@@ -16,6 +18,8 @@ const router = createBrowserRouter([
   {
     path: "/",
     children: [
+      { path: "signup", element: <Signup /> },
+      { path: "login", element: <Login /> },
       {
         path: "/",
         element: <Homepage />,
@@ -28,19 +32,8 @@ const router = createBrowserRouter([
           { path: "/posts/:postID", element: <Post /> },
         ],
       },
-      // {path: "signup"}
     ],
   },
-  // login
-  //signup
-  //home (feed)
-  // addfriend
-  // createPost
-  // viewOwnProfile
-  // view other profile
-  // view post
-  // logout
-  // {}
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
