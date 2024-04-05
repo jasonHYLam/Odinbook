@@ -24,7 +24,7 @@ const router = createBrowserRouter([
           { path: "/create_post", element: <CreatePost /> },
           { path: "/me", element: <PersonalProfile /> },
           { path: "/search_users", element: <SearchAddUsers /> },
-          { path: "/users/:userID", element: <PersonalProfile /> },
+          { path: "/users/:userID", element: <UserProfile /> },
           { path: "/posts/:postID", element: <Post /> },
         ],
       },
