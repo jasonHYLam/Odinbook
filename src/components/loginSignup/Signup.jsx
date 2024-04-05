@@ -15,7 +15,7 @@ export function Signup() {
 
   async function submitSignupData(data) {
     const dataToSubmit = JSON.stringify(data);
-    const response = fetchData("/auth/signup", "POST", dataToSubmit);
+    const response = await fetchData("/auth/signup", "POST", dataToSubmit);
 
     console.log("we good");
   }
@@ -51,7 +51,9 @@ export function Signup() {
           {...register("confirmPassword", {
             required: true,
             validate: (val) => {
-              return getValues("password") !== val;
+              if (getValues("password") !== val) {
+                return "Passwords don't match";
+              }
             },
           })}
         />
@@ -81,7 +83,7 @@ export function Signup() {
 
           {errors.confirmPassword &&
             errors.confirmPassword.type === "validate" && (
-              <span>Passwords don't match</span>
+              <span>{errors.confirmPassword.message}</span>
             )}
         </section>
       </form>
