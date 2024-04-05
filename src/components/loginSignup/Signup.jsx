@@ -20,7 +20,7 @@ export function Signup() {
   return (
     <main>
       <p>Signup</p>
-      <form onSubmit={handleSubmit()}>
+      <form onSubmit={handleSubmit(submitSignupData)}>
         <input
           type="text"
           placeholder="Username"
@@ -45,6 +45,8 @@ export function Signup() {
             },
           })}
         />
+
+        <input type="submit" value="Sign up" />
       </form>
     </main>
   );
