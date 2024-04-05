@@ -1,11 +1,15 @@
 import { fetchData } from "../../helper/helperUtils";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 export function Signup() {
   const USERNAME_MIN = 3;
   const USERNAME_MAX = 25;
   const PASSWORD_MIN = 3;
+
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -16,7 +20,9 @@ export function Signup() {
   async function submitSignupData(data) {
     const dataToSubmit = JSON.stringify(data);
     const response = await fetchData("/auth/signup", "POST", dataToSubmit);
-
+    if (!response.ok) {
+      navigate("");
+    }
     console.log("we good");
   }
 

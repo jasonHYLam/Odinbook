@@ -11,12 +11,14 @@ import { SearchAddUsers } from "./components/homepage/searchAddUsers/SearchAddUs
 import { UserProfile } from "./components/homepage/userProfile/UserProfile.jsx";
 import { Login } from "./components/loginSignup/Login.jsx";
 import { Signup } from "./components/loginSignup/Signup.jsx";
+import { Error } from "./components/error/Error.jsx";
 
 import "./index.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    errorElement: <Error />,
     children: [
       { path: "signup", element: <Signup /> },
       { path: "login", element: <Login /> },
