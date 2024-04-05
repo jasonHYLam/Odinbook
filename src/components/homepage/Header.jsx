@@ -4,7 +4,8 @@ export function Header() {
   return (
     <header>
       <Link to="create_post">New Post</Link>
-      <Link to="personal_profile">Profile</Link>
+      <Link to="me">Profile</Link>
+      <Link to="search_users">Search Users</Link>
     </header>
   );
 }
