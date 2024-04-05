@@ -1,9 +1,10 @@
 import { Outlet } from "react-router-dom";
+import { Header } from "./Header";
 
 export function Homepage() {
   return (
     <>
-      <header>its me the header</header>
+      <Header />
       <main>
         <p>its me homepage</p>
         <Outlet />
