@@ -6,6 +6,7 @@ import { Homepage } from "./components/homepage/Homepage.jsx";
 import { CreatePost } from "./components/homepage/createPost/CreatePost.jsx";
 import { Feed } from "./components/homepage/feed/Feed.jsx";
 import { Post } from "./components/homepage/post/Post.jsx";
+// import
 
 import "./index.css";
 
@@ -17,18 +18,9 @@ const router = createBrowserRouter([
         path: "/",
         element: <Homepage />,
         children: [
-          {
-            path: "/create_post",
-            element: <CreatePost />,
-          },
-          {
-            path: "/",
-            element: <Feed />,
-          },
-          {
-            path: "/:postID",
-            element: <Post />,
-          },
+          { path: "/create_post", element: <CreatePost /> },
+          { path: "/", element: <Feed /> },
+          { path: "/:postID", element: <Post /> },
         ],
       },
     ],
