@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 export function Signup() {
+  const USERNAME_MIN = 3;
+  const USERNAME_MAX = 25;
+  const PASSWORD_MIN = 3;
   const {
     register,
     handleSubmit,
@@ -26,13 +29,20 @@ export function Signup() {
         <input
           type="text"
           placeholder="Username"
-          {...register("username", { required: true, maxLength: 20 })}
+          {...register("username", {
+            required: true,
+            minLength: USERNAME_MIN,
+            maxLength: USERNAME_MAX,
+          })}
         />
 
         <input
           type="password"
           placeholder="Password"
-          {...register("password", { required: true })}
+          {...register("password", {
+            required: true,
+            minLength: PASSWORD_MIN,
+          })}
         />
 
         <input
@@ -41,14 +51,39 @@ export function Signup() {
           {...register("confirmPassword", {
             required: true,
             validate: (val) => {
-              if (getValues("password") !== val) {
-                return "Passwords don't match";
-              }
+              return getValues("password") !== val;
             },
           })}
         />
 
         <input type="submit" value="Sign up" />
+        <section>
+          {errors.username && errors.username.type === "required" && (
+            <span>Please provide username</span>
+          )}
+
+          {errors.username && errors.username.type === "minLength" && (
+            <span>Username must be at least {USERNAME_MIN} characters</span>
+          )}
+
+          {errors.username && errors.username.type === "maxLength" && (
+            <span>Username must be less than {USERNAME_MAX} characters</span>
+          )}
+
+          {errors.confirmPassword &&
+            errors.confirmPassword.type === "required" && (
+              <span>Please confirm password</span>
+            )}
+
+          {errors.password && errors.password.type === "minLength" && (
+            <span>Password must be at least {PASSWORD_MIN} characters </span>
+          )}
+
+          {errors.confirmPassword &&
+            errors.confirmPassword.type === "validate" && (
+              <span>Passwords don't match</span>
+            )}
+        </section>
       </form>
     </main>
   );
