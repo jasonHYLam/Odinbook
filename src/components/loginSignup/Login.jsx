@@ -18,7 +18,7 @@ export function Login() {
     const dataToSubmit = JSON.stringify(data);
     console.log("checking dataToSubmit");
     console.log(dataToSubmit);
-    const response = await fetchData("/auth/login", "POST", dataToSubmit);
+    const response = await fetchData("auth/login", "POST", dataToSubmit);
     if (response.status === 401) {
       setAuthError("Incorrect username/password");
     } else if (!response.ok) {

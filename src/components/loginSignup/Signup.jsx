@@ -19,18 +19,14 @@ export function Signup() {
 
   async function submitSignupData(data) {
     const dataToSubmit = JSON.stringify(data);
-    const response = await fetchData("/auth/signup", "POST", dataToSubmit);
+    const response = await fetchData("auth/signup", "POST", dataToSubmit);
     if (!response.ok || response instanceof Error) {
       navigate("/error");
     } else {
-      console.log("fine");
       const data = await response.json();
-      console.log(data);
       navigate("/");
     }
   }
-
-  console.log(errors);
 
   return (
     <main>
