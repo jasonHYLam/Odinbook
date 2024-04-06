@@ -40,7 +40,7 @@ export function Homepage() {
   }, []);
   return (
     <>
-      <Header />
+      <Header user={user} />
       <main>
         <p>its me homepage</p>
 
