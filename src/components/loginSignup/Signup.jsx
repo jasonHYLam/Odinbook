@@ -25,6 +25,14 @@ export function Signup() {
     }
 
     console.log("we good");
+    const loginResponse = await fetchData("/auth/login", "POST", dataToSubmit);
+    if (!loginResponse.ok || loginResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      console.log("fine");
+      const data = await loginResponse.json();
+      console.log(data);
+    }
   }
 
   console.log(errors);

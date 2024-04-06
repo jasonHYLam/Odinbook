@@ -32,6 +32,8 @@ export function Login() {
     } else {
       console.log("will this happen instantly");
       // navigate("/");
+      const data = await response.json();
+      console.log(data);
     }
   }
   return (
