@@ -44,7 +44,7 @@ export function Homepage() {
       <main>
         <p>its me homepage</p>
 
-        <Outlet context={user} />
+        <Outlet context={{ user, feed }} />
       </main>
     </>
   );
