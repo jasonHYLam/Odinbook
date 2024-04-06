@@ -16,24 +16,13 @@ export function Login() {
 
   async function submitLoginData(data) {
     const dataToSubmit = JSON.stringify(data);
-    console.log("checking dataToSubmit");
-    console.log(dataToSubmit);
     const response = await fetchData("auth/login", "POST", dataToSubmit);
     if (response.status === 401) {
       setAuthError("Incorrect username/password");
-    } else if (!response.ok) {
-      console.log(response);
-      console.log("get it shawty");
-    }
-    // else if (!response.ok || response instanceof Error) {
-    else if (response instanceof Error) {
-      console.log("something happened");
+    } else if (!response.ok || response instanceof Error) {
       navigate("/error");
     } else {
-      console.log("will this happen instantly");
-      const data = await response.json();
-      console.log(data);
-
+      // const data = await response.json();
       navigate("/");
     }
   }
