@@ -31,9 +31,10 @@ export function Login() {
       navigate("/error");
     } else {
       console.log("will this happen instantly");
-      // navigate("/");
       const data = await response.json();
       console.log(data);
+
+      navigate("/");
     }
   }
   return (
