@@ -22,16 +22,11 @@ export function Signup() {
     const response = await fetchData("/auth/signup", "POST", dataToSubmit);
     if (!response.ok || response instanceof Error) {
       navigate("/error");
-    }
-
-    console.log("we good");
-    const loginResponse = await fetchData("/auth/login", "POST", dataToSubmit);
-    if (!loginResponse.ok || loginResponse instanceof Error) {
-      navigate("/error");
     } else {
       console.log("fine");
-      const data = await loginResponse.json();
+      const data = await response.json();
       console.log(data);
+      navigate("/");
     }
   }
 
