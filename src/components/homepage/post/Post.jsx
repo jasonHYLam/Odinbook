@@ -56,12 +56,21 @@ export function Post() {
   }
 
   async function postComment(data) {
+    console.log("does this happen");
     const dataToSubmit = JSON.stringify(data);
     const commentResponse = await fetchData(
       `comment/${postID}/comment`,
       "POST",
       dataToSubmit
     );
+    console.log("check call ");
+    if (!commentResponse.ok || commentResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      const { newComment } = await commentResponse.json();
+      console.log("check newComment");
+      console.log(newComment);
+    }
   }
 
   return (
@@ -108,7 +117,13 @@ export function Post() {
               ) : (
                 <ul>
                   {comments.map((comment) => {
-                    return <>{comment.text}</>;
+                    return (
+                      <>
+                        <p>{comment.author.username}</p>
+                        <p>{comment.text}</p>
+                        <p>{comment.dateCommented}</p>
+                      </>
+                    );
                   })}
                 </ul>
               )}
