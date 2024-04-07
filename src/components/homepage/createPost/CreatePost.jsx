@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { fetchData } from "../../../helper/helperUtils";
+import { useNavigate } from "react-router-dom";
 
 export function CreatePost() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -16,10 +19,28 @@ export function CreatePost() {
   }
 
   async function post(data) {
-    if (imagesToUpload) return;
-    console.log("checking data");
-    console.log(data);
+    console.log("foo");
+    if (imagesToUpload.length) {
+      return;
+    } else {
+      const postData = JSON.stringify(data);
+      const postResponse = await fetchData(
+        "post/create_post",
+        "POST",
+        postData
+      );
+      if (!postResponse.ok || postResponse instanceof Error) {
+        navigate("/error");
+      } else {
+        const { newPost } = await postResponse.json();
+        console.log("check newPost");
+        console.log(newPost);
+        navigate(`/posts/${newPost.id}`);
+      }
+    }
   }
+
+  if (errors) console.log(errors);
 
   return (
     <main>
@@ -33,6 +54,7 @@ export function CreatePost() {
           rows="10"
           {...register("text", { required: true })}
         ></textarea>
+        <input type="text" {...register("test")} />
         <input type="submit" value="Post" />
       </form>
     </main>
