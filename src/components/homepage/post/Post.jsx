@@ -7,6 +7,7 @@ export function Post() {
   const navigate = useNavigate();
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   console.log(post);
@@ -20,6 +21,7 @@ export function Post() {
         const { post, comments } = await getResponse.json();
         setPost(post);
         setComments(comments);
+        setLikesCount(post.likesCount);
         setIsLoading(false);
       }
     }
@@ -29,6 +31,20 @@ export function Post() {
 
   async function likePost() {
     const likePostResponse = await fetchData(`post/${postID}/like`, "PUT");
+    if (!likePostResponse.ok || likePostResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      setLikesCount(likesCount + 1);
+    }
+  }
+
+  async function unlikePost() {
+    const likePostResponse = await fetchData(`post/${postID}/like`, "PUT");
+    if (!likePostResponse.ok || likePostResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      setLikesCount(likesCount - 1);
+    }
   }
 
   return (
@@ -42,10 +58,10 @@ export function Post() {
             <section>
               <p>{post.creator.username}</p>
               <p>{post.text}</p>
-              <p>{post.likesCount}</p>
+              <p>{likesCount}</p>
 
               <section>
-                <span>like post</span>
+                <span onClick={likePost}>like post</span>
               </section>
             </section>
 
