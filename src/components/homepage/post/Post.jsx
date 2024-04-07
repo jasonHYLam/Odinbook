@@ -8,7 +8,9 @@ export function Post() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
+
   const { postID } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({});
@@ -68,6 +70,7 @@ export function Post() {
       navigate("/error");
     } else {
       const { newComment } = await commentResponse.json();
+      reset();
       console.log("check newComment");
       console.log(newComment);
     }
