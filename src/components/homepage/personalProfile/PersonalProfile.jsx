@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
 
 export function PersonalProfile() {
@@ -40,7 +40,10 @@ export function PersonalProfile() {
             {posts.map((post) => {
               return (
                 <>
-                  <p>post.text;</p>
+                  <Link to={`/posts/${post.id}`}>
+                    <p>{post.creator.username}</p>
+                    <p>{post.text}</p>
+                  </Link>
                 </>
               );
             })}

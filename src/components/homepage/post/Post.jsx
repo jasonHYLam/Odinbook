@@ -9,6 +9,8 @@ export function Post() {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log(post);
+
   useEffect(() => {
     async function fetchPostAndComments() {
       const getResponse = await fetchData(`post/${postID}`, "GET");
@@ -25,6 +27,10 @@ export function Post() {
     fetchPostAndComments();
   }, []);
 
+  async function likePost() {
+    const likePostResponse = await fetchData(`post/${postID}/like`, "PUT");
+  }
+
   return (
     <>
       <p>it's me a post</p>
@@ -34,7 +40,31 @@ export function Post() {
         <>
           <main>
             <section>
+              <p>{post.creator.username}</p>
               <p>{post.text}</p>
+              <p>{post.likesCount}</p>
+
+              <section>
+                <span>like post</span>
+              </section>
+            </section>
+
+            <section>
+              <section>
+                <form>
+                  <input type="text" placeholder="Write a comment" />
+                  <input type="submit" />
+                </form>
+              </section>
+              {!comments.length ? (
+                <p>no comments</p>
+              ) : (
+                <ul>
+                  {comments.map((comment) => {
+                    return <>{comment.text}</>;
+                  })}
+                </ul>
+              )}
             </section>
           </main>
         </>
