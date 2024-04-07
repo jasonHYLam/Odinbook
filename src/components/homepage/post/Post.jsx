@@ -11,7 +11,8 @@ export function Post() {
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(post);
+  console.log("checking isLiked");
+  console.log(isLiked);
 
   useEffect(() => {
     async function fetchPostAndComments() {
@@ -37,15 +38,17 @@ export function Post() {
       navigate("/error");
     } else {
       setLikesCount(likesCount + 1);
+      setIsLiked(true);
     }
   }
 
   async function unlikePost() {
-    const likePostResponse = await fetchData(`post/${postID}/like`, "PUT");
+    const likePostResponse = await fetchData(`post/${postID}/unlike`, "PUT");
     if (!likePostResponse.ok || likePostResponse instanceof Error) {
       navigate("/error");
     } else {
       setLikesCount(likesCount - 1);
+      setIsLiked(false);
     }
   }
 
