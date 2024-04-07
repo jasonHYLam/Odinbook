@@ -7,6 +7,7 @@ export function Post() {
   const navigate = useNavigate();
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -18,10 +19,11 @@ export function Post() {
       if (!getResponse.ok || getResponse instanceof Error) {
         navigate("/error");
       } else {
-        const { post, comments } = await getResponse.json();
+        const { post, comments, isLiked } = await getResponse.json();
         setPost(post);
         setComments(comments);
         setLikesCount(post.likesCount);
+        setIsLiked(isLiked);
         setIsLoading(false);
       }
     }
@@ -61,7 +63,11 @@ export function Post() {
               <p>{likesCount}</p>
 
               <section>
-                <span onClick={likePost}>like post</span>
+                {isLiked ? (
+                  <span onClick={unlikePost}>unlike post</span>
+                ) : (
+                  <span onClick={likePost}>like post</span>
+                )}
               </section>
             </section>
 
