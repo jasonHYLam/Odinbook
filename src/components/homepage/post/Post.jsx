@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export function Post() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { postID } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({});
@@ -10,9 +16,6 @@ export function Post() {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log("checking isLiked");
-  console.log(isLiked);
 
   useEffect(() => {
     async function fetchPostAndComments() {
@@ -52,6 +55,15 @@ export function Post() {
     }
   }
 
+  async function postComment(data) {
+    const dataToSubmit = JSON.stringify(data);
+    const commentResponse = await fetchData(
+      `comment/${postID}/comment`,
+      "POST",
+      dataToSubmit
+    );
+  }
+
   return (
     <>
       <p>it's me a post</p>
@@ -76,8 +88,18 @@ export function Post() {
 
             <section>
               <section>
-                <form>
-                  <input type="text" placeholder="Write a comment" />
+                <form onSubmit={handleSubmit(postComment)}>
+                  {errors.text && errors.text.type === "required" && (
+                    <span>Please write a comment</span>
+                  )}
+                  {errors.text && errors.text.type === "maxLength" && (
+                    <span>Character limit is 500</span>
+                  )}
+                  <input
+                    type="text"
+                    placeholder="Write a comment"
+                    {...register("text", { required: true, maxLength: 500 })}
+                  />
                   <input type="submit" />
                 </form>
               </section>
