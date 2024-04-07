@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  useNavigate,
+  useOutletContext,
+  useParams,
+  Link,
+} from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export function Post() {
@@ -11,6 +16,7 @@ export function Post() {
     reset,
   } = useForm();
 
+  const { user } = useOutletContext();
   const { postID } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({});
@@ -18,6 +24,8 @@ export function Post() {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
+  console.log(comments);
 
   useEffect(() => {
     async function fetchPostAndComments() {
@@ -73,6 +81,7 @@ export function Post() {
       reset();
       console.log("check newComment");
       console.log(newComment);
+      setComments([...comments, newComment]);
     }
   }
 
@@ -120,9 +129,15 @@ export function Post() {
               ) : (
                 <ul>
                   {comments.map((comment) => {
+                    const authorURL =
+                      comment.author.id === user.id
+                        ? "/me"
+                        : `/users/${comment.author.id}`;
                     return (
                       <>
-                        <p>{comment.author.username}</p>
+                        <Link to={authorURL}>
+                          <p>{comment.author.username}</p>
+                        </Link>
                         <p>{comment.text}</p>
                         <p>{comment.dateCommented}</p>
                       </>

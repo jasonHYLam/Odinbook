@@ -33,8 +33,6 @@ export function CreatePost() {
         navigate("/error");
       } else {
         const { newPost } = await postResponse.json();
-        console.log("check newPost");
-        console.log(newPost);
         navigate(`/posts/${newPost.id}`);
       }
     }
