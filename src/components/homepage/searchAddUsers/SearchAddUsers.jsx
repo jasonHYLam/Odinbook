@@ -31,8 +31,10 @@ export function SearchAddUsers() {
     searchUsers();
   }, [searchQuery]);
 
-  function isFollowedByLoggedInUser(user) {
-    return user.following.some((follower) => follower.id === user.id);
+  function isFollowedByLoggedInUser(searchedUser) {
+    console.log("checking  isFollowedByLoggedInUser");
+    console.log(searchedUser.followers.map((follower) => follower));
+    return searchedUser.followers.some((follower) => follower === user.id);
   }
 
   async function followUser(userID) {
@@ -64,16 +66,13 @@ export function SearchAddUsers() {
       <section>
         <ul>
           {matchingUsers.map((user) => {
+            console.log(`checking: ${isFollowedByLoggedInUser(user)}`);
             return (
               <article>
-                <p>{user.username}</p>
-                {isFollowedByLoggedInUser(user) ? (
-                  <button onClick={() => unfollowUser(user.id)}>
-                    unfollow
-                  </button>
-                ) : (
-                  <button onClick={() => followUser(user.id)}>follow</button>
-                )}
+                <Link to={`/users/${user.id}`}>
+                  <p>{user.username}</p>
+                </Link>
+                {isFollowedByLoggedInUser(user) ? <span>following</span> : null}
               </article>
             );
           })}
