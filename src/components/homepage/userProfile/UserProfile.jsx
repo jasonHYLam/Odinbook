@@ -7,6 +7,8 @@ export function UserProfile() {
   const { userID } = useParams();
   const [user, setUser] = useState({});
   const [posts, setPosts] = useState([]);
+  const [isLoggedInUserFollowing, setIsLoggedInUserFollowing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   console.log("checking user");
   console.log(user);
@@ -17,8 +19,14 @@ export function UserProfile() {
       if (!getUserResponse.ok || getUserResponse instanceof Error) {
         navigate("/error");
       } else {
-        const { user } = await getUserResponse.json();
+        const { user, posts, isLoggedInUserFollowing } =
+          await getUserResponse.json();
+
         setUser(user);
+        setPosts(posts);
+        setIsLoggedInUserFollowing(isLoggedInUserFollowing);
+
+        setIsLoading(false);
       }
     }
     fetchUserData();
@@ -26,6 +34,28 @@ export function UserProfile() {
   return (
     <main>
       <p>it's me userProfile</p>
+
+      {isLoading ? (
+        <p>loading</p>
+      ) : (
+        <section>
+          <section>
+            {/* profilePic */}
+            <p>{user.username}</p>
+          </section>
+          <section>
+            <ul>
+              {posts.map((post) => {
+                return (
+                  <article>
+                    <p>{post.text}</p>
+                  </article>
+                );
+              })}
+            </ul>
+          </section>
+        </section>
+      )}
     </main>
   );
 }
