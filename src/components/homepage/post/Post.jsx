@@ -16,7 +16,7 @@ export function Post() {
     reset,
   } = useForm();
 
-  const { user } = useOutletContext();
+  const { loggedInUser } = useOutletContext();
   const { postID } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({});
@@ -130,7 +130,7 @@ export function Post() {
                 <ul>
                   {comments.map((comment) => {
                     const authorURL =
-                      comment.author.id === user.id
+                      comment.author.id === loggedInUser.id
                         ? "/me"
                         : `/users/${comment.author.id}`;
                     return (

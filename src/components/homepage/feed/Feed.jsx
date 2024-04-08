@@ -3,9 +3,9 @@ import { fetchData } from "../../../helper/helperUtils";
 import { useOutletContext } from "react-router-dom";
 
 export function Feed() {
-  const { user, feed } = useOutletContext();
+  const { loggedInUser, feed } = useOutletContext();
   console.log("checking Feed component");
-  console.log(user);
+  console.log(loggedInUser);
   console.log(feed);
   return (
     <>

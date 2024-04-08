@@ -4,7 +4,7 @@ import { fetchData } from "../../../helper/helperUtils";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
-  const { user } = useOutletContext();
+  const { loggedInUser } = useOutletContext();
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,7 +30,7 @@ export function PersonalProfile() {
   return (
     <main>
       <p>it's me personalProfile</p>
-      <h2>{user.username}</h2>
+      <h2>{loggedInUser.username}</h2>
       <section>
         <p>Your Posts</p>
         {isLoading ? (

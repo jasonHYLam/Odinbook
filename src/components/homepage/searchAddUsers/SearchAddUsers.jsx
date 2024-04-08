@@ -4,7 +4,7 @@ import { useNavigate, useOutletContext, Link } from "react-router-dom";
 
 export function SearchAddUsers() {
   const navigate = useNavigate();
-  const { user } = useOutletContext();
+  const { loggedInUser } = useOutletContext();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [matchingUsers, setMatchingUsers] = useState([]);
@@ -34,7 +34,9 @@ export function SearchAddUsers() {
   function isFollowedByLoggedInUser(searchedUser) {
     console.log("checking  isFollowedByLoggedInUser");
     console.log(searchedUser.followers.map((follower) => follower));
-    return searchedUser.followers.some((follower) => follower === user.id);
+    return searchedUser.followers.some(
+      (follower) => follower === loggedInUser.id
+    );
   }
 
   async function followUser(userID) {

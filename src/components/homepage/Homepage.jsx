@@ -6,12 +6,12 @@ import { useEffect, useState } from "react";
 export function Homepage() {
   const navigate = useNavigate();
   const [feed, setFeed] = useState([]);
-  const [user, setUser] = useState({});
+  const [loggedInUser, setLoggedInUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   console.log("checking state");
   console.log(feed);
-  console.log(user);
+  console.log(loggedInUser);
   useEffect(() => {
     async function fetchFeedAndUsersData() {
       const [allPostsResponse, getLoggedInUserResponse] = await Promise.all([
@@ -31,7 +31,7 @@ export function Homepage() {
         const { user } = await getLoggedInUserResponse.json();
 
         setFeed(allPosts);
-        setUser(user);
+        setLoggedInUser(user);
         setIsLoading(false);
       }
     }
@@ -40,11 +40,11 @@ export function Homepage() {
   }, []);
   return (
     <>
-      <Header user={user} />
+      <Header user={loggedInUser} />
       <main>
         <p>its me homepage</p>
 
-        <Outlet context={{ user, feed }} />
+        <Outlet context={{ loggedInUser, feed }} />
       </main>
     </>
   );
