@@ -9,6 +9,7 @@ export function UserProfile() {
   const [posts, setPosts] = useState([]);
   const [isLoggedInUserFollowing, setIsLoggedInUserFollowing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isFollowingPending, setIsFollowingPending] = useState(false);
 
   console.log("checking user");
   console.log(user);
@@ -31,6 +32,33 @@ export function UserProfile() {
     }
     fetchUserData();
   }, []);
+
+  async function followUser(userID) {
+    if (isFollowingPending) return;
+    setIsFollowingPending(true);
+    const followResponse = await fetchData(`user/${userID}/follow`, "POST");
+    if (!followResponse.ok || followResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      setIsLoggedInUserFollowing(true);
+      setIsFollowingPending(false);
+      return;
+    }
+  }
+
+  async function unfollowUser(userID) {
+    if (isFollowingPending) return;
+    setIsFollowingPending(true);
+    const followResponse = await fetchData(`user/${userID}/unfollow`, "POST");
+    if (!followResponse.ok || followResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      setIsLoggedInUserFollowing(false);
+      setIsFollowingPending(false);
+      return;
+    }
+  }
+
   return (
     <main>
       <p>it's me userProfile</p>
@@ -42,8 +70,26 @@ export function UserProfile() {
           <section>
             {/* profilePic */}
             <p>{user.username}</p>
+            {isLoggedInUserFollowing ? (
+              <button
+                onClick={() => {
+                  unfollowUser(user.id);
+                }}
+              >
+                Unfollow
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  followUser(user.id);
+                }}
+              >
+                Follow
+              </button>
+            )}
           </section>
           <section>
+            <p>Posts</p>
             <ul>
               {posts.map((post) => {
                 return (
