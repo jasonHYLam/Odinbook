@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext, Link } from "react-router-dom";
 
 export function SearchAddUsers() {
   const navigate = useNavigate();
+  const { user } = useOutletContext();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [matchingUsers, setMatchingUsers] = useState([]);
@@ -30,8 +31,21 @@ export function SearchAddUsers() {
     searchUsers();
   }, [searchQuery]);
 
+  function isFollowedByLoggedInUser(user) {
+    return user.following.some((follower) => follower.id === user.id);
+  }
+
   async function followUser(userID) {
     const followResponse = await fetchData(`user/${userID}/follow`, "POST");
+    if (!followResponse.ok || followResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      return;
+    }
+  }
+
+  async function unfollowUser(userID) {
+    const followResponse = await fetchData(`user/${userID}/unfollow`, "POST");
     if (!followResponse.ok || followResponse instanceof Error) {
       navigate("/error");
     } else {
@@ -50,7 +64,18 @@ export function SearchAddUsers() {
       <section>
         <ul>
           {matchingUsers.map((user) => {
-            return <article>{user.username}</article>;
+            return (
+              <article>
+                <p>{user.username}</p>
+                {isFollowedByLoggedInUser(user) ? (
+                  <button onClick={() => unfollowUser(user.id)}>
+                    unfollow
+                  </button>
+                ) : (
+                  <button onClick={() => followUser(user.id)}>follow</button>
+                )}
+              </article>
+            );
           })}
         </ul>
       </section>
