@@ -84,7 +84,7 @@ export function PersonalProfile() {
               })}
             </section>
 
-            <SettingsModal />
+            <SettingsModal openModal={showSettings} />
           </>
         )}
       </section>
