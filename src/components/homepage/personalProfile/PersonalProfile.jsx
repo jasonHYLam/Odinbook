@@ -1,18 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
 import { SettingsModal } from "./modals/SettingsModal";
 
 export function PersonalProfile() {
+  const settingsRef = useRef();
+
   const navigate = useNavigate();
   const { loggedInUser } = useOutletContext();
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const [showSettings, setShowSettings] = useState(false);
-  // console.log(users);
-  // console.log("checking posts");
-  // console.log(posts);
+
+  console.log("checking showSettings");
+  console.log(showSettings);
 
   useEffect(() => {
     async function getUserPosts() {
@@ -82,7 +84,7 @@ export function PersonalProfile() {
               })}
             </section>
 
-            {showSettings ? <SettingsModal /> : null}
+            <SettingsModal />
           </>
         )}
       </section>
