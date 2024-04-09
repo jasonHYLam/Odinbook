@@ -16,7 +16,7 @@ export function FollowingModal({ following, openModal, closeModal }) {
     } else {
       ref.current?.close();
     }
-  });
+  }, [openModal]);
   return (
     <dialog ref={ref}>
       <button onClick={closeModal}>close</button>

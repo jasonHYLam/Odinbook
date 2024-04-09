@@ -15,7 +15,7 @@ export function FollowersModal({ followers, openModal, closeModal }) {
     } else {
       ref.current.close();
     }
-  });
+  }, [openModal]);
 
   return (
     <dialog ref={ref}>
