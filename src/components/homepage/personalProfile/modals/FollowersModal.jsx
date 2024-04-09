@@ -11,7 +11,7 @@ export function FollowersModal({ followers, openModal, closeModal }) {
 
   useEffect(() => {
     if (openModal) {
-      ref.current?.openModal();
+      ref.current?.showModal();
     } else {
       ref.current.close();
     }
@@ -19,6 +19,7 @@ export function FollowersModal({ followers, openModal, closeModal }) {
 
   return (
     <dialog ref={ref}>
+      <p>Followers</p>
       <ul>
         {followers.map((user) => {
           <Link to={user.id}>

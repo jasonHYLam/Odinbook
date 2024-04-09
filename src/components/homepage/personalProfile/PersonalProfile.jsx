@@ -2,16 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
 import { SettingsModal } from "./modals/SettingsModal";
+import { FollowersModal } from "./modals/FollowersModal";
 
 export function PersonalProfile() {
-  const settingsRef = useRef();
-
   const navigate = useNavigate();
   const { loggedInUser } = useOutletContext();
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const [showSettings, setShowSettings] = useState(false);
+  const [showFollowers, setShowFollowers] = useState(false);
 
   console.log("checking showSettings");
   console.log(showSettings);
@@ -43,7 +43,7 @@ export function PersonalProfile() {
           <>
             <nav>
               <span onClick={() => setShowSettings(true)}>settings</span>
-              <span onClick={() => setShowSettings(true)}>followers</span>
+              <span onClick={() => setShowFollowers(true)}>followers</span>
               <span onClick={() => setShowSettings(true)}>following</span>
               <span onClick={() => setShowSettings(true)}>logout</span>
             </nav>
@@ -87,6 +87,12 @@ export function PersonalProfile() {
             <SettingsModal
               openModal={showSettings}
               closeModal={() => setShowSettings(false)}
+            />
+
+            <FollowersModal
+              followers={loggedInUser.followers}
+              openModal={showFollowers}
+              closeModal={() => setShowFollowers(false)}
             />
           </>
         )}
