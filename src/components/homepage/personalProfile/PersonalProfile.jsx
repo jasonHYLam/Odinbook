@@ -5,6 +5,7 @@ import { SettingsModal } from "./modals/SettingsModal";
 import { FollowersModal } from "./modals/FollowersModal";
 import { FollowingModal } from "./modals/FollowingModal";
 import { LogoutModal } from "./modals/LogoutModal";
+import { PostPreview } from "../postPreview/PostPreview";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
@@ -67,31 +68,17 @@ export function PersonalProfile() {
             {postsToShow === "user" ? (
               <>
                 <ul>
-                  {userPosts.map((post) => {
-                    return (
-                      <>
-                        <Link to={`/posts/${post.id}`}>
-                          <p>{post.creator.username}</p>
-                          <p>{post.text}</p>
-                        </Link>
-                      </>
-                    );
-                  })}
+                  {userPosts.map((post) => (
+                    <PostPreview post={post} />
+                  ))}
                 </ul>
               </>
             ) : (
               <>
                 <ul>
-                  {likedPosts.map((post) => {
-                    return (
-                      <>
-                        <Link to={`/posts/${post.id}`}>
-                          <p>{post.creator.username}</p>
-                          <p>{post.text}</p>
-                        </Link>
-                      </>
-                    );
-                  })}
+                  {likedPosts.map((post) => (
+                    <PostPreview post={post} />
+                  ))}
                 </ul>
               </>
             )}
