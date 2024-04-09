@@ -9,7 +9,8 @@ import { LogoutModal } from "./modals/LogoutModal";
 export function PersonalProfile() {
   const navigate = useNavigate();
   const { loggedInUser } = useOutletContext();
-  const [posts, setPosts] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const [showSettings, setShowSettings] = useState(false);
@@ -22,15 +23,23 @@ export function PersonalProfile() {
 
   useEffect(() => {
     async function getUserPosts() {
-      const getPostsResponse = await fetchData(
-        "user/view_personal_profile",
-        "GET"
-      );
-      if (!getPostsResponse.ok || getPostsResponse instanceof Error) {
+      const [getUserPostsResponse, getLikedPostsResponse] = await Promise.all([
+        await fetchData("user/view_personal_profile", "GET"),
+        await fetchData("post/liked_posts", "GET"),
+      ]);
+
+      if (
+        !getUserPostsResponse.ok ||
+        getUserPostsResponse instanceof Error ||
+        !getLikedPostsResponse.ok ||
+        getLikedPostsResponse instanceof Error
+      ) {
         navigate("/error");
       } else {
-        const { posts } = await getPostsResponse.json();
-        setPosts(posts);
+        const { posts } = await getUserPostsResponse.json();
+        const { likedPosts } = await getLikedPostsResponse.json();
+        setUserPosts(posts);
+        setLikedPosts(likedPosts);
         setIsLoading(false);
       }
     }
@@ -52,9 +61,13 @@ export function PersonalProfile() {
               <span onClick={() => setShowLogout(true)}>logout</span>
             </nav>
 
-            <p>Your Posts</p>
+            <nav>
+              <p>Your Posts</p>
+              <p>Liked Posts</p>
+            </nav>
+
             <ul>
-              {posts.map((post) => {
+              {userPosts.map((post) => {
                 return (
                   <>
                     <Link to={`/posts/${post.id}`}>
@@ -65,28 +78,6 @@ export function PersonalProfile() {
                 );
               })}
             </ul>
-
-            <section>
-              <p>Followers</p>
-              {loggedInUser.followers.map((user) => {
-                return (
-                  <article>
-                    <p>{user.username}</p>
-                  </article>
-                );
-              })}
-
-              <p>Following</p>
-              {loggedInUser.following.map((user) => {
-                return (
-                  <Link to={`/users/${user.id}`}>
-                    <article>
-                      <p>{user.username}</p>
-                    </article>
-                  </Link>
-                );
-              })}
-            </section>
 
             <SettingsModal
               openModal={showSettings}

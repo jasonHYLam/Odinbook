@@ -7,6 +7,7 @@ export function PostPreview({ post }) {
           <p>{post.creator.username}</p>
           <p>{post.text}</p>
           <p>{post.datePosted}</p>
+          <p>{post.likesCount}</p>
         </article>
       </Link>
     </>
