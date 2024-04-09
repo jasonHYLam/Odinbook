@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
-import { SettingsModal } from "./modals/SettingsModal";
+import { EditProfileModal } from "./modals/EditProfileModal";
 import { FollowersModal } from "./modals/FollowersModal";
 import { FollowingModal } from "./modals/FollowingModal";
 import { LogoutModal } from "./modals/LogoutModal";
@@ -83,7 +83,7 @@ export function PersonalProfile() {
               </>
             )}
 
-            <SettingsModal
+            <EditProfileModal
               openModal={showSettings}
               closeModal={() => setShowSettings(false)}
             />

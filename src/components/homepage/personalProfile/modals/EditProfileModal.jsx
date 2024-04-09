@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { EditUserForm } from "./EditUserForm";
 
-export function SettingsModal({ openModal, closeModal }) {
+export function EditProfileModal({ openModal, closeModal }) {
   const [editing, setEditing] = useState("");
 
   const ref = useRef();
@@ -40,7 +40,10 @@ export function SettingsModal({ openModal, closeModal }) {
         <EditUserForm editing={"password"} cancel={() => setEditing("")} />
       ) : null}
 
-      <p>Change profile picture</p>
+      <label htmlFor="">
+        <p>Change profile picture</p>
+        <input type="file" />
+      </label>
     </dialog>
   );
 }

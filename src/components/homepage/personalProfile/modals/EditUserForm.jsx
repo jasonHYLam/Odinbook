@@ -3,7 +3,7 @@ import { fetchData } from "../../../../helper/helperUtils";
 import { useNavigate, useOutletContext } from "react-router-dom";
 
 export function EditUserForm({ editing, cancel }) {
-  const { loggedInUser, setLoggedInUser } = useOutletContext();
+  const { setLoggedInUser } = useOutletContext();
   const navigate = useNavigate();
   const {
     register,
@@ -25,7 +25,6 @@ export function EditUserForm({ editing, cancel }) {
       if (!response.ok || response instanceof Error) {
         navigate("/error");
       } else {
-        console.log("username successfully changed");
         const { user } = await response.json();
         setLoggedInUser(user);
         cancel();
@@ -42,7 +41,6 @@ export function EditUserForm({ editing, cancel }) {
       if (!response.ok || response instanceof Error) {
         navigate("/error");
       } else {
-        console.log("password successfully changed");
         cancel();
       }
     }
