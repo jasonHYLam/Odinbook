@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useOutletContext } from "react-router-dom";
+import { PostPreview } from "../postPreview/PostPreview";
 
 export function Feed() {
   const { loggedInUser, feed } = useOutletContext();
-  console.log("checking Feed component");
-  console.log(loggedInUser);
-  console.log(feed);
   return (
     <>
       <p>It's me the feed</p>
       <section>
         <ul>
-          {feed.map((post) => {
-            return <p>{post.text}</p>;
-          })}
+          {feed.map((post) => (
+            <PostPreview post={post} />
+          ))}
         </ul>
       </section>
     </>
