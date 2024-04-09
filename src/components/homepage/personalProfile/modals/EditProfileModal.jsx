@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { EditUserForm } from "./EditUserForm";
+import { EditProfilePicForm } from "./EditProfilePicForm";
 
 export function EditProfileModal({ openModal, closeModal }) {
   const [editing, setEditing] = useState("");
-  const [imageToUpload, setImageToUpload] = useState(null);
-  console.log("checking imageToUpload");
-  console.log(imageToUpload);
+  // const [imageToUpload, setImageToUpload] = useState(null);
 
   const ref = useRef();
   useEffect(() => {
@@ -22,9 +21,9 @@ export function EditProfileModal({ openModal, closeModal }) {
 
   document.addEventListener("keydown", escapePress);
 
-  function selectImageToUpload(e) {
-    setImageToUpload(e.target.files[0]);
-  }
+  // function selectImageToUpload(e) {
+  //   setImageToUpload(e.target.files[0]);
+  // }
 
   return (
     <dialog ref={ref}>
@@ -49,14 +48,21 @@ export function EditProfileModal({ openModal, closeModal }) {
 
       <p onClick={() => setEditing("profilePic")}>Change profile picture</p>
       {editing === "profilePic" ? (
-        <form encType="multipart/form-data">
-          <button onClick={() => setEditing("")}>cancel</button>
-          <label htmlFor="">
-            <input type="file" onChange={selectImageToUpload} />
-          </label>
-          <input type="submit" />
-        </form>
-      ) : null}
+        <EditProfilePicForm
+          cancel={() => {
+            setEditing("");
+          }}
+        />
+      ) : // (
+      // <form encType="multipart/form-data">
+      //   <button onClick={() => setEditing("")}>cancel</button>
+      //   <label htmlFor="">
+      //     <input type="file" onChange={selectImageToUpload} />
+      //   </label>
+      //   <input type="submit" />
+      // </form>
+      // )
+      null}
     </dialog>
   );
 }
