@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { fetchData } from "../../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 
-export function EditUserForm({ editing }) {
+export function EditUserForm({ editing, cancel }) {
   const navigate = useNavigate();
   const {
     register,
@@ -35,6 +35,8 @@ export function EditUserForm({ editing }) {
 
   return (
     <form onSubmit={handleSubmit(submitChange)}>
+      {/* add state for cancel */}
+      <button>cancel</button>
       {errors.edit && <span>Must be between 3-25 characters</span>}
       <input
         type="text"

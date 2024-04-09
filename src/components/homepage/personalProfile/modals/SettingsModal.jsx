@@ -29,23 +29,17 @@ export function SettingsModal({ openModal, closeModal }) {
       >
         close
       </button>
+
       <p onClick={() => setEditing("username")}>Change username</p>
       {editing === "username" ? (
-        <>
-          <form>
-            <button
-              onClick={() => {
-                setEditing("");
-              }}
-            >
-              cancel
-            </button>
-            <input type="text" />
-            <input type="submit" />
-          </form>
-        </>
+        <EditUserForm editing={"username"} cancel={() => setEditing("")} />
       ) : null}
-      <p>Change password</p>
+
+      <p onClick={() => setEditing("password")}>Change password</p>
+      {editing === "password" ? (
+        <EditUserForm editing={"password"} cancel={() => setEditing("")} />
+      ) : null}
+
       <p>Change profile picture</p>
     </dialog>
   );
