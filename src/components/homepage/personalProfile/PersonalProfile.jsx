@@ -3,6 +3,7 @@ import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
 import { SettingsModal } from "./modals/SettingsModal";
 import { FollowersModal } from "./modals/FollowersModal";
+import { FollowingModal } from "./FollowingModal";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ export function PersonalProfile() {
 
   const [showSettings, setShowSettings] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
+  const [showFollowing, setShowFollowing] = useState(false);
 
   console.log("checking showSettings");
   console.log(showSettings);
@@ -93,6 +95,12 @@ export function PersonalProfile() {
               followers={loggedInUser.followers}
               openModal={showFollowers}
               closeModal={() => setShowFollowers(false)}
+            />
+
+            <FollowingModal
+              following={loggedInUser.following}
+              openModal={showFollowing}
+              closeModal={() => setShowFollowing(false)}
             />
           </>
         )}
