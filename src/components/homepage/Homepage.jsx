@@ -8,6 +8,7 @@ export function Homepage() {
   const [feed, setFeed] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  // will need to move the likedPosts to here, in order to setState
 
   console.log("checking state");
   console.log(feed);
@@ -17,6 +18,7 @@ export function Homepage() {
       const [allPostsResponse, getLoggedInUserResponse] = await Promise.all([
         fetchData("post/all_posts", "GET"),
         fetchData("user/get_logged_in_user", "GET"),
+        // will need to move the likedPosts to here, in order to setState
       ]);
 
       if (
@@ -48,7 +50,9 @@ export function Homepage() {
           <main>
             <p>its me homepage</p>
 
-            <Outlet context={{ loggedInUser, feed }} />
+            <Outlet
+              context={{ loggedInUser, setLoggedInUser, feed, setFeed }}
+            />
           </main>
         </>
       )}

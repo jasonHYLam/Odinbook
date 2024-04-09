@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import { fetchData } from "../../../../helper/helperUtils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 export function EditUserForm({ editing, cancel }) {
+  const { loggedInUser, setLoggedInUser } = useOutletContext();
   const navigate = useNavigate();
   const {
     register,
@@ -25,6 +26,8 @@ export function EditUserForm({ editing, cancel }) {
         navigate("/error");
       } else {
         console.log("username successfully changed");
+        const { user } = await response.json();
+        setLoggedInUser(user);
         cancel();
       }
     } else if (editing === "password") {
