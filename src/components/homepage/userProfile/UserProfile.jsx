@@ -23,6 +23,9 @@ export function UserProfile() {
         const { user, posts, isLoggedInUserFollowing } =
           await getUserResponse.json();
 
+        console.log("checking isisLoggedInUserFollowing ");
+        console.log(isLoggedInUserFollowing);
+
         setUser(user);
         setPosts(posts);
         setIsLoggedInUserFollowing(isLoggedInUserFollowing);

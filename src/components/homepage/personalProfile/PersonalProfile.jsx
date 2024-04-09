@@ -8,8 +8,9 @@ export function PersonalProfile() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("checking posts");
-  console.log(posts);
+  // console.log(users);
+  // console.log("checking posts");
+  // console.log(posts);
 
   useEffect(() => {
     async function getUserPosts() {
@@ -49,6 +50,28 @@ export function PersonalProfile() {
             })}
           </ul>
         )}
+      </section>
+
+      <section>
+        <p>Followers</p>
+        {loggedInUser.followers.map((user) => {
+          return (
+            <article>
+              <p>{user.username}</p>
+            </article>
+          );
+        })}
+
+        <p>Following</p>
+        {loggedInUser.following.map((user) => {
+          return (
+            <Link to={`/users/${user.id}`}>
+              <article>
+                <p>{user.username}</p>
+              </article>
+            </Link>
+          );
+        })}
       </section>
     </main>
   );
