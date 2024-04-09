@@ -84,7 +84,10 @@ export function PersonalProfile() {
               })}
             </section>
 
-            <SettingsModal openModal={showSettings} />
+            <SettingsModal
+              openModal={showSettings}
+              closeModal={() => setShowSettings(false)}
+            />
           </>
         )}
       </section>
