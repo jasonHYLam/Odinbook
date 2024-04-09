@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useParams } from "react-router-dom";
+import { PostPreview } from "../postPreview/PostPreview";
 
 export function UserProfile() {
   const navigate = useNavigate();
@@ -11,9 +12,6 @@ export function UserProfile() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFollowingPending, setIsFollowingPending] = useState(false);
 
-  console.log("checking user");
-  console.log(user);
-
   useEffect(() => {
     async function fetchUserData() {
       const getUserResponse = await fetchData(`user/${userID}/profile`);
@@ -22,9 +20,6 @@ export function UserProfile() {
       } else {
         const { user, posts, isLoggedInUserFollowing } =
           await getUserResponse.json();
-
-        console.log("checking isisLoggedInUserFollowing ");
-        console.log(isLoggedInUserFollowing);
 
         setUser(user);
         setPosts(posts);
@@ -94,13 +89,9 @@ export function UserProfile() {
           <section>
             <p>Posts</p>
             <ul>
-              {posts.map((post) => {
-                return (
-                  <article>
-                    <p>{post.text}</p>
-                  </article>
-                );
-              })}
+              {posts.map((post) => (
+                <PostPreview post={post} />
+              ))}
             </ul>
           </section>
         </section>
