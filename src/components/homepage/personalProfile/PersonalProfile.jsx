@@ -11,15 +11,13 @@ export function PersonalProfile() {
   const { loggedInUser } = useOutletContext();
   const [userPosts, setUserPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
+  const [postsToShow, setPostsToShow] = useState("user");
   const [isLoading, setIsLoading] = useState(true);
 
   const [showSettings, setShowSettings] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
-
-  console.log("checking showSettings");
-  console.log(showSettings);
 
   useEffect(() => {
     async function getUserPosts() {
@@ -62,22 +60,41 @@ export function PersonalProfile() {
             </nav>
 
             <nav>
-              <p>Your Posts</p>
-              <p>Liked Posts</p>
+              <p onClick={() => setPostsToShow("user")}>Your Posts</p>
+              <p onClick={() => setPostsToShow("liked")}>Liked Posts</p>
             </nav>
 
-            <ul>
-              {userPosts.map((post) => {
-                return (
-                  <>
-                    <Link to={`/posts/${post.id}`}>
-                      <p>{post.creator.username}</p>
-                      <p>{post.text}</p>
-                    </Link>
-                  </>
-                );
-              })}
-            </ul>
+            {postsToShow === "user" ? (
+              <>
+                <ul>
+                  {userPosts.map((post) => {
+                    return (
+                      <>
+                        <Link to={`/posts/${post.id}`}>
+                          <p>{post.creator.username}</p>
+                          <p>{post.text}</p>
+                        </Link>
+                      </>
+                    );
+                  })}
+                </ul>
+              </>
+            ) : (
+              <>
+                <ul>
+                  {likedPosts.map((post) => {
+                    return (
+                      <>
+                        <Link to={`/posts/${post.id}`}>
+                          <p>{post.creator.username}</p>
+                          <p>{post.text}</p>
+                        </Link>
+                      </>
+                    );
+                  })}
+                </ul>
+              </>
+            )}
 
             <SettingsModal
               openModal={showSettings}
