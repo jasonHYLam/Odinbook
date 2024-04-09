@@ -10,6 +10,9 @@ export function EditUserForm({ editing, cancel }) {
     formState: { errors },
   } = useForm();
 
+  console.log("checking editing");
+  console.log(editing);
+
   async function submitChange(data) {
     if (editing === "username") {
       const dataToSubmit = JSON.stringify({ username: data.edit });
@@ -20,9 +23,14 @@ export function EditUserForm({ editing, cancel }) {
       );
       if (!response.ok || response instanceof Error) {
         navigate("/error");
+      } else {
+        console.log("username successfully changed");
+        cancel();
       }
     } else if (editing === "password") {
       const dataToSubmit = JSON.stringify({ password: data.edit });
+      console.log("checking dataToSubmit");
+      console.log(dataToSubmit);
       const response = await fetchData(
         `user/change_password`,
         "PUT",
@@ -30,14 +38,16 @@ export function EditUserForm({ editing, cancel }) {
       );
       if (!response.ok || response instanceof Error) {
         navigate("/error");
+      } else {
+        console.log("password successfully changed");
+        cancel();
       }
     }
   }
 
   return (
     <form onSubmit={handleSubmit(submitChange)}>
-      {/* add state for cancel */}
-      <button>cancel</button>
+      <button onClick={cancel}>cancel</button>
       {errors.edit && <span>Must be between 3-25 characters</span>}
       <input
         type="text"
