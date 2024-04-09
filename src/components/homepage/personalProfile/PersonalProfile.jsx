@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
+import { SettingsModal } from "./modals/SettingsModal";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
@@ -8,6 +9,7 @@ export function PersonalProfile() {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [showSettings, setShowSettings] = useState(false);
   // console.log(users);
   // console.log("checking posts");
   // console.log(posts);
@@ -33,45 +35,56 @@ export function PersonalProfile() {
       <p>it's me personalProfile</p>
       <h2>{loggedInUser.username}</h2>
       <section>
-        <p>Your Posts</p>
         {isLoading ? (
           <p>loading</p>
         ) : (
-          <ul>
-            {posts.map((post) => {
-              return (
-                <>
-                  <Link to={`/posts/${post.id}`}>
-                    <p>{post.creator.username}</p>
-                    <p>{post.text}</p>
+          <>
+            <nav>
+              <span onClick={() => setShowSettings(true)}>settings</span>
+              <span onClick={() => setShowSettings(true)}>followers</span>
+              <span onClick={() => setShowSettings(true)}>following</span>
+              <span onClick={() => setShowSettings(true)}>logout</span>
+            </nav>
+
+            <p>Your Posts</p>
+            <ul>
+              {posts.map((post) => {
+                return (
+                  <>
+                    <Link to={`/posts/${post.id}`}>
+                      <p>{post.creator.username}</p>
+                      <p>{post.text}</p>
+                    </Link>
+                  </>
+                );
+              })}
+            </ul>
+
+            <section>
+              <p>Followers</p>
+              {loggedInUser.followers.map((user) => {
+                return (
+                  <article>
+                    <p>{user.username}</p>
+                  </article>
+                );
+              })}
+
+              <p>Following</p>
+              {loggedInUser.following.map((user) => {
+                return (
+                  <Link to={`/users/${user.id}`}>
+                    <article>
+                      <p>{user.username}</p>
+                    </article>
                   </Link>
-                </>
-              );
-            })}
-          </ul>
+                );
+              })}
+            </section>
+
+            {showSettings ? <SettingsModal /> : null}
+          </>
         )}
-      </section>
-
-      <section>
-        <p>Followers</p>
-        {loggedInUser.followers.map((user) => {
-          return (
-            <article>
-              <p>{user.username}</p>
-            </article>
-          );
-        })}
-
-        <p>Following</p>
-        {loggedInUser.following.map((user) => {
-          return (
-            <Link to={`/users/${user.id}`}>
-              <article>
-                <p>{user.username}</p>
-              </article>
-            </Link>
-          );
-        })}
       </section>
     </main>
   );
