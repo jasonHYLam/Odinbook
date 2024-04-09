@@ -40,12 +40,18 @@ export function Homepage() {
   }, []);
   return (
     <>
-      <Header user={loggedInUser} />
-      <main>
-        <p>its me homepage</p>
+      {isLoading ? (
+        <p>loading</p>
+      ) : (
+        <>
+          <Header user={loggedInUser} />
+          <main>
+            <p>its me homepage</p>
 
-        <Outlet context={{ loggedInUser, feed }} />
-      </main>
+            <Outlet context={{ loggedInUser, feed }} />
+          </main>
+        </>
+      )}
     </>
   );
 }

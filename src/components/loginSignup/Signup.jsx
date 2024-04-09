@@ -23,7 +23,7 @@ export function Signup() {
     if (!response.ok || response instanceof Error) {
       navigate("/error");
     } else {
-      const data = await response.json();
+      // const data = await response.json();
       navigate("/");
     }
   }

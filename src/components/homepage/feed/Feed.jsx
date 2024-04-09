@@ -10,6 +10,13 @@ export function Feed() {
   return (
     <>
       <p>It's me the feed</p>
+      <section>
+        <ul>
+          {feed.map((post) => {
+            return <p>{post.text}</p>;
+          })}
+        </ul>
+      </section>
     </>
   );
 }

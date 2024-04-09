@@ -4,6 +4,7 @@ import { fetchData } from "../../../helper/helperUtils";
 import { SettingsModal } from "./modals/SettingsModal";
 import { FollowersModal } from "./modals/FollowersModal";
 import { FollowingModal } from "./FollowingModal";
+import { LogoutModal } from "./modals/LogoutModal";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ export function PersonalProfile() {
   const [showSettings, setShowSettings] = useState(false);
   const [showFollowers, setShowFollowers] = useState(false);
   const [showFollowing, setShowFollowing] = useState(false);
+  const [showLogout, setShowLogout] = useState(false);
 
   console.log("checking showSettings");
   console.log(showSettings);
@@ -46,8 +48,8 @@ export function PersonalProfile() {
             <nav>
               <span onClick={() => setShowSettings(true)}>settings</span>
               <span onClick={() => setShowFollowers(true)}>followers</span>
-              <span onClick={() => setShowSettings(true)}>following</span>
-              <span onClick={() => setShowSettings(true)}>logout</span>
+              <span onClick={() => setShowFollowing(true)}>following</span>
+              <span onClick={() => setShowLogout(true)}>logout</span>
             </nav>
 
             <p>Your Posts</p>
@@ -101,6 +103,11 @@ export function PersonalProfile() {
               following={loggedInUser.following}
               openModal={showFollowing}
               closeModal={() => setShowFollowing(false)}
+            />
+
+            <LogoutModal
+              openModal={showLogout}
+              closeModal={() => setShowLogout(false)}
             />
           </>
         )}
