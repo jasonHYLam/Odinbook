@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "./App.jsx";
 import { Homepage } from "./components/homepage/Homepage.jsx";
 import { CreatePost } from "./components/homepage/createPost/CreatePost.jsx";
 import { Feed } from "./components/homepage/feed/Feed.jsx";
