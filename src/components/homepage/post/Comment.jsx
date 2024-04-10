@@ -21,8 +21,6 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
 
   async function submitEdit(data) {
     const dataToSubmit = JSON.stringify(data);
-    console.log("dataToSubmit");
-    console.log(dataToSubmit);
     const editResponse = await fetchData(
       `comment/${postID}/${comment._id}/edit`,
       "PUT",
@@ -32,10 +30,34 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
       navigate("/error");
     } else {
       const { editedComment } = await editResponse.json();
-      console.log("editedComment");
-      console.log(editedComment);
 
-      const updatedComments = setComments();
+      const updatedComments = allPostComments.map((comment) => {
+        if (comment._id === editedComment._id) return editedComment;
+        return comment;
+      });
+
+      setComments(updatedComments);
+
+      setStatus("");
+    }
+  }
+
+  async function deleteComment() {
+    const deleteResponse = fetchData(
+      `comment/${postID}/${comment._id}/delete`,
+      "DELETE"
+    );
+    if (!deleteResponse.ok || deleteResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      const { deletedComment } = deleteResponse.json();
+
+      const updatedComments = allPostComments.map((comment) => {
+        if (comment._id === deletedComment._id) return deletedComment;
+        return comment;
+      });
+
+      setComments(updatedComments);
 
       setStatus("");
     }
@@ -52,6 +74,14 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
         })}
       />
       <input type="submit" value="Edit" />
+    </form>
+  );
+
+  const deleteForm = (
+    <form>
+      <p>Are you sure you want to delete?</p>
+      <button onClick={deleteComment}>Delete</button>
+      <button onClick={() => setStatus("")}>Cancel</button>
     </form>
   );
 
@@ -77,6 +107,8 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
           </>
         ) : status === "edit" ? (
           editForm
+        ) : status === "delete" ? (
+          deleteForm
         ) : null}
       </article>
     </>

@@ -143,14 +143,16 @@ export function Post() {
                 <p>no comments</p>
               ) : (
                 <ul>
-                  {comments.map((comment) => (
-                    <Comment
-                      comment={comment}
-                      postID={post._id}
-                      setComments={setComments}
-                      allPostComments={comments}
-                    />
-                  ))}
+                  {comments.map((comment) =>
+                    !comment.isDeleted ? (
+                      <Comment
+                        comment={comment}
+                        postID={post._id}
+                        setComments={setComments}
+                        allPostComments={comments}
+                      />
+                    ) : null
+                  )}
                 </ul>
               )}
             </section>
