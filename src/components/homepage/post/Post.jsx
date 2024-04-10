@@ -18,9 +18,6 @@ export function Post() {
 
   const { loggedInUser, likedPosts, setLikedPosts } = useOutletContext();
 
-  console.log("likedPosts");
-  console.log(likedPosts);
-
   const { postID } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({});
@@ -28,6 +25,9 @@ export function Post() {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+
+  console.log("post");
+  console.log(post);
 
   useEffect(() => {
     async function fetchPostAndComments() {
@@ -107,6 +107,9 @@ export function Post() {
           <main>
             <section>
               <p>{post.creator.username}</p>
+              {post.imageURLs.map((url) => {
+                return <img src={url} />;
+              })}
               <p>{post.text}</p>
               <p>{likesCount}</p>
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { fetchData } from "../../../helper/helperUtils";
+import { fetchData, fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 
 export function CreatePost() {
@@ -11,18 +11,34 @@ export function CreatePost() {
     formState: { errors },
   } = useForm();
 
-  const [imagesToUpload, setImagesToUpload] = useState([]);
-  const [text, setText] = useState("");
+  const [imagesToUpload, setImagesToUpload] = useState(null);
 
-  function selectImages() {
-    setImagesToUpload(e.target.files);
+  console.log("imagesToUpload");
+  console.log(imagesToUpload);
+  function selectImages(e) {
+    setImagesToUpload(e.target.files[0]);
   }
 
   async function post(data) {
-    console.log("foo");
-    if (imagesToUpload.length) {
-      return;
+    if (imagesToUpload) {
+      console.log("does this happen");
+      const postData = new FormData();
+      postData.append("images", imagesToUpload);
+      postData.append("text", data.text);
+
+      const postResponse = await fetchDataWithImage(
+        `post/create_post_with_image`,
+        "POST",
+        postData
+      );
+      if (!postResponse.ok || postResponse instanceof Error) {
+        navigate("/error");
+      } else {
+        const { newPost } = await postResponse.json();
+        navigate(`/posts/${newPost.id}`);
+      }
     } else {
+      console.log("what about this");
       const postData = JSON.stringify(data);
       const postResponse = await fetchData(
         "post/create_post",
@@ -52,7 +68,6 @@ export function CreatePost() {
           rows="10"
           {...register("text", { required: true })}
         ></textarea>
-        <input type="text" {...register("test")} />
         <input type="submit" value="Post" />
       </form>
     </main>
