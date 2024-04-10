@@ -81,6 +81,7 @@ export function Post() {
   async function postComment(data) {
     console.log("does this happen");
     const dataToSubmit = JSON.stringify(data);
+    console.log(dataToSubmit);
     const commentResponse = await fetchData(
       `comment/${postID}/comment`,
       "POST",
@@ -143,7 +144,12 @@ export function Post() {
               ) : (
                 <ul>
                   {comments.map((comment) => (
-                    <Comment comment={comment} />
+                    <Comment
+                      comment={comment}
+                      postID={post._id}
+                      setComments={setComments}
+                      allPostComments={comments}
+                    />
                   ))}
                 </ul>
               )}

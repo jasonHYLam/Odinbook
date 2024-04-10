@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { fetchData } from "../../../helper/helperUtils";
 
-export function Comment({ comment, postID }) {
+export function Comment({ comment, postID, setComments, allPostComments }) {
+  const navigate = useNavigate();
   const { loggedInUser } = useOutletContext();
   const [status, setStatus] = useState("");
   const {
@@ -22,12 +23,22 @@ export function Comment({ comment, postID }) {
     const dataToSubmit = JSON.stringify(data);
     console.log("dataToSubmit");
     console.log(dataToSubmit);
-    // const editResponse = await fetchData(
-    //   `comment/${postID}/${comment._id}/edit`,
-    //   "PUT"
-    // );
+    const editResponse = await fetchData(
+      `comment/${postID}/${comment._id}/edit`,
+      "PUT",
+      dataToSubmit
+    );
+    if (!editResponse.ok || editResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      const { editedComment } = await editResponse.json();
+      console.log("editedComment");
+      console.log(editedComment);
 
-    setStatus("");
+      const updatedComments = setComments();
+
+      setStatus("");
+    }
   }
 
   const editForm = (
@@ -35,7 +46,6 @@ export function Comment({ comment, postID }) {
       <button onClick={() => setStatus("")}>cancel</button>
       <input
         type="text"
-        value={comment.text}
         {...register("text", {
           required: true,
           maxLength: 500,
