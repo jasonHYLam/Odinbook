@@ -107,9 +107,7 @@ export function Post() {
           <main>
             <section>
               <p>{post.creator.username}</p>
-              {post.imageURLs.map((url) => {
-                return <img src={url} />;
-              })}
+              {post.imageURL ? <img src={post.imageURL} alt="" /> : null}
               <p>{post.text}</p>
               <p>{likesCount}</p>
 

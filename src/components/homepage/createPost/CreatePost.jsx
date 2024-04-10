@@ -13,15 +13,12 @@ export function CreatePost() {
 
   const [imagesToUpload, setImagesToUpload] = useState(null);
 
-  console.log("imagesToUpload");
-  console.log(imagesToUpload);
-  function selectImages(e) {
+  function selectImage(e) {
     setImagesToUpload(e.target.files[0]);
   }
 
   async function post(data) {
     if (imagesToUpload) {
-      console.log("does this happen");
       const postData = new FormData();
       postData.append("images", imagesToUpload);
       postData.append("text", data.text);
@@ -38,7 +35,6 @@ export function CreatePost() {
         navigate(`/posts/${newPost.id}`);
       }
     } else {
-      console.log("what about this");
       const postData = JSON.stringify(data);
       const postResponse = await fetchData(
         "post/create_post",
@@ -60,7 +56,7 @@ export function CreatePost() {
     <main>
       <p>it's me createPost</p>
       <form encType="multipart/form-data" onSubmit={handleSubmit(post)}>
-        <input type="file" multiple onChange={selectImages} />
+        <input type="file" onChange={selectImage} />
         <textarea
           name=""
           id=""
