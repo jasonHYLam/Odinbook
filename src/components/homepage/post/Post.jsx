@@ -16,7 +16,7 @@ export function Post() {
     reset,
   } = useForm();
 
-  const { loggedInUser } = useOutletContext();
+  const { loggedInUser, setLikedPosts } = useOutletContext();
   const { postID } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({});

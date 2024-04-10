@@ -7,6 +7,7 @@ export function Homepage() {
   const navigate = useNavigate();
   const [feed, setFeed] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   // will need to move the likedPosts to here, in order to setState
 
@@ -15,25 +16,35 @@ export function Homepage() {
   console.log(loggedInUser);
   useEffect(() => {
     async function fetchFeedAndUsersData() {
-      const [allPostsResponse, getLoggedInUserResponse] = await Promise.all([
+      const [
+        getUserPostsResponse,
+        getLoggedInUserResponse,
+        getLikedPostsResponse,
+      ] = await Promise.all([
         fetchData("post/all_posts", "GET"),
         fetchData("user/get_logged_in_user", "GET"),
         // will need to move the likedPosts to here, in order to setState
+        fetchData("post/liked_posts", "GET"),
       ]);
 
       if (
-        !allPostsResponse.ok ||
+        !getUserPostsResponse.ok ||
         !getLoggedInUserResponse ||
-        allPostsResponse instanceof Error ||
-        getLoggedInUserResponse instanceof Error
+        !getLikedPostsResponse ||
+        getUserPostsResponse instanceof Error ||
+        getLoggedInUserResponse instanceof Error ||
+        getLikedPostsResponse instanceof Error
       ) {
         navigate("/error");
       } else {
-        const { allPosts } = await allPostsResponse.json();
+        const { allPosts } = await getUserPostsResponse.json();
         const { user } = await getLoggedInUserResponse.json();
+        const { likedPosts } = await getLikedPostsResponse.json();
 
         setFeed(allPosts);
         setLoggedInUser(user);
+        setLikedPosts(likedPosts);
+
         setIsLoading(false);
       }
     }
@@ -51,7 +62,14 @@ export function Homepage() {
             <p>its me homepage</p>
 
             <Outlet
-              context={{ loggedInUser, setLoggedInUser, feed, setFeed }}
+              context={{
+                loggedInUser,
+                setLoggedInUser,
+                feed,
+                setFeed,
+                likedPosts,
+                setLikedPosts,
+              }}
             />
           </main>
         </>

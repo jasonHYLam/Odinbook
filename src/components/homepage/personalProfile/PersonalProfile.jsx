@@ -9,9 +9,9 @@ import { PostPreview } from "../postPreview/PostPreview";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
-  const { loggedInUser } = useOutletContext();
+  const { loggedInUser, likedPosts } = useOutletContext();
   const [userPosts, setUserPosts] = useState([]);
-  const [likedPosts, setLikedPosts] = useState([]);
+  // const [likedPosts, setLikedPosts] = useState([]);
   const [postsToShow, setPostsToShow] = useState("user");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -22,23 +22,24 @@ export function PersonalProfile() {
 
   useEffect(() => {
     async function getUserPosts() {
-      const [getUserPostsResponse, getLikedPostsResponse] = await Promise.all([
+      // const [getUserPostsResponse, getLikedPostsResponse] = await Promise.all([
+      const [getUserPostsResponse] = await Promise.all([
         await fetchData("user/view_personal_profile", "GET"),
-        await fetchData("post/liked_posts", "GET"),
+        // await fetchData("post/liked_posts", "GET"),
       ]);
 
       if (
         !getUserPostsResponse.ok ||
-        getUserPostsResponse instanceof Error ||
-        !getLikedPostsResponse.ok ||
-        getLikedPostsResponse instanceof Error
+        getUserPostsResponse instanceof Error
+        // !getLikedPostsResponse.ok ||
+        // getLikedPostsResponse instanceof Error
       ) {
         navigate("/error");
       } else {
         const { posts } = await getUserPostsResponse.json();
-        const { likedPosts } = await getLikedPostsResponse.json();
+        // const { likedPosts } = await getLikedPostsResponse.json();
         setUserPosts(posts);
-        setLikedPosts(likedPosts);
+        // setLikedPosts(likedPosts);
         setIsLoading(false);
       }
     }
@@ -47,6 +48,7 @@ export function PersonalProfile() {
   return (
     <main>
       <p>it's me personalProfile</p>
+      <img src={loggedInUser.profilePicURL} alt="" />
       <h2>{loggedInUser.username}</h2>
       <section>
         {isLoading ? (

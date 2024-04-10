@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { fetchData } from "../../../../helper/helperUtils";
+import { fetchDataWithImage } from "../../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 
 export function EditProfilePicForm({ cancel }) {
@@ -16,7 +16,7 @@ export function EditProfilePicForm({ cancel }) {
     const data = new FormData();
     data.append("profilePic", imageToUpload);
 
-    const uploadResponse = await fetchData(
+    const uploadResponse = await fetchDataWithImage(
       `user/change_profile_pic`,
       "PUT",
       data
