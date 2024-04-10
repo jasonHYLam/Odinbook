@@ -7,6 +7,7 @@ import {
   Link,
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Comment } from "./Comment";
 
 export function Post() {
   const {
@@ -141,21 +142,9 @@ export function Post() {
                 <p>no comments</p>
               ) : (
                 <ul>
-                  {comments.map((comment) => {
-                    const authorURL =
-                      comment.author.id === loggedInUser.id
-                        ? "/me"
-                        : `/users/${comment.author.id}`;
-                    return (
-                      <>
-                        <Link to={authorURL}>
-                          <p>{comment.author.username}</p>
-                        </Link>
-                        <p>{comment.text}</p>
-                        <p>{comment.dateCommented}</p>
-                      </>
-                    );
-                  })}
+                  {comments.map((comment) => (
+                    <Comment comment={comment} />
+                  ))}
                 </ul>
               )}
             </section>
