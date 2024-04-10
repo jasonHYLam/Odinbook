@@ -11,7 +11,6 @@ export function PersonalProfile() {
   const navigate = useNavigate();
   const { loggedInUser, likedPosts } = useOutletContext();
   const [userPosts, setUserPosts] = useState([]);
-  // const [likedPosts, setLikedPosts] = useState([]);
   const [postsToShow, setPostsToShow] = useState("user");
   const [isLoading, setIsLoading] = useState(true);
 
@@ -22,24 +21,15 @@ export function PersonalProfile() {
 
   useEffect(() => {
     async function getUserPosts() {
-      // const [getUserPostsResponse, getLikedPostsResponse] = await Promise.all([
       const [getUserPostsResponse] = await Promise.all([
         await fetchData("user/view_personal_profile", "GET"),
-        // await fetchData("post/liked_posts", "GET"),
       ]);
 
-      if (
-        !getUserPostsResponse.ok ||
-        getUserPostsResponse instanceof Error
-        // !getLikedPostsResponse.ok ||
-        // getLikedPostsResponse instanceof Error
-      ) {
+      if (!getUserPostsResponse.ok || getUserPostsResponse instanceof Error) {
         navigate("/error");
       } else {
         const { posts } = await getUserPostsResponse.json();
-        // const { likedPosts } = await getLikedPostsResponse.json();
         setUserPosts(posts);
-        // setLikedPosts(likedPosts);
         setIsLoading(false);
       }
     }
@@ -63,8 +53,8 @@ export function PersonalProfile() {
             </nav>
 
             <nav>
-              <p onClick={() => setPostsToShow("user")}>Your Posts</p>
-              <p onClick={() => setPostsToShow("liked")}>Liked Posts</p>
+              <span onClick={() => setPostsToShow("user")}>Your Posts</span>
+              <span onClick={() => setPostsToShow("liked")}>Liked Posts</span>
             </nav>
 
             {postsToShow === "user" ? (

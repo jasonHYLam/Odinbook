@@ -9,11 +9,7 @@ export function Homepage() {
   const [loggedInUser, setLoggedInUser] = useState({});
   const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  // will need to move the likedPosts to here, in order to setState
 
-  console.log("checking state");
-  console.log(feed);
-  console.log(loggedInUser);
   useEffect(() => {
     async function fetchFeedAndUsersData() {
       const [
@@ -23,7 +19,6 @@ export function Homepage() {
       ] = await Promise.all([
         fetchData("post/all_posts", "GET"),
         fetchData("user/get_logged_in_user", "GET"),
-        // will need to move the likedPosts to here, in order to setState
         fetchData("post/liked_posts", "GET"),
       ]);
 

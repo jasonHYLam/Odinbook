@@ -16,7 +16,11 @@ export function Post() {
     reset,
   } = useForm();
 
-  const { loggedInUser, setLikedPosts } = useOutletContext();
+  const { loggedInUser, likedPosts, setLikedPosts } = useOutletContext();
+
+  console.log("likedPosts");
+  console.log(likedPosts);
+
   const { postID } = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({});
@@ -24,8 +28,6 @@ export function Post() {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log(comments);
 
   useEffect(() => {
     async function fetchPostAndComments() {
@@ -50,18 +52,28 @@ export function Post() {
     if (!likePostResponse.ok || likePostResponse instanceof Error) {
       navigate("/error");
     } else {
+      const { likedPost } = await likePostResponse.json();
       setLikesCount(likesCount + 1);
       setIsLiked(true);
+
+      setLikedPosts([...likedPosts, likedPost]);
     }
   }
 
   async function unlikePost() {
-    const likePostResponse = await fetchData(`post/${postID}/unlike`, "PUT");
-    if (!likePostResponse.ok || likePostResponse instanceof Error) {
+    const unlikePostResponse = await fetchData(`post/${postID}/unlike`, "PUT");
+    if (!unlikePostResponse.ok || unlikePostResponse instanceof Error) {
       navigate("/error");
     } else {
+      const { unlikedPost } = await unlikePostResponse.json();
       setLikesCount(likesCount - 1);
       setIsLiked(false);
+
+      const updatedLikedPosts = likedPosts.filter(
+        (post) => post._id !== unlikedPost._id
+      );
+
+      setLikedPosts(updatedLikedPosts);
     }
   }
 
