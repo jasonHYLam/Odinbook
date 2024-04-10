@@ -53,20 +53,17 @@ export function Homepage() {
       ) : (
         <>
           <Header user={loggedInUser} />
-          <main>
-            <p>its me homepage</p>
 
-            <Outlet
-              context={{
-                loggedInUser,
-                setLoggedInUser,
-                feed,
-                setFeed,
-                likedPosts,
-                setLikedPosts,
-              }}
-            />
-          </main>
+          <Outlet
+            context={{
+              loggedInUser,
+              setLoggedInUser,
+              feed,
+              setFeed,
+              likedPosts,
+              setLikedPosts,
+            }}
+          />
         </>
       )}
     </>
