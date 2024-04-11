@@ -40,6 +40,11 @@ header {
   position: 0;
   align-items: center;
   justify-content: center;
+  gap: 20px;
+
+  & > *:hover {
+    border-bottom: 1px solid var(--main-text-color);
+  }
 }
 
 a {
@@ -69,7 +74,7 @@ body {
 
 main {
   width: 50%;
-  margin-top: 50px;
+  margin-top: 80px;
   padding-inline: 20px;
   padding-block: 20px;
   background-color: var(--bg);
@@ -114,7 +119,7 @@ textarea {
   font-family: 'Noto Sans',  system-ui, Helvetica, Arial, sans-serif;
   border: 1px solid var(--border-color);
   border-radius: 2%;
-
+  width: 60%;
 }
 
 input[type=submit] {

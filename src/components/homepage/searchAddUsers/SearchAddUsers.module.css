@@ -10,5 +10,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
 
+.row:hover {
+  background-color: var(--post-hover-color);
 }

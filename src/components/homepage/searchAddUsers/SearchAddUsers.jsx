@@ -61,6 +61,7 @@ export function SearchAddUsers() {
 
   return (
     <main>
+      <h2>Searching user</h2>
       <input
         type="text"
         value={searchQuery}

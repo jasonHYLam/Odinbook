@@ -54,7 +54,7 @@ export function CreatePost() {
 
   return (
     <main>
-      <p>it's me createPost</p>
+      <h2>Creating post</h2>
       <form encType="multipart/form-data" onSubmit={handleSubmit(post)}>
         <input type="file" onChange={selectImage} />
         <textarea
