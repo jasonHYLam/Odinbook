@@ -67,7 +67,7 @@ export function UserProfile() {
       ) : (
         <section>
           <section>
-            <ProfilePic URL={user.profilePicURL} component="profile" />
+            <ProfilePic URL={user.profilePicURL} size="large" />
             <h2>{user.username}</h2>
             {isLoggedInUserFollowing ? (
               <button

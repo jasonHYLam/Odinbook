@@ -7,7 +7,7 @@ export function PostPreview({ post }) {
     <>
       <Link to={`/posts/${post.id}`}>
         <article className={styles.postPreview}>
-          <ProfilePic URL={post.creator.profilePicURL} component="post" />
+          <ProfilePic URL={post.creator.profilePicURL} size="small" />
           <div>
             <div className={styles.topRow}>
               <span>{post.creator.username}</span>

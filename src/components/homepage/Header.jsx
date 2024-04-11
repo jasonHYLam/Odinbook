@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Logo } from "./icons/logo/Logo";
+import { ProfilePic } from "./icons/profilePic/ProfilePic";
 
 export function Header({ user }) {
   return (
@@ -8,7 +9,10 @@ export function Header({ user }) {
         <Logo />
       </Link>
       <Link to="create_post">New Post</Link>
-      <Link to="me">Profile</Link>
+      <Link to="me">
+        Profile
+        <ProfilePic URL={user.profilePicURL} size="small" />
+      </Link>
       <Link to="search_users">Search Users</Link>
     </header>
   );

@@ -1,11 +1,13 @@
 .profilePicSmall {
   height: var(--profile-pic-height-s);
   border-radius: 50%;
+  border: 2px solid white;
   background-color: blue;
 }
 
 .profilePicLarge {
   height: var(--profile-pic-height-l);
   border-radius: 50%;
+  border: 7px solid white;
   background-color:blue;
 }
