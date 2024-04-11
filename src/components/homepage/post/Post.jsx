@@ -1,3 +1,4 @@
+import styles from "./Post.module.css";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import {
@@ -109,7 +110,10 @@ export function Post() {
           <main>
             <section>
               <Link to={`/users/${post.creator._id}`}>
-                <img src={post.creator.profilePicURL} />
+                <img
+                  className={styles.profilePic}
+                  src={post.creator.profilePicURL}
+                />
                 <p>{post.creator.username}</p>
               </Link>
               {post.imageURL ? <img src={post.imageURL} alt="" /> : null}
