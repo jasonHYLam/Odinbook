@@ -28,6 +28,17 @@ export function Post() {
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log("checking");
+  console.log(loggedInUser);
+  console.log(post);
+  let CREATOR_PROFILE_URL = "";
+  if (!isLoading) {
+    CREATOR_PROFILE_URL =
+      loggedInUser._id === post.creator._id
+        ? "/me"
+        : `/users/${post.creator._id}`;
+  }
+
   console.log("post");
   console.log(post);
 
@@ -109,7 +120,7 @@ export function Post() {
         <>
           <main>
             <section>
-              <Link to={`/users/${post.creator._id}`}>
+              <Link to={CREATOR_PROFILE_URL}>
                 <img
                   className={styles.profilePic}
                   src={post.creator.profilePicURL}
