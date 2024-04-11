@@ -1,3 +1,7 @@
 .profilePic {
   height: var(--profile-pic-height-s);
 }
+
+.date, .likesCount{
+  color: var(--sub-text-color);
+}

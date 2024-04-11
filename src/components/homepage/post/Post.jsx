@@ -114,7 +114,6 @@ export function Post() {
 
   return (
     <>
-      <p>it's me a post</p>
       {isLoading ? (
         <p>loading</p>
       ) : (
@@ -123,11 +122,12 @@ export function Post() {
             <section>
               <Link to={CREATOR_PROFILE_URL}>
                 <ProfilePic URL={post.creator.profilePicURL} component="post" />
-                <p>{post.creator.username}</p>
+                <span>{post.creator.username}</span>
+                <span className={styles.date}>{post.datePosted}</span>
               </Link>
               {post.imageURL ? <img src={post.imageURL} alt="" /> : null}
               <p>{post.text}</p>
-              <p>{likesCount}</p>
+              <p className={styles.likesCount}>{likesCount}</p>
 
               <section>
                 {isLiked ? (

@@ -89,11 +89,11 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
 
   return (
     <>
-      <article>
+      <article className={styles.comment}>
         <Link to={authorURL}>
           <ProfilePic URL={comment.author.profilePicURL} component="comment" />
           <span>{comment.author.username}</span>
-          <span>{comment.dateCommented}</span>
+          <span className={styles.date}>{comment.dateCommented}</span>
         </Link>
 
         {status === "" ? (
