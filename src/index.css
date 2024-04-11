@@ -123,3 +123,7 @@ input[type=submit]:hover {
   cursor: pointer;
   background-color: var(--splash-color);
 }
+
+.icon {
+  height: 40px;
+}

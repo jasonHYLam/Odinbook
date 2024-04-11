@@ -9,7 +9,8 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Comment } from "./Comment";
-import { ProfilePic } from "../profilePic/ProfilePic";
+import { ProfilePic } from "../icons/profilePic/ProfilePic";
+import { LikeIcon } from "../icons/like/LikeIcon";
 
 export function Post() {
   const {
@@ -126,7 +127,8 @@ export function Post() {
                 <span className={styles.date}>{post.datePosted}</span>
               </Link>
               {post.imageURL ? <img src={post.imageURL} alt="" /> : null}
-              <p>{post.text}</p>
+              <p className={styles.postText}>{post.text}</p>
+              <LikeIcon />
               <p className={styles.likesCount}>{likesCount}</p>
 
               <section>

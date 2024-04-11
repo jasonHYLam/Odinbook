@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostPreview } from "../postPreview/PostPreview";
-import { ProfilePic } from "../profilePic/ProfilePic";
+import { ProfilePic } from "../icons/profilePic/ProfilePic";
 
 export function UserProfile() {
   const navigate = useNavigate();

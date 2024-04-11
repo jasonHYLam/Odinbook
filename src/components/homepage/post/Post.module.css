@@ -2,6 +2,10 @@
   height: var(--profile-pic-height-s);
 }
 
+.postText {
+  font-size: 1.2rem;
+}
+
 .date, .likesCount{
   color: var(--sub-text-color);
 }

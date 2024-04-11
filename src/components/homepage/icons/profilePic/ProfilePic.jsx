@@ -1,5 +1,5 @@
 import styles from "./ProfilePic.module.css";
-import DEFAULT_ICON_PATH from "../../../assets/user.svg";
+import DEFAULT_ICON_PATH from "../../../../assets/user.svg";
 
 export function ProfilePic({ URL, component }) {
   console.log("checking profilePicURL");

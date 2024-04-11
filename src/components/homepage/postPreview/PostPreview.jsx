@@ -1,6 +1,6 @@
 import styles from "./PostPreview.module.css";
 import { Link } from "react-router-dom";
-import { ProfilePic } from "../profilePic/ProfilePic";
+import { ProfilePic } from "../icons/profilePic/ProfilePic";
 
 export function PostPreview({ post }) {
   return (

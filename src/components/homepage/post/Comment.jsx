@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { fetchData } from "../../../helper/helperUtils";
-import { ProfilePic } from "../profilePic/ProfilePic";
+import { ProfilePic } from "../icons/profilePic/ProfilePic";
 
 export function Comment({ comment, postID, setComments, allPostComments }) {
   const navigate = useNavigate();
