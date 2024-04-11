@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
-
 
 :root {
   font-family: 'Noto Sans',  system-ui, Helvetica, Arial, sans-serif;
@@ -20,6 +18,7 @@
   --main-text-color: white;
   --sub-text-color: #848484;
   --border-color : #232323;
+  --splash-color: blue;
 
 
   --profile-pic-height-s: 40px;
@@ -31,7 +30,7 @@
 }
 
 header {
-  background-color: blue;
+  background-color: var(--splash-color);
   width: 100%;
   display: flex;
   position: fixed;
@@ -65,8 +64,11 @@ body {
 
 main {
   width: 50%;
-  padding-top: 50px;
+  margin-top: 50px;
+  padding-inline: 20px;
+  padding-block: 20px;
   background-color: var(--bg);
+  border-radius: 2%;
 }
 
 h1 {
@@ -84,9 +86,10 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   color: var(--main-text-color);
-  transition: border-color 0.25s;
+  transition: border-color 0.35s;
 }
 button:hover {
+  background-color: var(--splash-color);
   border-color: #646cff;
 }
 button:focus,
@@ -96,4 +99,27 @@ button:focus-visible {
 
 .profilePic {
   height: 40px;
+}
+
+input[type=text],
+input[type=password],
+textarea {
+  background-color:var(--bg);
+  color: var(--main-text-color);
+  font-family: 'Noto Sans',  system-ui, Helvetica, Arial, sans-serif;
+  border: 1px solid var(--border-color);
+  border-radius: 2%;
+
+}
+
+input[type=submit] {
+  background-color: var(--bg);
+  color: var(--main-text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 2%;
+}
+
+input[type=submit]:hover {
+  cursor: pointer;
+  background-color: var(--splash-color);
 }

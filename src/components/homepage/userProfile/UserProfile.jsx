@@ -13,8 +13,6 @@ export function UserProfile() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFollowingPending, setIsFollowingPending] = useState(false);
 
-  console.log("checking userProfile posts");
-  console.log(posts);
   useEffect(() => {
     async function fetchUserData() {
       const getUserResponse = await fetchData(`user/${userID}/profile`);

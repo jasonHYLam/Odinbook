@@ -5,6 +5,10 @@
 .postPreview {
   display: flex;
   border-bottom: 1px solid var(--border-color);
+  transition: background-color 0.25s;
+  padding-inline: 10px;
+  padding-block: 10px;
+
 }
 
 .postPreview:hover {
