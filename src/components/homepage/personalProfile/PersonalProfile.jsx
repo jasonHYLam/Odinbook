@@ -1,3 +1,4 @@
+import styles from "./PersonalProfile.module.css";
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
@@ -38,7 +39,7 @@ export function PersonalProfile() {
   return (
     <main>
       <p>it's me personalProfile</p>
-      <img src={loggedInUser.profilePicURL} alt="" />
+      <img className={styles.profilePic} src={loggedInUser.profilePicURL} />
       <h2>{loggedInUser.username}</h2>
       <section>
         {isLoading ? (
