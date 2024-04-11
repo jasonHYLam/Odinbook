@@ -46,14 +46,14 @@ export function PersonalProfile() {
           <p>loading</p>
         ) : (
           <>
-            <nav>
+            <nav className={styles.navOptions}>
               <span onClick={() => setShowSettings(true)}>settings</span>
               <span onClick={() => setShowFollowers(true)}>followers</span>
               <span onClick={() => setShowFollowing(true)}>following</span>
               <span onClick={() => setShowLogout(true)}>logout</span>
             </nav>
 
-            <nav>
+            <nav className={styles.navOptions}>
               <span onClick={() => setPostsToShow("user")}>Your Posts</span>
               <span onClick={() => setPostsToShow("liked")}>Liked Posts</span>
             </nav>
