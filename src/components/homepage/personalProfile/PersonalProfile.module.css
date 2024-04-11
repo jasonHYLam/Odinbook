@@ -11,5 +11,5 @@
 
 .navOptions > *:hover {
   cursor: pointer;
-  border-bottom: 1px solid var(--text-color);
+  border-bottom: 1px solid var(--main-text-color);
 }

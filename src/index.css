@@ -13,7 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 
   --bg: #0F0F0F;
-  --text-color: white;
+  --main-text-color: white;
+  --sub-text-color: #848484;
 
 
   --profile-pic-height-s: 40px;
@@ -29,7 +30,7 @@ header {
 
 a {
   font-weight: 500;
-  color: var(--text-color);
+  color: var(--main-text-color);
   text-decoration: inherit;
 }
 a:hover {
@@ -41,7 +42,7 @@ body {
   /* min-width: 320px; */
   min-height: 100vh;
   background-color: var(--bg);
-  color: var(--text-color);
+  color: var(--main-text-color);
 }
 
 #root {

@@ -1,3 +1,16 @@
 .profilePic {
   height: var(--profile-pic-height-s);
 }
+
+.postPreview {
+  display: flex;
+}
+
+.topRow {
+  display: flex;
+  gap: 10px;
+}
+
+.date, .likesCount {
+  color: var(--sub-text-color);
+}
