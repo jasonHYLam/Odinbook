@@ -31,6 +31,7 @@ header {
   width: 100%;
   display: flex;
   position: fixed;
+  position: 0;
 }
 
 a {
@@ -38,6 +39,7 @@ a {
   color: var(--main-text-color);
   text-decoration: inherit;
 }
+
 a:hover {
 
 }
@@ -59,6 +61,7 @@ body {
 
 main {
   width: 50%;
+  padding-top: 50px;
 }
 
 h1 {
@@ -75,6 +78,7 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
+  color: var(--main-text-color);
   transition: border-color 0.25s;
 }
 button:hover {

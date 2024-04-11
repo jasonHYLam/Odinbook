@@ -1,3 +1,4 @@
+import styles from "./SearchAddUsers.module.css";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
@@ -72,6 +73,7 @@ export function SearchAddUsers() {
             return (
               <article>
                 <Link to={`/users/${user.id}`}>
+                  <img className={styles.profilePic} src={user.profilePicURL} />
                   <p>{user.username}</p>
                 </Link>
                 {isFollowedByLoggedInUser(user) ? <span>following</span> : null}
