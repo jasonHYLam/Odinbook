@@ -7,6 +7,7 @@ import { FollowersModal } from "./modals/FollowersModal";
 import { FollowingModal } from "./modals/FollowingModal";
 import { LogoutModal } from "./modals/LogoutModal";
 import { PostPreview } from "../postPreview/PostPreview";
+import { ProfilePic } from "../icons/profilePic/ProfilePic";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
@@ -38,8 +39,7 @@ export function PersonalProfile() {
   }, []);
   return (
     <main>
-      <p>it's me personalProfile</p>
-      <img className={styles.profilePic} src={loggedInUser.profilePicURL} />
+      <ProfilePic URL={loggedInUser.profilePicURL} size="large" />
       <h2>{loggedInUser.username}</h2>
       <section>
         {isLoading ? (
