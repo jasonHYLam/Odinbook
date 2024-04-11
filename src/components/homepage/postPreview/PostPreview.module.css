@@ -4,6 +4,7 @@
 
 .postPreview {
   display: flex;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .topRow {
