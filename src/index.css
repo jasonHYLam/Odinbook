@@ -81,6 +81,16 @@ main {
   border-radius: 2%;
 }
 
+dialog {
+  background-color: black;
+  color: var(--main-text-color);
+  border: 1px solid var(--border-color);
+}
+
+dialog::backdrop {
+  background-color: rgba(22, 22, 22, 0.57);
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
