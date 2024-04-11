@@ -1,6 +1,11 @@
 import styles from "./ProfilePic.module.css";
+import DEFAULT_ICON_PATH from "../../../assets/user.svg";
 
 export function ProfilePic({ URL, component }) {
+  console.log("checking profilePicURL");
+  console.log(URL);
+  console.log(URL === "");
+  console.log(DEFAULT_ICON_PATH);
   let CLASSNAME = "";
   if (component === "comment" || component === "post") {
     CLASSNAME = styles.profilePicSmall;
@@ -8,9 +13,6 @@ export function ProfilePic({ URL, component }) {
     CLASSNAME = styles.profilePicLarge;
   }
 
-  console.log("checking classname");
-
-  const DEFAULT_ICON_PATH = "../../../assets/user.svg";
   if (URL === "") {
     return <img className={CLASSNAME} src={DEFAULT_ICON_PATH} alt="" />;
   } else {

@@ -8,13 +8,15 @@ export function Feed() {
   return (
     <>
       <p>It's me the feed</p>
-      <section>
-        <ul>
-          {feed.map((post) => (
-            <PostPreview post={post} />
-          ))}
-        </ul>
-      </section>
+      <main>
+        <section>
+          <ul>
+            {feed.map((post) => (
+              <PostPreview post={post} />
+            ))}
+          </ul>
+        </section>
+      </main>
     </>
   );
 }
