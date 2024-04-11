@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Comment } from "./Comment";
+import { ProfilePic } from "../profilePic/ProfilePic";
 
 export function Post() {
   const {
@@ -121,10 +122,7 @@ export function Post() {
           <main>
             <section>
               <Link to={CREATOR_PROFILE_URL}>
-                <img
-                  className={styles.profilePic}
-                  src={post.creator.profilePicURL}
-                />
+                <ProfilePic URL={post.creator.profilePicURL} component="post" />
                 <p>{post.creator.username}</p>
               </Link>
               {post.imageURL ? <img src={post.imageURL} alt="" /> : null}

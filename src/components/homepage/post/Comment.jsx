@@ -92,11 +92,6 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
       <article>
         <Link to={authorURL}>
           <ProfilePic URL={comment.author.profilePicURL} component="comment" />
-          {/* <img
-            className={styles.profilePic}
-            src={comment.author.profilePicURL}
-            alt=""
-          /> */}
           <span>{comment.author.username}</span>
           <span>{comment.dateCommented}</span>
         </Link>
