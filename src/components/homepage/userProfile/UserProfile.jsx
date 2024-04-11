@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostPreview } from "../postPreview/PostPreview";
+import { ProfilePic } from "../profilePic/ProfilePic";
 
 export function UserProfile() {
   const navigate = useNavigate();
@@ -69,7 +70,8 @@ export function UserProfile() {
         <section>
           <section>
             {/* profilePic */}
-            <p>{user.username}</p>
+            <ProfilePic URL={user.profilePicURL} component="profile" />
+            <h2>{user.username}</h2>
             {isLoggedInUserFollowing ? (
               <button
                 onClick={() => {

@@ -60,7 +60,6 @@ export function SearchAddUsers() {
 
   return (
     <main>
-      <p>it's me searchaddusers</p>
       <input
         type="text"
         value={searchQuery}
@@ -69,7 +68,6 @@ export function SearchAddUsers() {
       <section>
         <ul>
           {matchingUsers.map((user) => {
-            console.log(`checking: ${isFollowedByLoggedInUser(user)}`);
             return (
               <article>
                 <Link to={`/users/${user.id}`}>

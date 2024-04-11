@@ -1,10 +1,13 @@
 import styles from "./PostPreview.module.css";
 import { Link } from "react-router-dom";
+import { ProfilePic } from "../profilePic/ProfilePic";
+
 export function PostPreview({ post }) {
   return (
     <>
       <Link to={`/posts/${post.id}`}>
         <article className={styles.postPreview}>
+          <ProfilePic URL={post.creator.profilePicURL} component="post" />
           <img className={styles.profilePic} src={post.creator.profilePicURL} />
           <div>
             <div className={styles.topRow}>
