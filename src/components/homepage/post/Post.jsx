@@ -108,7 +108,10 @@ export function Post() {
         <>
           <main>
             <section>
-              <p>{post.creator.username}</p>
+              <Link to={`/users/${post.creator._id}`}>
+                <img src={post.creator.profilePicURL} />
+                <p>{post.creator.username}</p>
+              </Link>
               {post.imageURL ? <img src={post.imageURL} alt="" /> : null}
               <p>{post.text}</p>
               <p>{likesCount}</p>

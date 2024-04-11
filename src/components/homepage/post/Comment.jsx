@@ -1,3 +1,4 @@
+import styles from "./Comment.module.css";
 import { useState } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -89,14 +90,18 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
     <>
       <article>
         <Link to={authorURL}>
-          <img src={comment.author.profilePicURL} alt="" />
+          <img
+            className={styles.profilePic}
+            src={comment.author.profilePicURL}
+            alt=""
+          />
           <span>{comment.author.username}</span>
+          <span>{comment.dateCommented}</span>
         </Link>
 
         {status === "" ? (
           <>
             <p>{comment.text}</p>
-            <p>{comment.dateCommented}</p>
 
             {comment.author.id === loggedInUser.id ? (
               <>

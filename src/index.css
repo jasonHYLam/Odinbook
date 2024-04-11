@@ -14,10 +14,15 @@
 
   --bg: #242424;
   --text-color: white;
+
+
+  --profile-pic-height-s: 40px
 }
 
 header {
   background-color: blue;
+  width: 100%;
+  display: flex;
 }
 
 a {
@@ -31,17 +36,17 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  place-items: center;
-  min-width: 320px;
+  /* min-width: 320px; */
   min-height: 100vh;
   background-color: var(--bg);
   color: var(--text-color);
 }
 
 #root {
-  margin: 0
+  width: 100svw;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
 }
 
 h1 {
@@ -66,4 +71,8 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.profilePic {
+  height: 40px;
 }
