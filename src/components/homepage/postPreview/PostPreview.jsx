@@ -13,6 +13,8 @@ export function PostPreview({ post }) {
               <span>{post.creator.username}</span>
               <span className={styles.date}>{post.datePosted}</span>
             </div>
+
+            {post.imageURL ? <img src={post.imageURL} /> : null}
             <p>{post.text}</p>
             <p className={styles.likesCount}>{post.likesCount}</p>
           </div>

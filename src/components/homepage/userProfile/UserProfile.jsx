@@ -60,8 +60,6 @@ export function UserProfile() {
 
   return (
     <main>
-      <p>it's me userProfile</p>
-
       {isLoading ? (
         <p>loading</p>
       ) : (
