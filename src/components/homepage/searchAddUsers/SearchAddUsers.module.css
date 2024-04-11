@@ -1,3 +1,14 @@
 .profilePic {
   height: var(--profile-pic-height-s);
 }
+
+.following {
+  color: var(--sub-text-color);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+}

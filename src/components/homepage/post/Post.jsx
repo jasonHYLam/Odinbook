@@ -122,7 +122,7 @@ export function Post() {
           <main>
             <section>
               <Link to={CREATOR_PROFILE_URL}>
-                <ProfilePic URL={post.creator.profilePicURL} component="post" />
+                <ProfilePic URL={post.creator.profilePicURL} size="small" />
                 <span>{post.creator.username}</span>
                 <span className={styles.date}>{post.datePosted}</span>
               </Link>

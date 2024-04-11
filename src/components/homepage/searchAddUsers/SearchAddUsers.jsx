@@ -2,6 +2,7 @@ import styles from "./SearchAddUsers.module.css";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useOutletContext, Link } from "react-router-dom";
+import { ProfilePic } from "../icons/profilePic/ProfilePic";
 
 export function SearchAddUsers() {
   const navigate = useNavigate();
@@ -70,11 +71,13 @@ export function SearchAddUsers() {
           {matchingUsers.map((user) => {
             return (
               <article>
-                <Link to={`/users/${user.id}`}>
-                  <img className={styles.profilePic} src={user.profilePicURL} />
+                <Link to={`/users/${user.id}`} className={styles.row}>
+                  <ProfilePic URL={user.profilePicURL} size="small" />
                   <p>{user.username}</p>
+                  {isFollowedByLoggedInUser(user) ? (
+                    <span className={styles.following}>following</span>
+                  ) : null}
                 </Link>
-                {isFollowedByLoggedInUser(user) ? <span>following</span> : null}
               </article>
             );
           })}
