@@ -1,7 +1,7 @@
-.profile-pic-s {
+.profilePicSmall {
   height: var(--profile-pic-height-s);
 }
 
-.profile-pic-l {
+.profilePicLarge {
   height: var(--profile-pic-height-l);
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { fetchData } from "../../../helper/helperUtils";
+import { ProfilePic } from "../profilePic/ProfilePic";
 
 export function Comment({ comment, postID, setComments, allPostComments }) {
   const navigate = useNavigate();
@@ -90,11 +91,12 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
     <>
       <article>
         <Link to={authorURL}>
-          <img
+          <ProfilePic URL={comment.author.profilePicURL} component="comment" />
+          {/* <img
             className={styles.profilePic}
             src={comment.author.profilePicURL}
             alt=""
-          />
+          /> */}
           <span>{comment.author.username}</span>
           <span>{comment.dateCommented}</span>
         </Link>

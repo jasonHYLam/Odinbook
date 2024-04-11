@@ -3,17 +3,17 @@ import styles from "./ProfilePic.module.css";
 export function ProfilePic({ URL, component }) {
   let CLASSNAME = "";
   if (component === "comment" || component === "post") {
-    CLASSNAME = ".profile-pic-s";
+    CLASSNAME = styles.profilePicSmall;
   } else if (component === "profile") {
-    CLASSNAME = ".profile-pic-l";
+    CLASSNAME = styles.profilePicLarge;
   }
+
+  console.log("checking classname");
 
   const DEFAULT_ICON_PATH = "../../../assets/user.svg";
   if (URL === "") {
-    return (
-      <img className={`${styles}${CLASSNAME}`} src={DEFAULT_ICON_PATH} alt="" />
-    );
+    return <img className={CLASSNAME} src={DEFAULT_ICON_PATH} alt="" />;
   } else {
-    return <img className={`${styles}${CLASSNAME}`} src={URL} alt="" />;
+    return <img className={CLASSNAME} src={URL} alt="" />;
   }
 }
