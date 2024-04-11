@@ -126,16 +126,22 @@ export function Post() {
                 <span>{post.creator.username}</span>
                 <span className={styles.date}>{post.datePosted}</span>
               </Link>
+
               {post.imageURL ? <img src={post.imageURL} alt="" /> : null}
+
               <p className={styles.postText}>{post.text}</p>
-              <LikeIcon />
-              <p className={styles.likesCount}>{likesCount}</p>
 
               <section>
                 {isLiked ? (
-                  <span onClick={unlikePost}>unlike post</span>
+                  <div onClick={unlikePost} className={styles.liked}>
+                    <LikeIcon />
+                    <span className={styles.likesCount}>{likesCount}</span>
+                  </div>
                 ) : (
-                  <span onClick={likePost}>like post</span>
+                  <div onClick={likePost} className={styles.unliked}>
+                    <LikeIcon />
+                    <span className={styles.likesCount}>{likesCount}</span>
+                  </div>
                 )}
               </section>
             </section>

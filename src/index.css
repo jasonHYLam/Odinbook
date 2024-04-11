@@ -25,6 +25,8 @@
   --profile-pic-height-m: 60px;
   --profile-pic-height-l: 150px;
 
+  --icon-s: 20px;
+
   --post-hover-color: #101B53;
   /* --post-hover-color: #1d1d1d; */
 }
@@ -125,5 +127,6 @@ input[type=submit]:hover {
 }
 
 .icon {
-  height: 40px;
+  height: var(--icon-s);
+  display: inline-block;
 }
