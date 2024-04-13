@@ -2,10 +2,6 @@ import styles from "./ProfilePic.module.css";
 import DEFAULT_ICON_PATH from "../../../../assets/user.svg";
 
 export function ProfilePic({ URL, size }) {
-  console.log("checking profilePicURL");
-  console.log(URL);
-  console.log(URL === "");
-  console.log(DEFAULT_ICON_PATH);
   let CLASSNAME = "";
   if (size === "small") {
     CLASSNAME = styles.profilePicSmall;

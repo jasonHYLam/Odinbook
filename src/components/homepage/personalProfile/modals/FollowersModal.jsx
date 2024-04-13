@@ -9,6 +9,9 @@ export function FollowersModal({ followers, openModal, closeModal }) {
 
   document.addEventListener("keydown", escapePress);
 
+  console.log("checking followers");
+  console.log(followers);
+
   useEffect(() => {
     if (openModal) {
       ref.current?.showModal();
@@ -19,14 +22,17 @@ export function FollowersModal({ followers, openModal, closeModal }) {
 
   return (
     <dialog ref={ref}>
+      <button onClick={closeModal}>close</button>
       <p>Followers</p>
       <ul>
         {followers.map((user) => {
-          <Link to={user.id}>
-            <article>
-              <p>{user.username}</p>
-            </article>
-          </Link>;
+          return (
+            <Link to={`/users/${user.id}`}>
+              <article>
+                <p>{user.username}</p>
+              </article>
+            </Link>
+          );
         })}
       </ul>
     </dialog>

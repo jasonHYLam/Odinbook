@@ -11,6 +11,9 @@ export function Homepage() {
   const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  console.log("loggedInUser");
+  console.log(loggedInUser);
+
   useEffect(() => {
     async function fetchFeedAndUsersData() {
       const [
