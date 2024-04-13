@@ -1,3 +1,4 @@
+import styles from "./Modal.module.css";
 import { useEffect, useRef, useState } from "react";
 import { EditUserForm } from "./EditUserForm";
 import { EditProfilePicForm } from "./EditProfilePicForm";
@@ -37,17 +38,32 @@ export function EditProfileModal({ openModal, closeModal }) {
         <p>Cannot change user profile as guest</p>
       ) : (
         <>
-          <p onClick={() => setEditing("username")}>Change username</p>
+          <p
+            className={styles.changeSetting}
+            onClick={() => setEditing("username")}
+          >
+            Change username
+          </p>
           {editing === "username" ? (
             <EditUserForm editing={"username"} cancel={() => setEditing("")} />
           ) : null}
 
-          <p onClick={() => setEditing("password")}>Change password</p>
+          <p
+            className={styles.changeSetting}
+            onClick={() => setEditing("password")}
+          >
+            Change password
+          </p>
           {editing === "password" ? (
             <EditUserForm editing={"password"} cancel={() => setEditing("")} />
           ) : null}
 
-          <p onClick={() => setEditing("profilePic")}>Change profile picture</p>
+          <p
+            className={styles.changeSetting}
+            onClick={() => setEditing("profilePic")}
+          >
+            Change profile picture
+          </p>
           {editing === "profilePic" ? (
             <EditProfilePicForm
               cancel={() => {
