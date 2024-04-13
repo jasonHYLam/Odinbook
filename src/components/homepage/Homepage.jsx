@@ -64,6 +64,7 @@ export function Homepage() {
               setFeed,
               likedPosts,
               setLikedPosts,
+              isGuest,
             }}
           />
         </>

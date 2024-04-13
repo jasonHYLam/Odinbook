@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { EditUserForm } from "./EditUserForm";
 import { EditProfilePicForm } from "./EditProfilePicForm";
+import { useOutletContext } from "react-router-dom";
 
 export function EditProfileModal({ openModal, closeModal }) {
+  const { isGuest } = useOutletContext();
   const [editing, setEditing] = useState("");
-  // const [imageToUpload, setImageToUpload] = useState(null);
 
   const ref = useRef();
   useEffect(() => {
@@ -21,10 +22,6 @@ export function EditProfileModal({ openModal, closeModal }) {
 
   document.addEventListener("keydown", escapePress);
 
-  // function selectImageToUpload(e) {
-  //   setImageToUpload(e.target.files[0]);
-  // }
-
   return (
     <dialog ref={ref}>
       <button
@@ -36,33 +33,30 @@ export function EditProfileModal({ openModal, closeModal }) {
         close
       </button>
 
-      <p onClick={() => setEditing("username")}>Change username</p>
-      {editing === "username" ? (
-        <EditUserForm editing={"username"} cancel={() => setEditing("")} />
-      ) : null}
+      {isGuest ? (
+        <p>Cannot change user profile as guest</p>
+      ) : (
+        <>
+          <p onClick={() => setEditing("username")}>Change username</p>
+          {editing === "username" ? (
+            <EditUserForm editing={"username"} cancel={() => setEditing("")} />
+          ) : null}
 
-      <p onClick={() => setEditing("password")}>Change password</p>
-      {editing === "password" ? (
-        <EditUserForm editing={"password"} cancel={() => setEditing("")} />
-      ) : null}
+          <p onClick={() => setEditing("password")}>Change password</p>
+          {editing === "password" ? (
+            <EditUserForm editing={"password"} cancel={() => setEditing("")} />
+          ) : null}
 
-      <p onClick={() => setEditing("profilePic")}>Change profile picture</p>
-      {editing === "profilePic" ? (
-        <EditProfilePicForm
-          cancel={() => {
-            setEditing("");
-          }}
-        />
-      ) : // (
-      // <form encType="multipart/form-data">
-      //   <button onClick={() => setEditing("")}>cancel</button>
-      //   <label htmlFor="">
-      //     <input type="file" onChange={selectImageToUpload} />
-      //   </label>
-      //   <input type="submit" />
-      // </form>
-      // )
-      null}
+          <p onClick={() => setEditing("profilePic")}>Change profile picture</p>
+          {editing === "profilePic" ? (
+            <EditProfilePicForm
+              cancel={() => {
+                setEditing("");
+              }}
+            />
+          ) : null}
+        </>
+      )}
     </dialog>
   );
 }
