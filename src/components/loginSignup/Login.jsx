@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchData } from "../../helper/helperUtils";
 import { useState } from "react";
+import { GuestLoginLink } from "./GuestLoginLink";
 
 export function Login() {
   const {
@@ -39,8 +40,9 @@ export function Login() {
           {errors.password && <span>Please provide password</span>}
           {authError ? <span>{authError}</span> : null}
         </section>
+        <Link to="/sign_up">New here? Sign up</Link>
+        <GuestLoginLink />
       </form>
-      <Link to="/sign_up">New here? Sign up</Link>
     </main>
   );
 }

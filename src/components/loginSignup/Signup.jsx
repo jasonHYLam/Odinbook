@@ -2,6 +2,7 @@ import { fetchData } from "../../helper/helperUtils";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
+import { GuestLoginLink } from "./GuestLoginLink";
 
 export function Signup() {
   const USERNAME_MIN = 3;
@@ -110,6 +111,7 @@ export function Signup() {
           {usernameError !== "" ? <span>usernameError</span> : null}
         </section>
         <Link to="/login">Got an account? Login</Link>
+        <GuestLoginLink />
       </form>
     </main>
   );
