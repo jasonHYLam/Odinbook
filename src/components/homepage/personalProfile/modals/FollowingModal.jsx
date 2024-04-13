@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import { ProfilePic } from "../../icons/profilePic/ProfilePic";
 
 export function FollowingModal({ following, openModal, closeModal }) {
   const ref = useRef();
@@ -26,8 +27,9 @@ export function FollowingModal({ following, openModal, closeModal }) {
           {following.map((user) => {
             return (
               <>
-                <Link to={user.id}>
+                <Link to={`/users/${user.id}`}>
                   <article>
+                    <ProfilePic URL={user.profilePic} size="small" />
                     <p>{user.username}</p>
                   </article>
                 </Link>

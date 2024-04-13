@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
+import { ProfilePic } from "../../icons/profilePic/ProfilePic";
 export function FollowersModal({ followers, openModal, closeModal }) {
   const ref = useRef();
 
@@ -29,6 +30,7 @@ export function FollowersModal({ followers, openModal, closeModal }) {
           return (
             <Link to={`/users/${user.id}`}>
               <article>
+                <ProfilePic URL={user.profilePic} size="small" />
                 <p>{user.username}</p>
               </article>
             </Link>
