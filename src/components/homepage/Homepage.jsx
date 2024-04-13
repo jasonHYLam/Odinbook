@@ -7,6 +7,7 @@ export function Homepage() {
   const navigate = useNavigate();
   const [feed, setFeed] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [isGuest, setIsGuest] = useState(false);
   const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -39,6 +40,7 @@ export function Homepage() {
         setFeed(allPosts);
         setLoggedInUser(user);
         setLikedPosts(likedPosts);
+        if (user.isGuest) setIsGuest(true);
 
         setIsLoading(false);
       }
