@@ -1,5 +1,5 @@
 import { fetchData } from "../../helper/helperUtils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -9,6 +9,7 @@ export function Signup() {
   const PASSWORD_MIN = 3;
 
   const navigate = useNavigate();
+  const [usernameError, setUsernameError] = useState("");
 
   const {
     register,
@@ -20,11 +21,16 @@ export function Signup() {
   async function submitSignupData(data) {
     const dataToSubmit = JSON.stringify(data);
     const response = await fetchData("auth/signup", "POST", dataToSubmit);
-    if (!response.ok || response instanceof Error) {
+    if (response instanceof Error) {
+      navigate("/error");
+    }
+    const responseData = await response.json();
+    if (responseData.error && responseData.error === "Username already taken") {
+      setUsernameError(responseData.error);
+    } else if (!response.ok || response instanceof Error) {
       navigate("/error");
     } else {
-      // const data = await response.json();
-      navigate("/");
+      navigate("/login");
     }
   }
 
@@ -39,6 +45,9 @@ export function Signup() {
             required: true,
             minLength: USERNAME_MIN,
             maxLength: USERNAME_MAX,
+            onChange: () => {
+              if (usernameError !== "") setUsernameError("");
+            },
           })}
         />
 
@@ -48,6 +57,9 @@ export function Signup() {
           {...register("password", {
             required: true,
             minLength: PASSWORD_MIN,
+            onChange: () => {
+              if (usernameError !== "") setUsernameError("");
+            },
           })}
         />
 
@@ -60,6 +72,9 @@ export function Signup() {
               if (getValues("password") !== val) {
                 return "Passwords don't match";
               }
+            },
+            onChange: () => {
+              if (usernameError !== "") setUsernameError("");
             },
           })}
         />
@@ -91,6 +106,8 @@ export function Signup() {
             errors.confirmPassword.type === "validate" && (
               <span>{errors.confirmPassword.message}</span>
             )}
+
+          {usernameError !== "" ? <span>usernameError</span> : null}
         </section>
         <Link to="/login">Got an account? Login</Link>
       </form>
