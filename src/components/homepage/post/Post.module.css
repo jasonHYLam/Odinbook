@@ -31,3 +31,14 @@
     color: var(--splash-color);
   };
 }
+
+.img {
+  width: 400px;
+}
+
+@media screen and (max-width: 400px) {
+  .img {
+    width: 150px;
+  }
+  
+}

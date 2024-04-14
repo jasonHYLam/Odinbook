@@ -127,7 +127,9 @@ export function Post() {
                 <span className={styles.date}>{post.datePosted}</span>
               </Link>
 
-              {post.imageURL ? <img src={post.imageURL} alt="" /> : null}
+              {post.imageURL ? (
+                <img className={styles.img} src={post.imageURL} alt="" />
+              ) : null}
 
               <p className={styles.postText}>{post.text}</p>
 
