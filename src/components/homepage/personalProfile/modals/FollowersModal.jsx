@@ -10,9 +10,6 @@ export function FollowersModal({ followers, openModal, closeModal }) {
 
   document.addEventListener("keydown", escapePress);
 
-  console.log("checking followers");
-  console.log(followers);
-
   useEffect(() => {
     if (openModal) {
       ref.current?.showModal();

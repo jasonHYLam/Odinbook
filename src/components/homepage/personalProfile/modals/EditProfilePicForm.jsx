@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { fetchDataWithImage } from "../../../../helper/helperUtils";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 export function EditProfilePicForm({ cancel }) {
+  const { setLoggedInUser } = useOutletContext();
   const navigate = useNavigate();
   const [imageToUpload, setImageToUpload] = useState(null);
 
@@ -24,9 +25,8 @@ export function EditProfilePicForm({ cancel }) {
     if (!uploadResponse.ok || uploadResponse instanceof Error) {
       navigate("/error");
     } else {
-      console.log("somehow worked?");
       const { user } = await uploadResponse.json();
-      console.log(user);
+      setLoggedInUser(user);
     }
   }
 

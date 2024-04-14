@@ -28,7 +28,6 @@ export function Homepage() {
         getLoggedInUserResponse.status === 401 ||
         getLikedPostsResponse === 401
       ) {
-        console.log("this happens");
         navigate("/login");
       } else if (
         !getUserPostsResponse.ok ||

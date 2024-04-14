@@ -15,8 +15,6 @@ export function SearchAddUsers() {
     async function searchUsers() {
       if (!searchQuery) return;
       const dataToSubmit = JSON.stringify({ searchQuery });
-      console.log("dataToSubmit");
-      console.log(dataToSubmit);
       const searchResponse = await fetchData(
         `user/search_users`,
         "POST",
@@ -34,8 +32,6 @@ export function SearchAddUsers() {
   }, [searchQuery]);
 
   function isFollowedByLoggedInUser(searchedUser) {
-    console.log("checking  isFollowedByLoggedInUser");
-    console.log(searchedUser.followers.map((follower) => follower));
     return searchedUser.followers.some(
       (follower) => follower === loggedInUser.id
     );

@@ -11,9 +11,6 @@ export function EditUserForm({ editing, cancel }) {
     formState: { errors },
   } = useForm();
 
-  console.log("checking editing");
-  console.log(editing);
-
   async function submitChange(data) {
     if (editing === "username") {
       const dataToSubmit = JSON.stringify({ username: data.edit });
@@ -31,8 +28,6 @@ export function EditUserForm({ editing, cancel }) {
       }
     } else if (editing === "password") {
       const dataToSubmit = JSON.stringify({ password: data.edit });
-      console.log("checking dataToSubmit");
-      console.log(dataToSubmit);
       const response = await fetchData(
         `user/change_password`,
         "PUT",
