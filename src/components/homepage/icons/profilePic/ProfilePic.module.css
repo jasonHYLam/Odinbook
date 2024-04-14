@@ -1,5 +1,6 @@
 .profilePicSmall {
   height: var(--profile-pic-height-s);
+  width: auto;
   border-radius: 50%;
   border: 1px solid var(--border-color);
   background-color: blue;
@@ -7,6 +8,7 @@
 
 .profilePicLarge {
   height: var(--profile-pic-height-l);
+  width: auto;
   border-radius: 50%;
   border: 1px solid var(--border-color);
   background-color:blue;

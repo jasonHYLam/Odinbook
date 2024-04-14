@@ -62,7 +62,8 @@ export function CreatePost() {
           id=""
           cols="30"
           rows="10"
-          {...register("text", { required: true })}
+          placeholder="Character limit 500"
+          {...register("text", { required: true, maxLength: 500 })}
         ></textarea>
         <input type="submit" value="Post" />
       </form>
