@@ -93,7 +93,7 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
         <Link to={authorURL}>
           <ProfilePic URL={comment.author.profilePicURL} component="comment" />
           <span>{comment.author.username}</span>
-          <span className={styles.date}>{comment.dateCommented}</span>
+          <span className={styles.date}>{comment.dateCommentedFormatted}</span>
         </Link>
 
         {status === "" ? (

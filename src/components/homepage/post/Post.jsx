@@ -124,7 +124,7 @@ export function Post() {
               <Link to={CREATOR_PROFILE_URL}>
                 <ProfilePic URL={post.creator.profilePicURL} size="small" />
                 <span>{post.creator.username}</span>
-                <span className={styles.date}>{post.datePosted}</span>
+                <span className={styles.date}>{post.datePostedFormatted}</span>
               </Link>
 
               {post.imageURL ? (

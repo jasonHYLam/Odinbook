@@ -11,7 +11,7 @@ export function PostPreview({ post }) {
           <div>
             <div className={styles.topRow}>
               <span>{post.creator.username}</span>
-              <span className={styles.date}>{post.datePosted}</span>
+              <span className={styles.date}>{post.datePostedFormatted}</span>
             </div>
 
             {post.imageURL ? (
