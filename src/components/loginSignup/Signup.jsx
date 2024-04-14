@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { GuestLoginLink } from "./GuestLoginLink";
 import { Logo } from "../homepage/icons/logo/Logo";
+import styles from "./LoginSignup.module.css";
 
 export function Signup() {
   const USERNAME_MIN = 3;
@@ -37,10 +38,10 @@ export function Signup() {
   }
 
   return (
-    <main>
+    <main className={styles.page}>
       <Logo size="large" />
       <p>Signup</p>
-      <form onSubmit={handleSubmit(submitSignupData)}>
+      <form className={styles.form} onSubmit={handleSubmit(submitSignupData)}>
         <input
           type="text"
           placeholder="Username"

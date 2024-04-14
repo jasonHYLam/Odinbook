@@ -4,6 +4,8 @@ import { fetchData } from "../../helper/helperUtils";
 import { useState } from "react";
 import { GuestLoginLink } from "./GuestLoginLink";
 import { Logo } from "../homepage/icons/logo/Logo";
+import styles from "./LoginSignup.module.css";
+
 export function Login() {
   const {
     register,
@@ -29,10 +31,10 @@ export function Login() {
   }
 
   return (
-    <main>
+    <main className={styles.page}>
       <Logo size="large" />
       <p>Login</p>
-      <form onSubmit={handleSubmit(submitLoginData)}>
+      <form className={styles.form} onSubmit={handleSubmit(submitLoginData)}>
         <input type="text" {...register("username", { required: true })} />
         <input type="password" {...register("password", { required: true })} />
         <input type="submit" value="Login" />
