@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { fetchData } from "../../helper/helperUtils";
 import { useState } from "react";
 import { GuestLoginLink } from "./GuestLoginLink";
-
+import { Logo } from "../homepage/icons/logo/Logo";
 export function Login() {
   const {
     register,
@@ -31,6 +31,7 @@ export function Login() {
   return (
     <main>
       <p>Login</p>
+      <Logo />
       <form onSubmit={handleSubmit(submitLoginData)}>
         <input type="text" {...register("username", { required: true })} />
         <input type="password" {...register("password", { required: true })} />

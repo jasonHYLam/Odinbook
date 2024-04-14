@@ -31,8 +31,8 @@ export function LogoutModal({ openModal, closeModal }) {
   return (
     <dialog ref={ref}>
       <p>Are you sure you want to log out?</p>
-      <p onClick={logout}>Yeah, log out</p>
-      <p onClick={closeModal}>Cancel</p>
+      <button onClick={logout}>Yeah, log out</button>
+      <button onClick={closeModal}>Cancel</button>
     </dialog>
   );
 }

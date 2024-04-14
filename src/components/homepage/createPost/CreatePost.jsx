@@ -66,6 +66,12 @@ export function CreatePost() {
           {...register("text", { required: true, maxLength: 500 })}
         ></textarea>
         <input type="submit" value="Post" />
+        {errors.text && errors.text.type === "required" && (
+          <span>Cannot send empty post</span>
+        )}
+        {errors.text && errors.text.type === "maxLength" && (
+          <span>Exceeded 500 characters</span>
+        )}
       </form>
     </main>
   );
