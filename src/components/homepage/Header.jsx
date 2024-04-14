@@ -6,7 +6,7 @@ export function Header({ user }) {
   return (
     <header>
       <Link to="/">
-        <Logo />
+        <Logo size="small" />
       </Link>
       <Link to="create_post">New Post</Link>
       <Link to="me">

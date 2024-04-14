@@ -137,6 +137,7 @@ input[type=submit] {
   color: var(--main-text-color);
   border: 1px solid var(--border-color);
   border-radius: 2%;
+  width: 60%;
 }
 
 input[type=submit]:hover {

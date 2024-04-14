@@ -113,9 +113,9 @@ export function Signup() {
 
           {usernameError !== "" ? <span>usernameError</span> : null}
         </section>
-        <Link to="/login">Got an account? Login</Link>
-        <GuestLoginLink />
       </form>
+      <Link to="/login">Got an account? Login</Link>
+      <GuestLoginLink />
     </main>
   );
 }

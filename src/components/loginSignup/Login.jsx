@@ -35,17 +35,25 @@ export function Login() {
       <Logo size="large" />
       <p>Login</p>
       <form className={styles.form} onSubmit={handleSubmit(submitLoginData)}>
-        <input type="text" {...register("username", { required: true })} />
-        <input type="password" {...register("password", { required: true })} />
+        <input
+          type="text"
+          {...register("username", { required: true })}
+          placeholder="Username"
+        />
+        <input
+          type="password"
+          {...register("password", { required: true })}
+          placeholder="Password"
+        />
         <input type="submit" value="Login" />
         <section>
           {errors.username && <span>Please provide username</span>}
           {errors.password && <span>Please provide password</span>}
           {authError ? <span>{authError}</span> : null}
         </section>
-        <Link to="/sign_up">New here? Sign up</Link>
-        <GuestLoginLink />
       </form>
+      <Link to="/sign_up">New here? Sign up</Link>
+      <GuestLoginLink />
     </main>
   );
 }
