@@ -30,9 +30,6 @@ export function Post() {
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("checking");
-  console.log(loggedInUser);
-  console.log(post);
   let CREATOR_PROFILE_URL = "";
   if (!isLoading) {
     CREATOR_PROFILE_URL =
@@ -41,13 +38,13 @@ export function Post() {
         : `/users/${post.creator._id}`;
   }
 
-  console.log("post");
-  console.log(post);
-
   useEffect(() => {
     async function fetchPostAndComments() {
       const getResponse = await fetchData(`post/${postID}`, "GET");
-      if (!getResponse.ok || getResponse instanceof Error) {
+
+      if (getResponse.status === 401) {
+        navigate("/login");
+      } else if (!getResponse.ok || getResponse instanceof Error) {
         navigate("/error");
       } else {
         const { post, comments, isLiked } = await getResponse.json();
@@ -93,22 +90,17 @@ export function Post() {
   }
 
   async function postComment(data) {
-    console.log("does this happen");
     const dataToSubmit = JSON.stringify(data);
-    console.log(dataToSubmit);
     const commentResponse = await fetchData(
       `comment/${postID}/comment`,
       "POST",
       dataToSubmit
     );
-    console.log("check call ");
     if (!commentResponse.ok || commentResponse instanceof Error) {
       navigate("/error");
     } else {
       const { newComment } = await commentResponse.json();
       reset();
-      console.log("check newComment");
-      console.log(newComment);
       setComments([...comments, newComment]);
     }
   }

@@ -16,7 +16,10 @@ export function UserProfile() {
   useEffect(() => {
     async function fetchUserData() {
       const getUserResponse = await fetchData(`user/${userID}/profile`);
-      if (!getUserResponse.ok || getUserResponse instanceof Error) {
+
+      if (getUserResponse.status === 401) {
+        navigate("/login");
+      } else if (!getUserResponse.ok || getUserResponse instanceof Error) {
         navigate("/error");
       } else {
         const { user, posts, isLoggedInUserFollowing } =

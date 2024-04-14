@@ -27,7 +27,12 @@ export function PersonalProfile() {
         await fetchData("user/view_personal_profile", "GET"),
       ]);
 
-      if (!getUserPostsResponse.ok || getUserPostsResponse instanceof Error) {
+      if (getUserPostsResponse.status === 401) {
+        navigate("/login");
+      } else if (
+        !getUserPostsResponse.ok ||
+        getUserPostsResponse instanceof Error
+      ) {
         navigate("/error");
       } else {
         const { posts } = await getUserPostsResponse.json();
