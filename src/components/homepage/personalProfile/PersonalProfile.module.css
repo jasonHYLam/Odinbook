@@ -5,8 +5,15 @@
 .navOptions {
   display: flex;
 }
+
 .navOptions > *{
   padding-inline: 20px;
+}
+
+@media screen and (max-width: 400px) {
+.navOptions > *{
+  padding-inline: 5px;
+}
 }
 
 .navOptions > *:hover {
