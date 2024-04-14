@@ -11,9 +11,6 @@ export function Homepage() {
   const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log("loggedInUser");
-  console.log(loggedInUser);
-
   useEffect(() => {
     async function fetchFeedAndUsersData() {
       const [
@@ -27,9 +24,16 @@ export function Homepage() {
       ]);
 
       if (
+        getLikedPostsResponse.status === 401 ||
+        getLoggedInUserResponse.status === 401 ||
+        getLikedPostsResponse === 401
+      ) {
+        console.log("this happens");
+        navigate("/login");
+      } else if (
         !getUserPostsResponse.ok ||
-        !getLoggedInUserResponse ||
-        !getLikedPostsResponse ||
+        !getLoggedInUserResponse.ok ||
+        !getLikedPostsResponse.ok ||
         getUserPostsResponse instanceof Error ||
         getLoggedInUserResponse instanceof Error ||
         getLikedPostsResponse instanceof Error
