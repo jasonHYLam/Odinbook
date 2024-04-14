@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { GuestLoginLink } from "./GuestLoginLink";
+import { Logo } from "../homepage/icons/logo/Logo";
 
 export function Signup() {
   const USERNAME_MIN = 3;
@@ -37,6 +38,7 @@ export function Signup() {
 
   return (
     <main>
+      <Logo size="large" />
       <p>Signup</p>
       <form onSubmit={handleSubmit(submitSignupData)}>
         <input

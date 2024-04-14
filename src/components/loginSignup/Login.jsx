@@ -30,8 +30,8 @@ export function Login() {
 
   return (
     <main>
+      <Logo size="large" />
       <p>Login</p>
-      <Logo />
       <form onSubmit={handleSubmit(submitLoginData)}>
         <input type="text" {...register("username", { required: true })} />
         <input type="password" {...register("password", { required: true })} />
