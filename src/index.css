@@ -81,6 +81,12 @@ main {
   border-radius: 2%;
 }
 
+@media screen and (max-width: 400px) {
+  main {
+    width: 80%;
+  }
+}
+
 dialog {
   background-color: black;
   color: var(--main-text-color);
