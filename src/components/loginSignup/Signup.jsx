@@ -30,10 +30,15 @@ export function Signup() {
     const responseData = await response.json();
     if (responseData.error && responseData.error === "Username already taken") {
       setUsernameError(responseData.error);
-    } else if (!response.ok || response instanceof Error) {
-      const data = await response.json();
+      // } else if (!response.ok || response instanceof Error) {
+    } else if (!response.ok) {
+      console.log("response not ok");
       console.log("checking data");
+      const data = await response.json();
       console.log(data);
+      navigate("/error");
+    } else if (response instanceof Error) {
+      console.log("network error");
       navigate("/error");
     } else {
       navigate("/login");
