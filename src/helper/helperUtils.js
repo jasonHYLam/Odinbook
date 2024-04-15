@@ -8,7 +8,7 @@ export async function fetchData(endpoint, method, data) {
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
+          // "Access-Control-Allow-Credentials": true,
         },
         body: data,
       }
@@ -27,7 +27,7 @@ export async function fetchDataWithImage(endpoint, method, data) {
         method: method,
         mode: "cors",
         credentials: "include",
-        headers: { "Access-Control-Allow-Credentials": true },
+        // headers: { "Access-Control-Allow-Credentials": true },
         body: data,
       }
     );
