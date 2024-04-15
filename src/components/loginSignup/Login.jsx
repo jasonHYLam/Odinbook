@@ -24,6 +24,9 @@ export function Login() {
     if (response.status === 401) {
       setAuthError("Incorrect username/password");
     } else if (!response.ok || response instanceof Error) {
+      console.log("checking err");
+      const data = await response.json();
+      console.log(data);
       navigate("/error");
     } else {
       // const data = await response.json();
