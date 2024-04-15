@@ -23,8 +23,10 @@ export function Signup() {
 
   async function submitSignupData(data) {
     const dataToSubmit = JSON.stringify(data);
+    console.log(dataToSubmit);
     const response = await fetchData("auth/signup", "POST", dataToSubmit);
     if (response instanceof Error) {
+      console.log("network error 1");
       navigate("/error");
     }
     const responseData = await response.json();
