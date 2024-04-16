@@ -38,8 +38,8 @@ export function Signup() {
     } else if (!response.ok) {
       console.log("response not ok");
       console.log("checking data");
-      // const data = await response.json();
-      // console.log(data);
+      const data = await response.json();
+      console.log(data);
       navigate("/error");
     } else if (response instanceof Error) {
       console.log("network error");
