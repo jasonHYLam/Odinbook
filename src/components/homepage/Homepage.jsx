@@ -12,16 +12,6 @@ export function Homepage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchTest() {
-      const response = await fetchData("user/test", "GET");
-      const data = await response.json();
-      console.log("checking test");
-      console.log(data);
-    }
-    fetchTest();
-  }, []);
-
-  useEffect(() => {
     async function fetchFeedAndUsersData() {
       const [
         getUserPostsResponse,
