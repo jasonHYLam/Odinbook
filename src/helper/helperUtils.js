@@ -4,7 +4,7 @@ export async function fetchData(endpoint, method, data) {
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
       {
         method: method,
-        mode: "cors",
+        // mode: "cors",
         credentials: "include",
         // credentials: "same-origin",
         headers: {
