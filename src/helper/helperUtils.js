@@ -5,7 +5,8 @@ export async function fetchData(endpoint, method, data) {
       {
         method: method,
         mode: "cors",
-        credentials: "include",
+        // credentials: "include",
+        credentials: "same-origin",
         headers: {
           "Content-Type": "application/json",
           // "Access-Control-Allow-Credentials": true,
