@@ -13,7 +13,7 @@ export function Homepage() {
 
   useEffect(() => {
     async function fetchTest() {
-      const response = await fetchData("user/test");
+      const response = await fetchData("user/test", "GET");
       const data = await response.json();
       console.log("checking test");
       console.log(data);
