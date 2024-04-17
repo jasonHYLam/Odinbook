@@ -55,9 +55,10 @@ describe("personal profile", () => {
     const router = createMemoryRouter(routes, { initialEntries: ["/me"] });
     render(<RouterProvider router={router} />);
 
-    // await waitFor(() => {
-    //   screen.getByRole("span", { name: "settings" });
-    // });
+    await waitFor(() => {
+      // screen.getByRole("span", { name: "settings" });
+      expect(helpers.fetchData).toHaveBeenCalledOnce();
+    });
 
     expect(screen.getByRole("span", { name: "settings" })).toBeInTheDocument();
   });
