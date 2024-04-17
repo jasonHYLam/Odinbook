@@ -15,7 +15,12 @@
   cursor: pointer;
 }
 
-/* .error {
-  font-size: 80%;
+.errorsList {
+  display: flex;
+  flex-direction: column;
+}
 
-} */
+.error {
+  font-size: 80%;
+  color: var(--sub-text-color);
+}

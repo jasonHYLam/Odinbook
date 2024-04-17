@@ -45,10 +45,14 @@ export function Login() {
           placeholder="Password"
         />
         <input type="submit" value="Login" />
-        <section>
-          {errors.username && <span>Please provide username</span>}
-          {errors.password && <span>Please provide password</span>}
-          {authError ? <span>{authError}</span> : null}
+        <section className={styles.errorsList}>
+          {errors.username && (
+            <span className={styles.error}>Please provide username</span>
+          )}
+          {errors.password && (
+            <span className={styles.error}>Please provide password</span>
+          )}
+          {authError ? <span className={styles.error}>{authError}</span> : null}
         </section>
       </form>
       <Link to="/sign_up">New here? Sign up</Link>
