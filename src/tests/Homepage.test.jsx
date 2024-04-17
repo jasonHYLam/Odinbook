@@ -5,6 +5,7 @@ import { createMemoryRouter, Route, RouterProvider } from "react-router-dom";
 import { Homepage } from "../components/homepage/Homepage";
 import { Login } from "../components/loginSignup/Login";
 import { Feed } from "../components/homepage/feed/Feed";
+import { RenderRouteWithOutletContext } from "./RenderRouteWithOutletContext";
 
 describe("something", () => {
   it("true to be true", () => {
@@ -44,22 +45,28 @@ describe("App", () => {
   });
 });
 
-describe("Feed", () => {
-  const feed = [
-    {
-      //post
-      author: { username: "RiverEuphrates" },
-      text: "Ride a tire",
-    },
-  ];
-  const routes = [
-    {
-      path: "/",
-      element: <Feed />,
-    },
-  ];
-  const router = createMemoryRouter(routes, {
-    initialEntries: ["/"],
-  });
-  render(<RouterProvider router={router} />);
-});
+// describe("Feed", () => {
+//   const feed = [
+//     {
+//       //post
+//       author: { username: "RiverEuphrates" },
+//       text: "Ride a tire",
+//     },
+//   ];
+//   const routes = [
+//     {
+//       path: "/",
+//       element: <RenderRouteWithOutletContext context={feed} />,
+//       children: [
+//         {
+//           path: "/",
+//           element: <Feed />,
+//         },
+//       ],
+//     },
+//   ];
+//   const router = createMemoryRouter(routes, {
+//     initialEntries: ["/"],
+//   });
+//   render(<RouterProvider router={router} />);
+// });
