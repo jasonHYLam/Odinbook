@@ -25,6 +25,7 @@ describe("personal profile", () => {
     render(<RouterProvider router={router} />);
 
     vi.spyOn(React, "useEffect").mockImplementation(() => {
+      const isLoading = false;
       return;
     });
 
