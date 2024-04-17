@@ -85,34 +85,44 @@ export function Signup() {
         />
 
         <input type="submit" value="Sign up" />
-        <section>
+        <section className={styles.errorsList}>
           {errors.username && errors.username.type === "required" && (
-            <span>Please provide username</span>
+            <span className={styles.error}>Please provide username</span>
           )}
 
           {errors.username && errors.username.type === "minLength" && (
-            <span>Username must be at least {USERNAME_MIN} characters</span>
+            <span className={styles.error}>
+              Username must be at least {USERNAME_MIN} characters
+            </span>
           )}
 
           {errors.username && errors.username.type === "maxLength" && (
-            <span>Username must be less than {USERNAME_MAX} characters</span>
+            <span className={styles.error}>
+              Username must be less than {USERNAME_MAX} characters
+            </span>
           )}
 
           {errors.confirmPassword &&
             errors.confirmPassword.type === "required" && (
-              <span>Please confirm password</span>
+              <span className={styles.error}>Please confirm password</span>
             )}
 
           {errors.password && errors.password.type === "minLength" && (
-            <span>Password must be at least {PASSWORD_MIN} characters </span>
+            <span className={styles.error}>
+              Password must be at least {PASSWORD_MIN} characters{" "}
+            </span>
           )}
 
           {errors.confirmPassword &&
             errors.confirmPassword.type === "validate" && (
-              <span>{errors.confirmPassword.message}</span>
+              <span className={styles.error}>
+                {errors.confirmPassword.message}
+              </span>
             )}
 
-          {usernameError !== "" ? <span>usernameError</span> : null}
+          {usernameError !== "" ? (
+            <span className={styles.error}>usernameError</span>
+          ) : null}
         </section>
       </form>
       <Link to="/login">Got an account? Login</Link>
