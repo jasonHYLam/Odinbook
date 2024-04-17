@@ -2,6 +2,7 @@ import { fetchData } from "../../helper/helperUtils";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Header } from "./Header";
 import { useEffect, useState } from "react";
+import * as helpers from "../../helper/helperUtils";
 
 export function Homepage() {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ export function Homepage() {
   const [isGuest, setIsGuest] = useState(false);
   const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  console.log(helpers);
 
   useEffect(() => {
     async function fetchFeedAndUsersData() {
