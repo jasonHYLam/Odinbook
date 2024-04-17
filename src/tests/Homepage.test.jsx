@@ -16,10 +16,15 @@ describe("something", () => {
 describe("App", () => {
   it("renders headline", () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter initialEntries={["/"]}>
         <Homepage />
       </MemoryRouter>
     );
-    screen.debug();
+
+    const form = screen.getByRole("form");
+    const usernameInput = form.getByRole("username");
+    expect(usernameInput).toBe("");
+
+    // screen.debug();
   });
 });

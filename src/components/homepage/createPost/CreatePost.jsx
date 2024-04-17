@@ -50,8 +50,6 @@ export function CreatePost() {
     }
   }
 
-  if (errors) console.log(errors);
-
   return (
     <main>
       <h2>Creating post</h2>
