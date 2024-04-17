@@ -30,9 +30,6 @@ export function PersonalProfile() {
         await fetchData("user/view_personal_profile", "GET"),
       ]);
 
-      console.log("checking getUserPostsResponse");
-      console.log(getUserPostsResponse);
-
       if (getUserPostsResponse.status === 401) {
         navigate("/login");
       } else if (

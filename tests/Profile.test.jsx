@@ -9,24 +9,33 @@ import * as helpers from "../src/helper/helperUtils";
 
 describe("personal profile", () => {
   beforeEach(() => {
-    vi.spyOn(helpers, "fetchData").mockImplementation(() => {
-      const getUserPostsResponse = new Response(JSON.stringify({ posts: [] }), {
-        status: 201,
-      });
+    // Two valid methods for mocking fetch for reference
 
-      return getUserPostsResponse;
-    });
+    // Method 1:
+    // vi.spyOn(helpers, "fetchData").mockImplementation(() => {
+    //   const getUserPostsResponse = new Response(JSON.stringify({ posts: [] }), {
+    //     status: 201,
+    //   });
+
+    //   return getUserPostsResponse;
+    // });
+
+    // Method 2:
+    vi.spyOn(helpers, "fetchData").mockResolvedValue(
+      new Response(JSON.stringify({ posts: [] }), {
+        status: 201,
+      })
+    );
   });
 
   afterEach(() => {
     vi.resetAllMocks();
   });
 
-  it("loads settings dialog when clicked", async () => {
-    const loggedInUser = {};
+  it("loads personal profile", async () => {
+    const loggedInUser = { following: [], followers: [] };
     const likedPosts = [];
 
-    // console.log(helpers.fetchData());
     const routes = [
       {
         path: "/",
@@ -46,6 +55,10 @@ describe("personal profile", () => {
       expect(helpers.fetchData).toHaveBeenCalledOnce();
     });
 
-    expect(screen.getByRole("span", { name: "settings" })).toBeInTheDocument();
+    // expect(screen.getByRole("span", { name: "settings" })).toBeInTheDocument();
+    expect(screen.getByText("settings")).toBeInTheDocument();
+    expect(screen.getByText("followers")).toBeInTheDocument();
+    expect(screen.getByText("following")).toBeInTheDocument();
+    expect(screen.getByText("logout")).toBeInTheDocument();
   });
 });
