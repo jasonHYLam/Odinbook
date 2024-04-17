@@ -24,7 +24,6 @@ export function SearchAddUsers() {
         navigate("/error");
       } else {
         const { users } = await searchResponse.json();
-        console.log(users);
         setMatchingUsers(users);
       }
     }
