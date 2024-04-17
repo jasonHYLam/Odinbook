@@ -9,7 +9,7 @@ import * as helpers from "../src/helper/helperUtils";
 
 describe("personal profile", () => {
   beforeEach(() => {
-    vi.spyOn(helpers, "fetchData").mockResolvedValue(() => {
+    vi.spyOn(helpers, "fetchData").mockImplementation(() => {
       const getUserPostsResponse = new Response(JSON.stringify({ posts: [] }), {
         status: 201,
       });
@@ -25,6 +25,8 @@ describe("personal profile", () => {
   it("loads settings dialog when clicked", async () => {
     const loggedInUser = {};
     const likedPosts = [];
+
+    // console.log(helpers.fetchData());
     const routes = [
       {
         path: "/",
