@@ -1,8 +1,10 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { createMemoryRouter, Route, RouterProvider } from "react-router-dom";
 
 import { Homepage } from "../components/homepage/Homepage";
+import { Login } from "../components/loginSignup/Login";
+import { Feed } from "../components/homepage/feed/Feed";
 
 describe("something", () => {
   it("true to be true", () => {
@@ -14,17 +16,50 @@ describe("something", () => {
 });
 
 describe("App", () => {
-  it("renders headline", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Homepage />
-      </MemoryRouter>
-    );
+  it("renders initial homepage", () => {
+    const routes = [
+      {
+        path: "/",
+        element: <Homepage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+    ];
+    const router = createMemoryRouter(routes, {
+      initialEntries: ["/"],
+    });
 
-    const form = screen.getByRole("form");
-    const usernameInput = form.getByRole("username");
-    expect(usernameInput).toBe("");
+    render(<RouterProvider router={router} />);
+
+    const loading = screen.getByRole("paragraph");
+    expect(loading.textContent).toBe("loading");
+
+    // const form = screen.getByRole("form");
+    // const usernameInput = form.getByRole("username");
+    // expect(usernameInput).toBe("");
 
     // screen.debug();
   });
+});
+
+describe("Feed", () => {
+  const feed = [
+    {
+      //post
+      author: { username: "RiverEuphrates" },
+      text: "Ride a tire",
+    },
+  ];
+  const routes = [
+    {
+      path: "/",
+      element: <Feed />,
+    },
+  ];
+  const router = createMemoryRouter(routes, {
+    initialEntries: ["/"],
+  });
+  render(<RouterProvider router={router} />);
 });
