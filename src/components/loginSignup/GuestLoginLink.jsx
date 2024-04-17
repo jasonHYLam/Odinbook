@@ -1,3 +1,4 @@
+import styles from "./LoginSignup.module.css";
 import { useNavigate } from "react-router-dom";
 import { fetchData } from "../../helper/helperUtils";
 
@@ -23,7 +24,9 @@ export function GuestLoginLink() {
 
   return (
     <>
-      <p onClick={guestLogin}>Try Guest account!</p>
+      <p className={styles.guestLogin} onClick={guestLogin}>
+        Try Guest account!
+      </p>
     </>
   );
 }

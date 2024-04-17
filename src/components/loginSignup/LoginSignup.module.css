@@ -10,3 +10,12 @@
   width: 80%;
   margin-bottom: 30px;
 }
+
+.guestLogin {
+  cursor: pointer;
+}
+
+/* .error {
+  font-size: 80%;
+
+} */
