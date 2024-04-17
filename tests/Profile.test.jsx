@@ -9,26 +9,10 @@ import * as helpers from "../src/helper/helperUtils";
 
 describe("personal profile", () => {
   beforeEach(() => {
-    // Mock Fetch Attempt 1
-
-    // global.fetch = vi.fn();
-    // fetch.mockResolvedValue(() => {
-    //   const getUserPostsResponse = {
-    //     json: () => new Promise((resolve) => resolve({ posts: [] })),
-    //   };
-
-    //   return getUserPostsResponse;
-    // });
-
-    // Mock Fetch Attempt 2
-
     vi.spyOn(helpers, "fetchData").mockResolvedValue(() => {
       const getUserPostsResponse = new Response(JSON.stringify({ posts: [] }), {
         status: 201,
       });
-      // const getUserPostsResponse = {
-      //   json: () => new Promise((resolve) => resolve({ posts: [] })),
-      // };
 
       return getUserPostsResponse;
     });
