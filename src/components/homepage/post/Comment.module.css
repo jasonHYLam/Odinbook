@@ -6,3 +6,7 @@
 .comment {
   border-bottom: 1px solid var(--border-color);
 }
+
+.text {
+  word-break: break-all;
+}

@@ -4,6 +4,7 @@
 
 .postText {
   font-size: 1.2rem;
+  word-break: break-all;
 }
 
 .date, .likesCount{

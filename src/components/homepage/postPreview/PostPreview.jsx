@@ -17,7 +17,7 @@ export function PostPreview({ post }) {
             {post.imageURL ? (
               <img className={styles.img} src={post.imageURL} />
             ) : null}
-            <p>{post.text}</p>
+            <p className={styles.text}>{post.text}</p>
             <p className={styles.likesCount}>{post.likesCount}</p>
           </div>
         </article>

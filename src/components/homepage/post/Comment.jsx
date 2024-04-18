@@ -98,7 +98,7 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
 
         {status === "" ? (
           <>
-            <p>{comment.text}</p>
+            <p className={styles.text}>{comment.text}</p>
 
             {comment.author.id === loggedInUser.id ? (
               <>
