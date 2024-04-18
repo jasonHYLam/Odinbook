@@ -51,11 +51,9 @@ describe("personal profile", () => {
     render(<RouterProvider router={router} />);
 
     await waitFor(() => {
-      // screen.getByRole("span", { name: "settings" });
       expect(helpers.fetchData).toHaveBeenCalledOnce();
     });
 
-    // expect(screen.getByRole("span", { name: "settings" })).toBeInTheDocument();
     expect(screen.getByText("settings")).toBeInTheDocument();
     expect(screen.getByText("followers")).toBeInTheDocument();
     expect(screen.getByText("following")).toBeInTheDocument();
