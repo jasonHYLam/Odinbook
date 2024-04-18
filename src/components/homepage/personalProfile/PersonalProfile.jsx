@@ -23,9 +23,6 @@ export function PersonalProfile() {
 
   useEffect(() => {
     async function getUserPosts() {
-      // console.log("checking fetchData call");
-      // console.log(await fetchData("user/view_personal_profile", "GET"));
-
       const [getUserPostsResponse] = await Promise.all([
         await fetchData("user/view_personal_profile", "GET"),
       ]);
