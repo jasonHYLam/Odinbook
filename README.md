@@ -14,5 +14,6 @@ JAMstack social media clone for The Odin Project. Created using ReactJS, design 
 - Simulated real-time updates
 - Following users
 - Liking posts
+- Tests with Vitest
 
 ![Odinbook-screenshot](https://github.com/jasonHYLam/Odinbook/assets/105083538/2c23c8de-c3db-4fdd-bb36-3b2e0a0eae1c)
