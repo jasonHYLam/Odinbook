@@ -31,6 +31,9 @@
   --post-hover-color: #101B53;
   /* --post-hover-color: #1d1d1d; */
 }
+* {
+  box-sizing: border-box;
+}
 
 header {
   background-color: black;
@@ -140,6 +143,7 @@ textarea {
   border: 1px solid var(--border-color);
   border-radius: 2%;
   width: 60%;
+  padding: 10px;
 }
 
 input[type=submit] {
@@ -148,6 +152,7 @@ input[type=submit] {
   border: 1px solid var(--border-color);
   border-radius: 2%;
   width: 60%;
+  padding: 10px;
 }
 
 input[type=submit]:hover {
