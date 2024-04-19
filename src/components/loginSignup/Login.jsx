@@ -16,12 +16,18 @@ export function Login() {
   const navigate = useNavigate();
 
   const [authError, setAuthError] = useState(null);
+  const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false);
+
+  const SUBMIT_BUTTON_TEXT = isSuccessfulSubmit ? "Loading" : "Login";
 
   async function submitLoginData(data) {
+    if (isSuccessfulSubmit) return;
+    setIsSuccessfulSubmit(true);
     const dataToSubmit = JSON.stringify(data);
     const response = await fetchData("auth/login", "POST", dataToSubmit);
     if (response.status === 401) {
       setAuthError("Incorrect username/password");
+      setIsSuccessfulSubmit(false);
     } else if (!response.ok || response instanceof Error) {
       navigate("/error");
     } else {
@@ -44,7 +50,7 @@ export function Login() {
           {...register("password", { required: true })}
           placeholder="Password"
         />
-        <input type="submit" value="Login" />
+        <input type="submit" value={SUBMIT_BUTTON_TEXT} />
         <section className={styles.errorsList}>
           {errors.username && (
             <span className={styles.error}>Please provide username</span>
