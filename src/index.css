@@ -7,17 +7,18 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: black;
+  background-color: #e6ecf0;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg: #0F0F0F;
-  --main-text-color: white;
+  /* --bg: #0F0F0F; */
+  --bg: white;
+  --main-text-color: black;
   --sub-text-color: #848484;
-  --border-color : #232323;
+  --border-color : #848484;
   --splash-color: blue;
 
 
@@ -28,7 +29,7 @@
 
   --icon-s: 20px;
 
-  --post-hover-color: #101B53;
+  --post-hover-color: #dfeaff;
   /* --post-hover-color: #1d1d1d; */
 }
 * {
@@ -36,7 +37,7 @@
 }
 
 header {
-  background-color: black;
+  background-color: var(--bg);
   width: 100%;
   display: flex;
   position: fixed;
@@ -64,7 +65,7 @@ body {
   margin: 0;
   /* min-width: 320px; */
   min-height: 100vh;
-  background-color: black;
+  background-color: #e6ecf0;
   color: var(--main-text-color);
 }
 
@@ -91,7 +92,7 @@ main {
 }
 
 dialog {
-  background-color: black;
+  background-color: var(--bg);
   color: var(--main-text-color);
   border: 1px solid var(--border-color);
 }
@@ -111,12 +112,12 @@ ul {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--border-color);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--bg);
   cursor: pointer;
   color: var(--main-text-color);
   transition: border-color 0.35s;
@@ -124,6 +125,7 @@ button {
 button:hover {
   background-color: var(--splash-color);
   border-color: #646cff;
+  color: var(--bg);
 }
 button:focus,
 button:focus-visible {
@@ -158,6 +160,7 @@ input[type=submit] {
 input[type=submit]:hover {
   cursor: pointer;
   background-color: var(--splash-color);
+  color: var(--bg);
 }
 
 .icon {
