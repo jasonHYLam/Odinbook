@@ -5,8 +5,14 @@
 
 .comment {
   border-bottom: 1px solid var(--border-color);
+  padding-block: 10px;
 }
 
 .text {
   word-break: break-all;
+}
+
+.profileInfo {
+  display: flex;
+  gap: 20px;
 }
