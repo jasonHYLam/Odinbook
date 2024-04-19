@@ -112,12 +112,16 @@ export function Post() {
       ) : (
         <>
           <main>
-            <section>
-              <Link to={CREATOR_PROFILE_URL}>
-                <ProfilePic URL={post.creator.profilePicURL} size="small" />
-                <span>{post.creator.username}</span>
-                <span className={styles.date}>{post.datePostedFormatted}</span>
-              </Link>
+            <section className={styles.postSection}>
+              <section>
+                <Link to={CREATOR_PROFILE_URL} className={styles.profileInfo}>
+                  <ProfilePic URL={post.creator.profilePicURL} size="small" />
+                  <span>{post.creator.username}</span>
+                  <span className={styles.date}>
+                    {post.datePostedFormatted}
+                  </span>
+                </Link>
+              </section>
 
               {post.imageURL ? (
                 <img className={styles.img} src={post.imageURL} alt="" />
