@@ -125,8 +125,8 @@ export function Signup() {
           ) : null}
         </section>
       </form>
-      <Link to="/login">Got an account? Login</Link>
       <GuestLoginLink />
+      <Link to="/login">Got an account? Login</Link>
     </main>
   );
 }

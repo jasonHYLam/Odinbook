@@ -55,8 +55,8 @@ export function Login() {
           {authError ? <span className={styles.error}>{authError}</span> : null}
         </section>
       </form>
-      <Link to="/sign_up">New here? Sign up</Link>
       <GuestLoginLink />
+      <Link to="/sign_up">New here? Sign up</Link>
     </main>
   );
 }
