@@ -151,7 +151,7 @@ textarea {
 input[type=submit] {
   background-color: var(--bg);
   color: var(--main-text-color);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--splash-color);
   border-radius: 2%;
   width: 60%;
   padding: 10px;
