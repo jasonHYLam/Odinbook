@@ -30,6 +30,8 @@ export function Post() {
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
+  const [isSubmittingLike, setIsSubmittingLike] = useState(false);
+  const [isSubmittingUnlike, setIsSubmittingUnlike] = useState(false);
 
   let CREATOR_PROFILE_URL = "";
   if (!isLoading) {
@@ -61,6 +63,8 @@ export function Post() {
   }, []);
 
   async function likePost() {
+    if (isSubmittingLike) return;
+    setIsSubmittingLike(true);
     const likePostResponse = await fetchData(`post/${postID}/like`, "PUT");
     if (!likePostResponse.ok || likePostResponse instanceof Error) {
       navigate("/error");
@@ -68,12 +72,14 @@ export function Post() {
       const { likedPost } = await likePostResponse.json();
       setLikesCount(likesCount + 1);
       setIsLiked(true);
-
+      setIsSubmittingLike(false);
       setLikedPosts([...likedPosts, likedPost]);
     }
   }
 
   async function unlikePost() {
+    if (isSubmittingUnlike) return;
+    setIsSubmittingUnlike(true);
     const unlikePostResponse = await fetchData(`post/${postID}/unlike`, "PUT");
     if (!unlikePostResponse.ok || unlikePostResponse instanceof Error) {
       navigate("/error");
@@ -81,6 +87,7 @@ export function Post() {
       const { unlikedPost } = await unlikePostResponse.json();
       setLikesCount(likesCount - 1);
       setIsLiked(false);
+      setIsSubmittingUnlike(false);
 
       const updatedLikedPosts = likedPosts.filter(
         (post) => post._id !== unlikedPost._id
