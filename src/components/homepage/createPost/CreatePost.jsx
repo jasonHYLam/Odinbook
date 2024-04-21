@@ -12,12 +12,15 @@ export function CreatePost() {
   } = useForm();
 
   const [imagesToUpload, setImagesToUpload] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   function selectImage(e) {
     setImagesToUpload(e.target.files[0]);
   }
 
   async function post(data) {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     if (imagesToUpload) {
       const postData = new FormData();
       postData.append("images", imagesToUpload);

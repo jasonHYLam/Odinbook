@@ -9,6 +9,7 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
   const navigate = useNavigate();
   const { loggedInUser } = useOutletContext();
   const [status, setStatus] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
@@ -22,6 +23,8 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
       : `/users/${comment.author.id}`;
 
   async function submitEdit(data) {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
     const dataToSubmit = JSON.stringify(data);
     const editResponse = await fetchData(
       `comment/${postID}/${comment._id}/edit`,
