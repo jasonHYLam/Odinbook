@@ -29,6 +29,7 @@ export function Post() {
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSubmittingComment, setIsSubmittingComment] = useState(false);
 
   let CREATOR_PROFILE_URL = "";
   if (!isLoading) {
@@ -90,6 +91,8 @@ export function Post() {
   }
 
   async function postComment(data) {
+    if (isSubmittingComment) return;
+    setIsSubmittingComment(true);
     const dataToSubmit = JSON.stringify(data);
     const commentResponse = await fetchData(
       `comment/${postID}/comment`,
@@ -102,6 +105,7 @@ export function Post() {
       const { newComment } = await commentResponse.json();
       reset();
       setComments([...comments, newComment]);
+      setIsSubmittingComment(false);
     }
   }
 
