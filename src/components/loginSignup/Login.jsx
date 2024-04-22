@@ -37,9 +37,10 @@ export function Login() {
 
   return (
     <main className={styles.page}>
+      <section className={styles.logoAndForm}></section>
       <Logo size="large" />
-      <p>Login</p>
       <form className={styles.form} onSubmit={handleSubmit(submitLoginData)}>
+        <p>Login</p>
         <input
           type="text"
           {...register("username", { required: true })}
@@ -60,9 +61,9 @@ export function Login() {
           )}
           {authError ? <span className={styles.error}>{authError}</span> : null}
         </section>
+        <GuestLoginLink />
+        <Link to="/sign_up">New here? Sign up</Link>
       </form>
-      <GuestLoginLink />
-      <Link to="/sign_up">New here? Sign up</Link>
     </main>
   );
 }
