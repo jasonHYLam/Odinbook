@@ -10,7 +10,7 @@ export function useMobileView() {
     changeWidth();
 
     window.addEventListener("resize", changeWidth);
-    return window.removeEventListener("resize");
+    return window.removeEventListener("resize", changeWidth);
   }, []);
   return { isMobileView };
 }

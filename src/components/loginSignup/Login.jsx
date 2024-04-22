@@ -5,6 +5,7 @@ import { useState } from "react";
 import { GuestLoginLink } from "./GuestLoginLink";
 import { Logo } from "../homepage/icons/logo/Logo";
 import styles from "./LoginSignup.module.css";
+import { useMobileView } from "../../helper/hooks";
 
 export function Login() {
   const {
@@ -14,6 +15,10 @@ export function Login() {
   } = useForm();
 
   const navigate = useNavigate();
+
+  const isMobileView = useMobileView();
+  console.log("checking isMobileView");
+  console.log(isMobileView);
 
   const [authError, setAuthError] = useState(null);
   const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false);
