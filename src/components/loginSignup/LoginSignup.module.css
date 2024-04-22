@@ -6,6 +6,7 @@
 
 .logoAndForm {
   display: flex;
+  flex-direction: column;
 }
 
 .form {

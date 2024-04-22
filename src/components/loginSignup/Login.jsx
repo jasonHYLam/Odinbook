@@ -37,33 +37,36 @@ export function Login() {
 
   return (
     <main className={styles.page}>
-      <section className={styles.logoAndForm}></section>
-      <Logo size="large" />
-      <form className={styles.form} onSubmit={handleSubmit(submitLoginData)}>
-        <p>Login</p>
-        <input
-          type="text"
-          {...register("username", { required: true })}
-          placeholder="Username"
-        />
-        <input
-          type="password"
-          {...register("password", { required: true })}
-          placeholder="Password"
-        />
-        <input type="submit" value={SUBMIT_BUTTON_TEXT} />
-        <section className={styles.errorsList}>
-          {errors.username && (
-            <span className={styles.error}>Please provide username</span>
-          )}
-          {errors.password && (
-            <span className={styles.error}>Please provide password</span>
-          )}
-          {authError ? <span className={styles.error}>{authError}</span> : null}
-        </section>
-        <GuestLoginLink />
-        <Link to="/sign_up">New here? Sign up</Link>
-      </form>
+      <section className={styles.logoAndForm}>
+        <Logo size="large" />
+        <form className={styles.form} onSubmit={handleSubmit(submitLoginData)}>
+          <p>Login</p>
+          <input
+            type="text"
+            {...register("username", { required: true })}
+            placeholder="Username"
+          />
+          <input
+            type="password"
+            {...register("password", { required: true })}
+            placeholder="Password"
+          />
+          <input type="submit" value={SUBMIT_BUTTON_TEXT} />
+          <section className={styles.errorsList}>
+            {errors.username && (
+              <span className={styles.error}>Please provide username</span>
+            )}
+            {errors.password && (
+              <span className={styles.error}>Please provide password</span>
+            )}
+            {authError ? (
+              <span className={styles.error}>{authError}</span>
+            ) : null}
+          </section>
+          <GuestLoginLink />
+          <Link to="/sign_up">New here? Sign up</Link>
+        </form>
+      </section>
     </main>
   );
 }
