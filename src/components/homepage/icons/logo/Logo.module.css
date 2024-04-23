@@ -2,5 +2,5 @@
   height: var(--profile-pic-height-m);
 }
 .logoLarge {
-  height: var(--profile-pic-height-l);
+  height: var(--logo-l);
 }

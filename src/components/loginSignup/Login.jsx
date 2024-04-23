@@ -71,7 +71,9 @@ export function Login() {
             ) : null}
           </section>
           <GuestLoginLink />
-          <Link to="/sign_up">New here? Sign up</Link>
+          <Link className={styles.link} to="/sign_up">
+            <span>New here? Sign up</span>
+          </Link>
         </form>
       </section>
     </main>

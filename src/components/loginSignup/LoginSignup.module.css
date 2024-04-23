@@ -40,6 +40,14 @@
   color: var(--splash-color);
 }
 
+.guestLogin:hover {
+  text-decoration: underline;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
 .errorsList {
   display: flex;
   flex-direction: column;
