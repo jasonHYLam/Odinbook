@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 
 export function SearchUsersBar() {
   const { searchQuery, setSearchQuery, setMatchingUsers } = useOutletContext();
