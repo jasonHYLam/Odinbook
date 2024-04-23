@@ -7,8 +7,8 @@ export function Feed() {
   const { loggedInUser, feed } = useOutletContext();
   return (
     <>
-      <p>It's me the feed</p>
       <main>
+        <h2>Your feed</h2>
         <section>
           <ul>
             {feed.map((post) => (
