@@ -5,15 +5,31 @@
 }
 
 .logoAndForm {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+
+@media screen and (max-width: 450px) {
+  .logoAndForm {
+    display: flex;
+    flex-direction:column;
+  }
+}
+
+.logo {
+  margin: auto;
+}
+
+.input {
+  width: var(--login-input-width);
 }
 
 .form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  width: 100%;
   margin-bottom: 30px;
   gap: 10px;
 }

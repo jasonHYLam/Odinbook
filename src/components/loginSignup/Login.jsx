@@ -17,8 +17,6 @@ export function Login() {
   const navigate = useNavigate();
 
   const isMobileView = useMobileView();
-  console.log("checking isMobileView");
-  console.log(isMobileView);
 
   const [authError, setAuthError] = useState(null);
   const [isSuccessfulSubmit, setIsSuccessfulSubmit] = useState(false);
@@ -43,15 +41,19 @@ export function Login() {
   return (
     <main className={styles.page}>
       <section className={styles.logoAndForm}>
-        <Logo size="large" />
+        <div className={styles.logo}>
+          <Logo size="large" />
+        </div>
         <form className={styles.form} onSubmit={handleSubmit(submitLoginData)}>
           <p>Login</p>
           <input
+            className={styles.input}
             type="text"
             {...register("username", { required: true })}
             placeholder="Username"
           />
           <input
+            className={styles.input}
             type="password"
             {...register("password", { required: true })}
             placeholder="Password"

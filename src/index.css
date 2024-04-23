@@ -14,7 +14,6 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* --bg: #0F0F0F; */
   --bg: white;
   --main-text-color: black;
   --sub-text-color: #848484;
@@ -30,7 +29,8 @@
   --icon-s: 20px;
 
   --post-hover-color: #dfeaff;
-  /* --post-hover-color: #1d1d1d; */
+
+  --login-input-width: 80%;
 }
 * {
   box-sizing: border-box;
@@ -144,7 +144,7 @@ textarea {
   font-family: 'Noto Sans',  system-ui, Helvetica, Arial, sans-serif;
   border: 1px solid var(--border-color);
   border-radius: 2%;
-  width: 60%;
+  /* width: 60%; */
   padding: 10px;
 }
 
@@ -153,7 +153,7 @@ input[type=submit] {
   color: var(--main-text-color);
   border: 1px solid var(--splash-color);
   border-radius: 2%;
-  width: 60%;
+  /* width: 60%; */
   padding: 10px;
 }
 
