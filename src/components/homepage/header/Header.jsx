@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { Logo } from "../icons/logo/Logo";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import styles from "./Header.module.css";

@@ -12,6 +12,7 @@ export function Homepage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [matchingUsers, setMatchingUsers] = useState([]);
 
   useEffect(() => {
     async function fetchFeedAndUsersData() {
@@ -73,6 +74,10 @@ export function Homepage() {
               likedPosts,
               setLikedPosts,
               isGuest,
+              searchQuery,
+              setSearchQuery,
+              matchingUsers,
+              setMatchingUsers,
             }}
           />
         </>
