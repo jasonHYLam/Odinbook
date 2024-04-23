@@ -1,6 +1,6 @@
 import { fetchData } from "../../helper/helperUtils";
 import { Outlet, useNavigate } from "react-router-dom";
-import { Header } from "./Header";
+import { Header } from "./header/Header";
 import { useEffect, useState } from "react";
 
 export function Homepage() {
