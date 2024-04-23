@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useOutletContext } from "react-router-dom";
+import { fetchData } from "../../../helper/helperUtils";
 
 export function SearchUsersBar({
   searchQuery,
@@ -31,6 +32,11 @@ export function SearchUsersBar({
   }, [searchQuery]);
 
   return (
-    <input type="text" placeholder="Search users" value={searchQuery}></input>
+    <input
+      type="text"
+      placeholder="Search users"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+    ></input>
   );
 }
