@@ -33,6 +33,8 @@
   --post-hover-color: #dfeaff;
 
   --login-input-width: 80%;
+
+  --shadow-color: rgb(172, 172, 172);
 }
 * {
   box-sizing: border-box;
@@ -47,6 +49,7 @@ header {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  box-shadow: var(--shadow-color) 0px 1px 5px;
 
   & > *:hover {
     border-bottom: 1px solid var(--main-text-color);
@@ -73,6 +76,7 @@ body {
 
 #root {
   width: 100svw;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   place-items: center;
@@ -153,17 +157,16 @@ textarea {
 }
 
 input[type=submit] {
-  background-color: var(--bg);
-  color: var(--main-text-color);
-  border: 1px solid var(--splash-color);
-  border-radius: 2%;
-  /* width: 60%; */
-  padding: 10px;
+  background-color: var(--main-text-color);
+  color: var(--bg);
+  border: 1px solid var(--main-text-color);
+  padding-block: 10px;
 }
 
 input[type=submit]:hover {
   cursor: pointer;
   background-color: var(--splash-color);
+  border: 1px solid var(--splash-color);
   color: var(--bg);
 }
 

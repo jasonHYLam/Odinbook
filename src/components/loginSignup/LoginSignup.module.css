@@ -25,6 +25,11 @@
   width: var(--login-input-width);
 }
 
+.submit {
+  border-radius: 8px;
+  padding-inline: 20px;
+}
+
 .form {
   display: flex;
   flex-direction: column;
