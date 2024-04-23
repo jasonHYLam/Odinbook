@@ -52,10 +52,10 @@ export function PersonalProfile() {
         ) : (
           <>
             <nav className={styles.navOptions}>
-              <span onClick={() => setShowSettings(true)}>settings</span>
-              <span onClick={() => setShowFollowers(true)}>followers</span>
-              <span onClick={() => setShowFollowing(true)}>following</span>
-              <span onClick={() => setShowLogout(true)}>logout</span>
+              <span onClick={() => setShowSettings(true)}>Settings</span>
+              <span onClick={() => setShowFollowers(true)}>Followers</span>
+              <span onClick={() => setShowFollowing(true)}>Following</span>
+              <span onClick={() => setShowLogout(true)}>Logout</span>
             </nav>
 
             <nav className={styles.navOptions}>
