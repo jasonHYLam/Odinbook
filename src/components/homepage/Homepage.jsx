@@ -11,6 +11,8 @@ export function Homepage() {
   const [likedPosts, setLikedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
     async function fetchFeedAndUsersData() {
       const [
