@@ -63,7 +63,12 @@ export function Homepage() {
         <p>loading</p>
       ) : (
         <>
-          <Header user={loggedInUser} />
+          <Header
+            user={loggedInUser}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            setMatchingUsers={setMatchingUsers}
+          />
 
           <Outlet
             context={{

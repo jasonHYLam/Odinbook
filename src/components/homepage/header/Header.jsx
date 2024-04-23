@@ -4,7 +4,12 @@ import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import styles from "./Header.module.css";
 import { SearchUsersBar } from "./SearchUsersBar";
 
-export function Header({ user }) {
+export function Header({
+  user,
+  searchQuery,
+  setSearchQuery,
+  setMatchingUsers,
+}) {
   return (
     <header>
       <Link to="/">
@@ -12,7 +17,11 @@ export function Header({ user }) {
       </Link>
       <section className={styles.center}>
         <Link to="create_post">New Post</Link>
-        <SearchUsersBar />
+        <SearchUsersBar
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          setMatchingUsers={setMatchingUsers}
+        />
 
         {/* <Link to="search_users">Search Users</Link> */}
       </section>
