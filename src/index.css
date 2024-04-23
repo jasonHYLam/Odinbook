@@ -52,10 +52,6 @@ header {
   align-items: center;
   justify-content: space-between;
   box-shadow: var(--shadow-color) 0px 1px 5px;
-
-  & > *:hover {
-    border-bottom: 1px solid var(--main-text-color);
-  }
 }
 
 a {

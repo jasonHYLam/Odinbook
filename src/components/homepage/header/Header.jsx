@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Logo } from "../icons/logo/Logo";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
+import styles from "./Header.module.css";
 
 export function Header({ user }) {
   return (
@@ -8,7 +9,7 @@ export function Header({ user }) {
       <Link to="/">
         <Logo size="small" />
       </Link>
-      <section>
+      <section className={styles.center}>
         <Link to="create_post">New Post</Link>
         <Link to="search_users">Search Users</Link>
       </section>

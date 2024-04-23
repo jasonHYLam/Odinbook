@@ -1,0 +1,8 @@
+.center {
+  display: flex;
+  gap: 20px;
+
+  & > *:hover {
+    border-bottom: 1px solid var(--main-text-color);
+  }
+}
