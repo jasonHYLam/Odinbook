@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchData, fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
+import styles from "./CreatePost.module.css";
 
 export function CreatePost() {
   const navigate = useNavigate();
@@ -56,8 +57,11 @@ export function CreatePost() {
   return (
     <main>
       <h2>Creating post</h2>
-      <form encType="multipart/form-data" onSubmit={handleSubmit(post)}>
-        <input type="file" onChange={selectImage} />
+      <form
+        className={styles.form}
+        encType="multipart/form-data"
+        onSubmit={handleSubmit(post)}
+      >
         <textarea
           name=""
           id=""
@@ -66,12 +70,16 @@ export function CreatePost() {
           placeholder="Character limit 500"
           {...register("text", { required: true, maxLength: 500 })}
         ></textarea>
-        <input type="submit" value="Post" />
+        <section className={styles.buttonRow}>
+          <input type="file" onChange={selectImage} />
+          <input type="submit" value="Post" />
+        </section>
+
         {errors.text && errors.text.type === "required" && (
-          <span>Cannot send empty post</span>
+          <span className={styles.error}>Cannot send empty post</span>
         )}
         {errors.text && errors.text.type === "maxLength" && (
-          <span>Exceeded 500 characters</span>
+          <span className={styles.error}>Exceeded 500 characters</span>
         )}
       </form>
     </main>

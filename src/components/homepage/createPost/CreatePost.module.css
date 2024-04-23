@@ -1,0 +1,15 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.buttonRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.error {
+  font-size: 80%;
+  color: var(--sub-text-color);
+}
