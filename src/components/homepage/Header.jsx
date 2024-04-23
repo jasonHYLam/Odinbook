@@ -8,11 +8,13 @@ export function Header({ user }) {
       <Link to="/">
         <Logo size="small" />
       </Link>
-      <Link to="create_post">New Post</Link>
+      <section>
+        <Link to="create_post">New Post</Link>
+        <Link to="search_users">Search Users</Link>
+      </section>
       <Link to="me">
         <ProfilePic URL={user.profilePicURL} size="small" />
       </Link>
-      <Link to="search_users">Search Users</Link>
     </header>
   );
 }
