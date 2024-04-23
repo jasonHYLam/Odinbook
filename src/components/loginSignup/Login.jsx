@@ -45,7 +45,8 @@ export function Login() {
           <Logo size="large" />
         </div>
         <form className={styles.form} onSubmit={handleSubmit(submitLoginData)}>
-          <p>Login</p>
+          <h1>Tabasco</h1>
+          <h2>Login</h2>
           <input
             className={styles.input}
             type="text"

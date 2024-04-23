@@ -1,6 +1,13 @@
 .logoSmall {
   height: var(--profile-pic-height-m);
 }
+
 .logoLarge {
   height: var(--logo-l);
+}
+
+@media screen and (max-width: 1300px) {
+  .logoLarge {
+    height: 150px;
+  }
 }

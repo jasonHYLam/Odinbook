@@ -10,7 +10,7 @@
   width: 100%;
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 1300px) {
   .logoAndForm {
     display: flex;
     flex-direction:column;
