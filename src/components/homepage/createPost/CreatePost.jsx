@@ -10,10 +10,17 @@ export function CreatePost() {
     register,
     handleSubmit,
     formState: { errors },
+    clearErrors,
   } = useForm();
 
   const [imagesToUpload, setImagesToUpload] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [postText, setPostText] = useState("");
+  const CHAR_LIMIT = 500;
+  const remainingChars = CHAR_LIMIT - postText.length;
+  function exceededCharLimit() {
+    return CHAR_LIMIT - postText.length < 0;
+  }
 
   function selectImage(e) {
     setImagesToUpload(e.target.files[0]);
@@ -25,7 +32,8 @@ export function CreatePost() {
     if (imagesToUpload) {
       const postData = new FormData();
       postData.append("images", imagesToUpload);
-      postData.append("text", data.text);
+      // postData.append("text", data.text);
+      postData.append("text", postText);
 
       const postResponse = await fetchDataWithImage(
         `post/create_post_with_image`,
@@ -69,9 +77,19 @@ export function CreatePost() {
           rows="10"
           placeholder="Character limit 500"
           {...register("text", { required: true, maxLength: 500 })}
+          value={postText}
+          onChange={(e) => {
+            if (postText.length > 0 || postText.length < 500) clearErrors();
+            setPostText(e.target.value);
+          }}
         ></textarea>
         <section className={styles.buttonRow}>
           <input type="file" onChange={selectImage} />
+
+          {exceededCharLimit()
+            ? "Exceeded maximum post length"
+            : remainingChars}
+
           <input type="submit" value="Post" />
         </section>
 
