@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation, useOutletContext } from "react-router-dom";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
 
 export function SearchUsersBar({
@@ -8,6 +8,7 @@ export function SearchUsersBar({
   setMatchingUsers,
 }) {
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function searchUsers() {
@@ -26,6 +27,7 @@ export function SearchUsersBar({
         setMatchingUsers(users);
         console.log("checking location");
         console.log(location);
+        navigate("/search_users");
       }
     }
     searchUsers();

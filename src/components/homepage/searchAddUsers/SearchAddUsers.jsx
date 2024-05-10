@@ -6,29 +6,7 @@ import { ProfilePic } from "../icons/profilePic/ProfilePic";
 
 export function SearchAddUsers() {
   const navigate = useNavigate();
-  const { loggedInUser } = useOutletContext();
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const [matchingUsers, setMatchingUsers] = useState([]);
-
-  useEffect(() => {
-    async function searchUsers() {
-      if (!searchQuery) return;
-      const dataToSubmit = JSON.stringify({ searchQuery });
-      const searchResponse = await fetchData(
-        `user/search_users`,
-        "POST",
-        dataToSubmit
-      );
-      if (!searchResponse.ok || searchResponse instanceof Error) {
-        navigate("/error");
-      } else {
-        const { users } = await searchResponse.json();
-        setMatchingUsers(users);
-      }
-    }
-    searchUsers();
-  }, [searchQuery]);
+  const { loggedInUser, matchingUsers } = useOutletContext();
 
   function isFollowedByLoggedInUser(searchedUser) {
     return searchedUser.followers.some(
@@ -36,32 +14,9 @@ export function SearchAddUsers() {
     );
   }
 
-  async function followUser(userID) {
-    const followResponse = await fetchData(`user/${userID}/follow`, "POST");
-    if (!followResponse.ok || followResponse instanceof Error) {
-      navigate("/error");
-    } else {
-      return;
-    }
-  }
-
-  async function unfollowUser(userID) {
-    const followResponse = await fetchData(`user/${userID}/unfollow`, "POST");
-    if (!followResponse.ok || followResponse instanceof Error) {
-      navigate("/error");
-    } else {
-      return;
-    }
-  }
-
   return (
     <main>
       <h2>Searching user</h2>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
       <section>
         <ul>
           {matchingUsers.map((user) => {
