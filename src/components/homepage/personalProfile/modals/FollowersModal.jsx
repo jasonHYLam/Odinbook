@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { useRef, useEffect } from "react";
 import { ProfilePic } from "../../icons/profilePic/ProfilePic";
+import styles from "./Modal.module.css";
+
 export function FollowersModal({ followers, openModal, closeModal }) {
   const ref = useRef();
 
@@ -19,7 +21,7 @@ export function FollowersModal({ followers, openModal, closeModal }) {
   }, [openModal]);
 
   return (
-    <dialog ref={ref}>
+    <dialog ref={ref} className={styles.modal}>
       <button onClick={closeModal}>close</button>
       <p>Followers</p>
       <ul>

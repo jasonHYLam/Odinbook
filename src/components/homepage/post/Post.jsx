@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { Comment } from "./Comment";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import { LikeIcon } from "../icons/like/LikeIcon";
+import { Loading } from "../../loading/Loading";
 
 export function Post() {
   const {
@@ -119,7 +120,7 @@ export function Post() {
   return (
     <>
       {isLoading ? (
-        <p>loading</p>
+        <Loading />
       ) : (
         <>
           <main>
