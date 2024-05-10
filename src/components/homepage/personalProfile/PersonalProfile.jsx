@@ -8,6 +8,7 @@ import { FollowingModal } from "./modals/FollowingModal";
 import { LogoutModal } from "./modals/LogoutModal";
 import { PostPreview } from "../postPreview/PostPreview";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
+import { Loading } from "../../loading/Loading";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
@@ -41,14 +42,14 @@ export function PersonalProfile() {
       }
     }
     getUserPosts();
-  }, []);
+  }, [navigate]);
   return (
     <main>
       <ProfilePic URL={loggedInUser.profilePicURL} size="large" />
       <h2>{loggedInUser.username}</h2>
       <section>
         {isLoading ? (
-          <p>loading</p>
+          <Loading />
         ) : (
           <>
             <nav className={styles.navOptions}>

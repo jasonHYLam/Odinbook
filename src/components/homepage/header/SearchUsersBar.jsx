@@ -26,12 +26,11 @@ export function SearchUsersBar({
         const { users } = await searchResponse.json();
         setMatchingUsers(users);
         console.log("checking location");
-        console.log(location);
         navigate("/search_users");
       }
     }
     searchUsers();
-  }, [searchQuery, location, navigate, setMatchingUsers]);
+  }, [searchQuery, navigate, setMatchingUsers]);
 
   return (
     <input

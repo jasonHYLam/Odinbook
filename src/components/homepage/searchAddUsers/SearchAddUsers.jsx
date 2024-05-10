@@ -18,8 +18,15 @@ export function SearchAddUsers() {
         <ul>
           {matchingUsers.map((user) => {
             return (
-              <article key={user.id} onClick={resetSearchQuery}>
-                <Link to={`/users/${user.id}`} className={styles.row}>
+              <article
+                key={user.id}
+                // onClick={resetSearchQuery}
+              >
+                <Link
+                  to={`/users/${user.id}`}
+                  className={styles.row}
+                  onClick={resetSearchQuery}
+                >
                   <ProfilePic URL={user.profilePicURL} size="small" />
                   <p>{user.username}</p>
                   {isFollowedByLoggedInUser(user) ? (

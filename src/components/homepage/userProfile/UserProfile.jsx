@@ -34,7 +34,7 @@ export function UserProfile() {
       }
     }
     fetchUserData();
-  }, []);
+  }, [navigate, userID]);
 
   async function followUser(userID) {
     if (isFollowingPending) return;

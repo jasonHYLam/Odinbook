@@ -7,7 +7,7 @@ export function Loading() {
         <rect
           fill="currentColor"
           stroke="currentColor"
-          stroke-width="15"
+          strokeWidth="15"
           width="30"
           height="30"
           x="25"
@@ -26,7 +26,7 @@ export function Loading() {
         <rect
           fill="currentColor"
           stroke="currentColor"
-          stroke-width="15"
+          strokeWidth="15"
           width="30"
           height="30"
           x="85"
@@ -45,7 +45,7 @@ export function Loading() {
         <rect
           fill="currentColor"
           stroke="currentColor"
-          stroke-width="15"
+          strokeWidth="15"
           width="30"
           height="30"
           x="145"
