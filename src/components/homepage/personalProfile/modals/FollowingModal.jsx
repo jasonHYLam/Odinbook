@@ -26,14 +26,12 @@ export function FollowingModal({ following, openModal, closeModal }) {
         <ul>
           {following.map((user) => {
             return (
-              <>
-                <Link to={`/users/${user.id}`}>
-                  <article>
-                    <ProfilePic URL={user.profilePic} size="small" />
-                    <p>{user.username}</p>
-                  </article>
-                </Link>
-              </>
+              <Link to={`/users/${user.id}`} key={user.id}>
+                <article>
+                  <ProfilePic URL={user.profilePic} size="small" />
+                  <p>{user.username}</p>
+                </article>
+              </Link>
             );
           })}
         </ul>

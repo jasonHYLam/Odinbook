@@ -18,10 +18,7 @@ export function SearchAddUsers() {
         <ul>
           {matchingUsers.map((user) => {
             return (
-              <article
-                key={user.id}
-                // onClick={resetSearchQuery}
-              >
+              <article key={user.id}>
                 <Link
                   to={`/users/${user.id}`}
                   className={styles.row}

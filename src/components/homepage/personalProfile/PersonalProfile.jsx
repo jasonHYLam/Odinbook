@@ -68,7 +68,7 @@ export function PersonalProfile() {
               <>
                 <ul>
                   {userPosts.map((post) => (
-                    <PostPreview post={post} />
+                    <PostPreview post={post} key={post.id} />
                   ))}
                 </ul>
               </>

@@ -25,7 +25,7 @@ export function FollowersModal({ followers, openModal, closeModal }) {
       <ul>
         {followers.map((user) => {
           return (
-            <Link to={`/users/${user.id}`}>
+            <Link to={`/users/${user.id}`} key={user.id}>
               <article>
                 <ProfilePic URL={user.profilePic} size="small" />
                 <p>{user.username}</p>

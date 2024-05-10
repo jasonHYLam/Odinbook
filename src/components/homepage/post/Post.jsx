@@ -179,6 +179,7 @@ export function Post() {
                   {comments.map((comment) =>
                     !comment.isDeleted ? (
                       <Comment
+                        key={comment.id}
                         comment={comment}
                         postID={post._id}
                         setComments={setComments}
