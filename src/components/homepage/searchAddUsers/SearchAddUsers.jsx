@@ -1,11 +1,8 @@
 import styles from "./SearchAddUsers.module.css";
-import { useEffect, useState } from "react";
-import { fetchData } from "../../../helper/helperUtils";
-import { useNavigate, useOutletContext, Link } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 
 export function SearchAddUsers() {
-  const navigate = useNavigate();
   const { loggedInUser, matchingUsers } = useOutletContext();
 
   function isFollowedByLoggedInUser(searchedUser) {
@@ -21,7 +18,7 @@ export function SearchAddUsers() {
         <ul>
           {matchingUsers.map((user) => {
             return (
-              <article>
+              <article key={user.id}>
                 <Link to={`/users/${user.id}`} className={styles.row}>
                   <ProfilePic URL={user.profilePicURL} size="small" />
                   <p>{user.username}</p>
