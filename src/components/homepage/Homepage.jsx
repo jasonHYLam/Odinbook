@@ -2,6 +2,7 @@ import { fetchData } from "../../helper/helperUtils";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Header } from "./header/Header";
 import { useEffect, useState } from "react";
+import { Loading } from "../loading/Loading";
 
 export function Homepage() {
   const navigate = useNavigate();
@@ -64,7 +65,7 @@ export function Homepage() {
   return (
     <>
       {isLoading ? (
-        <p>loading</p>
+        <Loading />
       ) : (
         <>
           <Header

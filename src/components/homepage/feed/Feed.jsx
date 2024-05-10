@@ -1,6 +1,5 @@
 import { useOutletContext } from "react-router-dom";
 import { PostPreview } from "../postPreview/PostPreview";
-import { Loading } from "../../loading/Loading";
 
 export function Feed() {
   const { loggedInUser, feed } = useOutletContext();
@@ -8,7 +7,6 @@ export function Feed() {
     <>
       <main>
         <h2>Your feed</h2>
-        <Loading />
 
         <section>
           <ul>
