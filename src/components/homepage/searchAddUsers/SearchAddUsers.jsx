@@ -3,7 +3,7 @@ import { useOutletContext, Link } from "react-router-dom";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 
 export function SearchAddUsers() {
-  const { loggedInUser, matchingUsers } = useOutletContext();
+  const { loggedInUser, matchingUsers, resetSearchQuery } = useOutletContext();
 
   function isFollowedByLoggedInUser(searchedUser) {
     return searchedUser.followers.some(
@@ -18,7 +18,7 @@ export function SearchAddUsers() {
         <ul>
           {matchingUsers.map((user) => {
             return (
-              <article key={user.id}>
+              <article key={user.id} onClick={resetSearchQuery}>
                 <Link to={`/users/${user.id}`} className={styles.row}>
                   <ProfilePic URL={user.profilePicURL} size="small" />
                   <p>{user.username}</p>
