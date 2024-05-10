@@ -14,6 +14,10 @@ export function Homepage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [matchingUsers, setMatchingUsers] = useState([]);
 
+  function resetSearchQuery() {
+    setSearchQuery("");
+  }
+
   useEffect(() => {
     async function fetchFeedAndUsersData() {
       const [
@@ -83,6 +87,7 @@ export function Homepage() {
               setSearchQuery,
               matchingUsers,
               setMatchingUsers,
+              resetSearchQuery,
             }}
           />
         </>
