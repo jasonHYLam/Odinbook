@@ -22,6 +22,8 @@ export function PersonalProfile() {
   const [showFollowing, setShowFollowing] = useState(false);
   const [showLogout, setShowLogout] = useState(false);
 
+  const [selectedPosts, setSelectedPosts] = useState();
+
   useEffect(() => {
     async function getUserPosts() {
       const [getUserPostsResponse] = await Promise.all([
@@ -76,7 +78,7 @@ export function PersonalProfile() {
               <>
                 <ul>
                   {likedPosts.map((post) => (
-                    <PostPreview post={post} />
+                    <PostPreview post={post} key={post.id} />
                   ))}
                 </ul>
               </>

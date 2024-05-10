@@ -28,7 +28,7 @@ export function FollowingModal({ following, openModal, closeModal }) {
           {following.map((user) => {
             return (
               <Link to={`/users/${user.id}`} key={user.id}>
-                <article>
+                <article className={styles.row}>
                   <ProfilePic URL={user.profilePic} size="small" />
                   <p>{user.username}</p>
                 </article>
