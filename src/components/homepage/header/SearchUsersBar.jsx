@@ -31,7 +31,7 @@ export function SearchUsersBar({
       }
     }
     searchUsers();
-  }, [searchQuery]);
+  }, [searchQuery, location, navigate, setMatchingUsers]);
 
   return (
     <input

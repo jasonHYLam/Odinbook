@@ -22,8 +22,6 @@ export function Header({
           setSearchQuery={setSearchQuery}
           setMatchingUsers={setMatchingUsers}
         />
-
-        {/* <Link to="search_users">Search Users</Link> */}
       </section>
       <Link to="me">
         <ProfilePic URL={user.profilePicURL} size="small" />
