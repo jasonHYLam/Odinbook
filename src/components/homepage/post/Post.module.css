@@ -42,6 +42,14 @@
   };
 }
 
+.writeCommentSection {
+  display: flex;
+}
+
+.writeComment {
+  flex: auto;
+}
+
 .img {
   width: 400px;
 }
@@ -51,4 +59,9 @@
     width: 150px;
   }
   
+}
+
+.subText {
+  color: var(--sub-text-color);
+  font-size: 90%;
 }

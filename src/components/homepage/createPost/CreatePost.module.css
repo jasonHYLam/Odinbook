@@ -13,3 +13,8 @@
   font-size: 80%;
   color: var(--sub-text-color);
 }
+
+.subText {
+  color: var(--sub-text-color);
+  font-size: 95%;
+}

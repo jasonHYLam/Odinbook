@@ -19,6 +19,7 @@ export function Post() {
     handleSubmit,
     formState: { errors },
     reset,
+    clearErrors,
   } = useForm();
 
   const { loggedInUser, likedPosts, setLikedPosts } = useOutletContext();
@@ -33,6 +34,14 @@ export function Post() {
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
   const [isSubmittingLike, setIsSubmittingLike] = useState(false);
   const [isSubmittingUnlike, setIsSubmittingUnlike] = useState(false);
+
+  const [commentText, setCommentText] = useState("");
+
+  const CHAR_LIMIT = 100;
+  const remainingChars = CHAR_LIMIT - commentText.length;
+  function exceededCharLimit() {
+    return CHAR_LIMIT - commentText.length < 0;
+  }
 
   let CREATOR_PROFILE_URL = "";
   if (!isLoading) {
@@ -158,23 +167,40 @@ export function Post() {
 
             <section>
               <section>
+                <h3>Comments</h3>
                 <form onSubmit={handleSubmit(postComment)}>
                   {errors.text && errors.text.type === "required" && (
                     <span>Please write a comment</span>
                   )}
                   {errors.text && errors.text.type === "maxLength" && (
-                    <span>Character limit is 500</span>
+                    <span>Character limit is 100</span>
                   )}
-                  <input
-                    type="text"
-                    placeholder="Write a comment"
-                    {...register("text", { required: true, maxLength: 500 })}
-                  />
-                  <input type="submit" />
+                  <section className={styles.writeCommentSection}>
+                    <input
+                      className={styles.writeComment}
+                      type="text"
+                      placeholder="Write a comment!"
+                      {...register("text", { required: true, maxLength: 100 })}
+                      value={commentText}
+                      onChange={(e) => {
+                        if (commentText > 0 || commentText < 100)
+                          clearErrors("text");
+                        setCommentText(e.target.value);
+                      }}
+                    />
+                    <input type="submit" />
+                  </section>
+                  <p className={styles.subText}>
+                    {exceededCharLimit()
+                      ? "Exceeded character limit"
+                      : remainingChars}
+                  </p>
                 </form>
               </section>
               {!comments.length ? (
-                <p>no comments</p>
+                <p className={styles.subText}>
+                  No comments. Be the first to comment!
+                </p>
               ) : (
                 <ul>
                   {comments.map((comment) =>

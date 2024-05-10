@@ -85,10 +85,11 @@ export function CreatePost() {
         ></textarea>
         <section className={styles.buttonRow}>
           <input type="file" onChange={selectImage} />
-
-          {exceededCharLimit()
-            ? "Exceeded maximum post length"
-            : remainingChars}
+          <p className={styles.subText}>
+            {exceededCharLimit()
+              ? "Exceeded maximum post length"
+              : remainingChars}
+          </p>
 
           <input type="submit" value="Post" />
         </section>
