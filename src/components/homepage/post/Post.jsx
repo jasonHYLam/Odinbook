@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { Comment } from "./Comment";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import { LikeIcon } from "../icons/like/LikeIcon";
+import { Bookmark } from "../icons/bookmark/Bookmark";
 import { Loading } from "../../loading/Loading";
 
 export function Post() {
@@ -151,17 +152,17 @@ export function Post() {
               <p className={styles.postText}>{post.text}</p>
 
               <section>
-                {isLiked ? (
-                  <div onClick={unlikePost} className={styles.liked}>
-                    <LikeIcon />
-                    <span className={styles.likesCount}>{likesCount}</span>
-                  </div>
-                ) : (
-                  <div onClick={likePost} className={styles.unliked}>
-                    <LikeIcon />
-                    <span className={styles.likesCount}>{likesCount}</span>
-                  </div>
-                )}
+                <div
+                  onClick={() => {
+                    isLiked ? unlikePost() : likePost();
+                  }}
+                >
+                  <LikeIcon isLiked={isLiked} />
+                  <span className={styles.likesCount}>{likesCount}</span>
+                </div>
+                <div>
+                  <Bookmark />
+                </div>
               </section>
             </section>
 

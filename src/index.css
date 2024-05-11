@@ -19,22 +19,17 @@
   --sub-text-color: #848484;
   --border-color : #848484;
   --splash-color: blue;
-
+  --post-hover-color: #dfeaff;
+  --shadow-color: rgb(172, 172, 172);
 
   --profile-pic-height-s: 40px;
   --profile-pic-height-m: 60px;
   --profile-pic-height-l: 150px;
 
   --logo-l: 300px;
-
-
   --icon-s: 20px;
 
-  --post-hover-color: #dfeaff;
-
   --login-input-width: 80%;
-
-  --shadow-color: rgb(172, 172, 172);
 }
 
 * {
