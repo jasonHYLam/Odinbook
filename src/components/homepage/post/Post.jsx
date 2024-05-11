@@ -108,6 +108,17 @@ export function Post() {
     }
   }
 
+  async function toggleBookmarkPost() {
+    const response = await fetchData(`${postID}/toggle_bookmark_post`, "PUT");
+
+    if (!response.ok || response instanceof Error) {
+      navigate("/error");
+    } else {
+      const { matchingPost } = await response.json();
+      // create bookmarkedPosts state, update it here
+    }
+  }
+
   async function postComment(data) {
     if (isSubmittingComment) return;
     setIsSubmittingComment(true);
