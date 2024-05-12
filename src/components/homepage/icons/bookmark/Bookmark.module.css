@@ -1,9 +1,9 @@
 .bookmarked {
   cursor: pointer;
-  color: white;
+  color: var(--splash-color);
 }
 
 .unbookmarked {
   cursor: pointer;
-  color: gray
+  color: gainsboro
 }

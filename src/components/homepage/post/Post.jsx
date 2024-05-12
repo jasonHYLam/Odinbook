@@ -45,8 +45,10 @@ export function Post() {
   const [bookmarksCount, setBookmarksCount] = useState(0);
   const [isSubmittingBookmark, setIsSubmittingBookmark] = useState(false);
 
-  const [commentText, setCommentText] = useState("");
+  console.log("checking isBookmarked");
+  console.log(isBookmarked);
 
+  const [commentText, setCommentText] = useState("");
   const CHAR_LIMIT = 100;
   const remainingChars = CHAR_LIMIT - commentText.length;
   function exceededCharLimit() {
@@ -135,7 +137,14 @@ export function Post() {
       navigate("/error");
     } else {
       const { matchingPost } = await response.json();
-      setBookmarkedPosts(...bookmarkedPosts, matchingPost);
+      if (isBookmarked) {
+        const updatedBookmarkedPosts = bookmarkedPosts.filter(
+          (post) => post._id !== matchingPost._id
+        );
+        setBookmarkedPosts(updatedBookmarkedPosts);
+      } else {
+        setBookmarkedPosts(...bookmarkedPosts, matchingPost);
+      }
     }
   }
 
@@ -188,7 +197,7 @@ export function Post() {
                   <span className={styles.likesCount}>{likesCount}</span>
                 </div>
                 <div onClick={toggleBookmarkPost}>
-                  <Bookmark />
+                  <Bookmark isBookmarked={isBookmarked} />
                   <span className={styles.likesCount}>{bookmarksCount}</span>
                 </div>
               </section>
