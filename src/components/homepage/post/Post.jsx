@@ -121,7 +121,13 @@ export function Post() {
   }
 
   async function toggleBookmarkPost() {
-    isBookmarked ? setIsBookmarked(false) : setIsBookmarked(true);
+    if (isBookmarked) {
+      setIsBookmarked(false);
+      setBookmarksCount(bookmarksCount - 1);
+    } else {
+      setIsBookmarked(true);
+      setBookmarksCount(bookmarksCount + 1);
+    }
 
     const response = await fetchData(`${postID}/toggle_bookmark_post`, "PUT");
 
@@ -177,16 +183,13 @@ export function Post() {
               <p className={styles.postText}>{post.text}</p>
 
               <section>
-                <div
-                  onClick={() => {
-                    isLiked ? unlikePost() : likePost();
-                  }}
-                >
+                <div onClick={() => (isLiked ? unlikePost() : likePost())}>
                   <LikeIcon isLiked={isLiked} />
                   <span className={styles.likesCount}>{likesCount}</span>
                 </div>
-                <div>
+                <div onClick={toggleBookmarkPost}>
                   <Bookmark />
+                  <span className={styles.likesCount}>{bookmarksCount}</span>
                 </div>
               </section>
             </section>

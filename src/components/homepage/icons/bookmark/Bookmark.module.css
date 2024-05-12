@@ -1,7 +1,9 @@
 .bookmarked {
   cursor: pointer;
+  color: white;
 }
 
 .unbookmarked {
   cursor: pointer;
+  color: gray
 }

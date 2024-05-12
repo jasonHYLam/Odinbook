@@ -2,8 +2,9 @@ import styles from "./Bookmark.module.css";
 
 export function Bookmark({ isBookmarked }) {
   const bookmarkStyle = isBookmarked ? "bookmarked" : "unbookmarked";
+
   return (
-    <div>
+    <div className={styles[bookmarkStyle]}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="24px"
