@@ -23,7 +23,13 @@ export function Post() {
     clearErrors,
   } = useForm();
 
-  const { loggedInUser, likedPosts, setLikedPosts } = useOutletContext();
+  const {
+    loggedInUser,
+    likedPosts,
+    setLikedPosts,
+    bookmarkedPosts,
+    setBookmarkedPosts,
+  } = useOutletContext();
 
   const { postID } = useParams();
   const navigate = useNavigate();
@@ -35,6 +41,9 @@ export function Post() {
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
   const [isSubmittingLike, setIsSubmittingLike] = useState(false);
   const [isSubmittingUnlike, setIsSubmittingUnlike] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [bookmarksCount, setBookmarksCount] = useState(0);
+  const [isSubmittingBookmark, setIsSubmittingBookmark] = useState(false);
 
   const [commentText, setCommentText] = useState("");
 
@@ -61,17 +70,20 @@ export function Post() {
       } else if (!getResponse.ok || getResponse instanceof Error) {
         navigate("/error");
       } else {
-        const { post, comments, isLiked } = await getResponse.json();
+        const { post, comments, isLiked, isBookmarked } =
+          await getResponse.json();
         setPost(post);
         setComments(comments);
         setLikesCount(post.likesCount);
         setIsLiked(isLiked);
         setIsLoading(false);
+        setIsBookmarked(isBookmarked);
+        setBookmarksCount(post.bookmarksCount);
       }
     }
 
     fetchPostAndComments();
-  }, []);
+  }, [navigate, postID]);
 
   async function likePost() {
     if (isSubmittingLike) return;
@@ -109,13 +121,15 @@ export function Post() {
   }
 
   async function toggleBookmarkPost() {
+    isBookmarked ? setIsBookmarked(false) : setIsBookmarked(true);
+
     const response = await fetchData(`${postID}/toggle_bookmark_post`, "PUT");
 
     if (!response.ok || response instanceof Error) {
       navigate("/error");
     } else {
       const { matchingPost } = await response.json();
-      // create bookmarkedPosts state, update it here
+      setBookmarkedPosts(...bookmarkedPosts, matchingPost);
     }
   }
 

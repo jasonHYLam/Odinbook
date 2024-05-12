@@ -10,6 +10,7 @@ export function Homepage() {
   const [loggedInUser, setLoggedInUser] = useState({});
   const [isGuest, setIsGuest] = useState(false);
   const [likedPosts, setLikedPosts] = useState([]);
+  const [bookmarkedPosts, setBookmarkedPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,16 +26,19 @@ export function Homepage() {
         getUserPostsResponse,
         getLoggedInUserResponse,
         getLikedPostsResponse,
+        getBookmarkedPostsResponse,
       ] = await Promise.all([
         fetchData("post/all_posts", "GET"),
         fetchData("user/get_logged_in_user", "GET"),
         fetchData("post/liked_posts", "GET"),
+        fetchData("post/bookmarked_posts", "GET"),
       ]);
 
       if (
         getLikedPostsResponse.status === 401 ||
         getLoggedInUserResponse.status === 401 ||
-        getLikedPostsResponse === 401
+        getLikedPostsResponse === 401 ||
+        getBookmarkedPostsResponse === 401
       ) {
         navigate("/login");
       } else if (
@@ -43,17 +47,20 @@ export function Homepage() {
         !getLikedPostsResponse.ok ||
         getUserPostsResponse instanceof Error ||
         getLoggedInUserResponse instanceof Error ||
-        getLikedPostsResponse instanceof Error
+        getLikedPostsResponse instanceof Error ||
+        getBookmarkedPostsResponse instanceof Error
       ) {
         navigate("/error");
       } else {
         const { allPosts } = await getUserPostsResponse.json();
         const { user } = await getLoggedInUserResponse.json();
         const { likedPosts } = await getLikedPostsResponse.json();
+        const { bookmarkedPosts } = await getBookmarkedPostsResponse.json();
 
         setFeed(allPosts);
         setLoggedInUser(user);
         setLikedPosts(likedPosts);
+        setBookmarkedPosts(bookmarkedPosts);
         if (user.isGuest) setIsGuest(true);
 
         setIsLoading(false);
@@ -61,7 +68,7 @@ export function Homepage() {
     }
 
     fetchFeedAndUsersData();
-  }, []);
+  }, [navigate]);
   return (
     <>
       {isLoading ? (
@@ -89,6 +96,8 @@ export function Homepage() {
               matchingUsers,
               setMatchingUsers,
               resetSearchQuery,
+              bookmarkedPosts,
+              setBookmarkedPosts,
             }}
           />
         </>
