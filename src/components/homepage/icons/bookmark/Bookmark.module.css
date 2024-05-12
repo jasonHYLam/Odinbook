@@ -5,5 +5,5 @@
 
 .unbookmarked {
   cursor: pointer;
-  color: gainsboro
+  color: var(--sub-text-color)
 }
