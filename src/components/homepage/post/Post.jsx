@@ -123,6 +123,9 @@ export function Post() {
   }
 
   async function toggleBookmarkPost() {
+    if (isSubmittingBookmark) return;
+    setIsSubmittingBookmark(true);
+
     if (isBookmarked) {
       setIsBookmarked(false);
       setBookmarksCount(bookmarksCount - 1);
@@ -143,8 +146,9 @@ export function Post() {
         );
         setBookmarkedPosts(updatedBookmarkedPosts);
       } else {
-        setBookmarkedPosts(...bookmarkedPosts, matchingPost);
+        setBookmarkedPosts([...bookmarkedPosts, matchingPost]);
       }
+      setIsSubmittingBookmark(false);
     }
   }
 
@@ -191,7 +195,7 @@ export function Post() {
 
               <p className={styles.postText}>{post.text}</p>
 
-              <section>
+              <section className={styles.iconContainer}>
                 <div onClick={() => (isLiked ? unlikePost() : likePost())}>
                   <LikeIcon isLiked={isLiked} />
                   <span className={styles.likesCount}>{likesCount}</span>

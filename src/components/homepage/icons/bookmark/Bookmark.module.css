@@ -1,9 +1,11 @@
 .bookmarked {
   cursor: pointer;
   color: var(--splash-color);
+  display: inline-block;
 }
 
 .unbookmarked {
   cursor: pointer;
-  color: var(--sub-text-color)
+  color: var(--sub-text-color);
+  display: inline-block;
 }
