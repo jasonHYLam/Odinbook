@@ -129,7 +129,7 @@ export function Post() {
       setBookmarksCount(bookmarksCount + 1);
     }
 
-    const response = await fetchData(`${postID}/toggle_bookmark_post`, "PUT");
+    const response = await fetchData(`post/${postID}/toggle_bookmark`, "PUT");
 
     if (!response.ok || response instanceof Error) {
       navigate("/error");
