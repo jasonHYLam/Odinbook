@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchData, fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
+import { DisplayImage } from "./DisplayImage";
 import styles from "./CreatePost.module.css";
 
 export function CreatePost() {
@@ -69,11 +70,14 @@ export function CreatePost() {
         encType="multipart/form-data"
         onSubmit={handleSubmit(post)}
       >
-        <img
+        <DisplayImage
+          imageURL={imagesToUpload ? URL.createObjectURL(imagesToUpload) : null}
+        />
+        {/* <img
           className={styles.displayImage}
           src={imagesToUpload ? URL.createObjectURL(imagesToUpload) : ""}
           alt=""
-        />
+        /> */}
 
         <textarea
           name=""
