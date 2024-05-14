@@ -74,6 +74,7 @@ export function CreatePost() {
           {imagesToUpload ? "Change image" : "Upload image"}
         </button>
         <input
+          className={styles.imageInput}
           type="file"
           {...rest}
           onChange={selectImage}
