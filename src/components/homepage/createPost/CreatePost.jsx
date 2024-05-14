@@ -22,9 +22,6 @@ export function CreatePost() {
     return CHAR_LIMIT - postText.length < 0;
   }
 
-  console.log("checking imagesToUpload");
-  console.log(imagesToUpload);
-
   function selectImage(e) {
     setImagesToUpload(e.target.files[0]);
   }
@@ -72,7 +69,12 @@ export function CreatePost() {
         encType="multipart/form-data"
         onSubmit={handleSubmit(post)}
       >
-        <img src={URL.createObjectURL(imagesToUpload)} alt="" />
+        <img
+          className={styles.displayImage}
+          src={imagesToUpload ? URL.createObjectURL(imagesToUpload) : ""}
+          alt=""
+        />
+
         <textarea
           name=""
           id=""

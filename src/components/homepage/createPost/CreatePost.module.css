@@ -18,3 +18,8 @@
   color: var(--sub-text-color);
   font-size: 95%;
 }
+
+.displayImage {
+  width: 200px;
+  height: auto;
+}
