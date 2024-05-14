@@ -17,8 +17,19 @@ export function CreatePost() {
   const [imagesToUpload, setImagesToUpload] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [postText, setPostText] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const TITLE_LIMIT = 30;
+  const DESCRIPTION_LIMIT = 500;
   const CHAR_LIMIT = 500;
+  const remainingTitleChars = TITLE_LIMIT - title.length;
+  const remainingDescriptionChars = DESCRIPTION_LIMIT - description.length;
   const remainingChars = CHAR_LIMIT - postText.length;
+
+  const exceededTitleLimit = () => TITLE_LIMIT - title.length < 0;
+  const exceededDescriptionLimit = () =>
+    DESCRIPTION_LIMIT - description.length < 0;
   function exceededCharLimit() {
     return CHAR_LIMIT - postText.length < 0;
   }
@@ -27,38 +38,24 @@ export function CreatePost() {
     setImagesToUpload(e.target.files[0]);
   }
 
-  async function post(data) {
+  async function post() {
     if (isSubmitting) return;
     setIsSubmitting(true);
-    if (imagesToUpload) {
-      const postData = new FormData();
-      postData.append("images", imagesToUpload);
-      postData.append("text", postText);
+    const postData = new FormData();
+    postData.append("images", imagesToUpload);
+    postData.append("title", title);
+    postData.append("description", description);
 
-      const postResponse = await fetchDataWithImage(
-        `post/create_post_with_image`,
-        "POST",
-        postData
-      );
-      if (!postResponse.ok || postResponse instanceof Error) {
-        navigate("/error");
-      } else {
-        const { newPost } = await postResponse.json();
-        navigate(`/posts/${newPost.id}`);
-      }
+    const postResponse = await fetchDataWithImage(
+      `post/create_post_with_image`,
+      "POST",
+      postData
+    );
+    if (!postResponse.ok || postResponse instanceof Error) {
+      navigate("/error");
     } else {
-      const postData = JSON.stringify(data);
-      const postResponse = await fetchData(
-        "post/create_post",
-        "POST",
-        postData
-      );
-      if (!postResponse.ok || postResponse instanceof Error) {
-        navigate("/error");
-      } else {
-        const { newPost } = await postResponse.json();
-        navigate(`/posts/${newPost.id}`);
-      }
+      const { newPost } = await postResponse.json();
+      navigate(`/posts/${newPost.id}`);
     }
   }
 
@@ -73,41 +70,64 @@ export function CreatePost() {
         <DisplayImage
           imageURL={imagesToUpload ? URL.createObjectURL(imagesToUpload) : null}
         />
-        {/* <img
-          className={styles.displayImage}
-          src={imagesToUpload ? URL.createObjectURL(imagesToUpload) : ""}
-          alt=""
-        /> */}
+        {/* <button> {imagesToUpload ? "Change image" : "Upload image"}</button> */}
+        <input
+          type="file"
+          onChange={selectImage}
+          // {...register("image", { required: true })}
+        />
 
+        <p className={styles.subText}>
+          {exceededTitleLimit() ? "Exceeded title limit" : remainingTitleChars}
+        </p>
+        <input
+          type="text"
+          {...register("title", { required: true, maxLength: 30 })}
+          placeholder="Give your post a name!"
+          value={title}
+          onChange={(e) => {
+            if (title.length > 0 || title.length < 30) clearErrors();
+            setTitle(e.target.value);
+          }}
+        />
+
+        <p className={styles.subText}>
+          {exceededDescriptionLimit()
+            ? "Exceeded description limit"
+            : remainingDescriptionChars}
+        </p>
         <textarea
           name=""
           id=""
           cols="30"
           rows="10"
-          placeholder="Character limit 500"
-          {...register("text", { required: true, maxLength: 500 })}
-          value={postText}
+          placeholder="Add your thoughts!"
+          {...register("description", { maxLength: 500 })}
+          value={description}
           onChange={(e) => {
-            if (postText.length > 0 || postText.length < 500) clearErrors();
-            setPostText(e.target.value);
+            if (description.length > 0 || description.length < 500)
+              clearErrors();
+            setDescription(e.target.value);
           }}
         ></textarea>
         <section className={styles.buttonRow}>
-          <input type="file" onChange={selectImage} />
-          <p className={styles.subText}>
-            {exceededCharLimit()
-              ? "Exceeded maximum post length"
-              : remainingChars}
-          </p>
-
           <input type="submit" value="Post" />
         </section>
 
-        {errors.text && errors.text.type === "required" && (
-          <span className={styles.error}>Cannot send empty post</span>
+        {errors.image && errors.image.type === "required" && (
+          <span className={styles.error}>Missing upload</span>
         )}
-        {errors.text && errors.text.type === "maxLength" && (
-          <span className={styles.error}>Exceeded 500 characters</span>
+
+        {errors.title && errors.title.type === "required" && (
+          <span className={styles.error}>Post requires a title</span>
+        )}
+
+        {errors.title && errors.title.type === "maxLength" && (
+          <span className={styles.error}>Title too long</span>
+        )}
+
+        {errors.description && errors.description.type === "maxLength" && (
+          <span className={styles.error}>Description too long</span>
         )}
       </form>
     </main>

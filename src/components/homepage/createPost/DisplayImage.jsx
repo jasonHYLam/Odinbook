@@ -4,13 +4,11 @@ const PLACEHOLDER_DISPLAY_IMAGE_PATH = "../../../assets/emoticon.svg";
 
 export function DisplayImage({ imageURL }) {
   return imageURL ? (
-    <>
-      <img
-        className={styles.displayImage}
-        src={imageURL ? imageURL : PLACEHOLDER_DISPLAY_IMAGE_PATH}
-        alt=""
-      />
-    </>
+    <img
+      className={styles.displayImage}
+      src={imageURL ? imageURL : PLACEHOLDER_DISPLAY_IMAGE_PATH}
+      alt=""
+    />
   ) : (
     <svg
       xmlns="http://www.w3.org/2000/svg"
