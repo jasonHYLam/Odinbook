@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchData, fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
@@ -16,23 +16,19 @@ export function CreatePost() {
 
   const [imagesToUpload, setImagesToUpload] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [postText, setPostText] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
+  const fileInputRef = useRef(null);
+
   const TITLE_LIMIT = 30;
   const DESCRIPTION_LIMIT = 500;
-  const CHAR_LIMIT = 500;
   const remainingTitleChars = TITLE_LIMIT - title.length;
   const remainingDescriptionChars = DESCRIPTION_LIMIT - description.length;
-  const remainingChars = CHAR_LIMIT - postText.length;
 
   const exceededTitleLimit = () => TITLE_LIMIT - title.length < 0;
   const exceededDescriptionLimit = () =>
     DESCRIPTION_LIMIT - description.length < 0;
-  function exceededCharLimit() {
-    return CHAR_LIMIT - postText.length < 0;
-  }
 
   function selectImage(e) {
     setImagesToUpload(e.target.files[0]);
@@ -70,11 +66,19 @@ export function CreatePost() {
         <DisplayImage
           imageURL={imagesToUpload ? URL.createObjectURL(imagesToUpload) : null}
         />
-        {/* <button> {imagesToUpload ? "Change image" : "Upload image"}</button> */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            fileInputRef.current.click();
+          }}
+        >
+          {imagesToUpload ? "Change image" : "Upload image"}
+        </button>
         <input
           type="file"
           onChange={selectImage}
           // {...register("image", { required: true })}
+          ref={fileInputRef}
         />
 
         <p className={styles.subText}>
