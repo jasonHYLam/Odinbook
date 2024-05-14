@@ -34,6 +34,10 @@ export function CreatePost() {
     setImagesToUpload(e.target.files[0]);
   }
 
+  const { ref: registerRef, ...rest } = register("image", {
+    required: true,
+  });
+
   async function post() {
     if (isSubmitting) return;
     setIsSubmitting(true);
@@ -66,19 +70,17 @@ export function CreatePost() {
         <DisplayImage
           imageURL={imagesToUpload ? URL.createObjectURL(imagesToUpload) : null}
         />
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            fileInputRef.current.click();
-          }}
-        >
+        <button onClick={() => fileInputRef.current.click()}>
           {imagesToUpload ? "Change image" : "Upload image"}
         </button>
         <input
           type="file"
+          {...rest}
           onChange={selectImage}
-          // {...register("image", { required: true })}
-          ref={fileInputRef}
+          ref={(input) => {
+            registerRef(input);
+            fileInputRef.current = input;
+          }}
         />
 
         <p className={styles.subText}>
