@@ -1,7 +1,8 @@
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { fetchData, fetchDataWithImage } from "../../../helper/helperUtils";
+import { fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 import { DisplayImage } from "./DisplayImage";
 import styles from "./CreatePost.module.css";
 
@@ -90,13 +91,17 @@ export function CreatePost() {
         <input
           type="text"
           {...register("title", { required: true, maxLength: 30 })}
-          placeholder="Give your post a name!"
+          placeholder="Give your post a name! (required)"
           value={title}
           onChange={(e) => {
             if (title.length > 0 || title.length < 30) clearErrors();
             setTitle(e.target.value);
           }}
         />
+
+        <input type="text" placeholder="Add tags" />
+        <select name="" id=""></select>
+        <Select />
 
         <p className={styles.subText}>
           {exceededDescriptionLimit()
