@@ -1,7 +1,7 @@
 import styles from "./Comment.module.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { fetchData } from "../../../helper/helperUtils";
+import { fetchData } from "../../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 import { Comment } from "./Comment";
 
@@ -16,7 +16,6 @@ export function CommentSection({ postID, comments, setComments }) {
 
   const navigate = useNavigate();
 
-  // const [comments, setComments] = useState([]);
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
   const [commentText, setCommentText] = useState("");
   const CHAR_LIMIT = 100;

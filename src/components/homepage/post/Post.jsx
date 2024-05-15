@@ -9,8 +9,8 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // import { CommentSection } from "./CommentSection";
-import { CommentSection } from "./CommentSection";
-import { Comment } from "./Comment";
+import { CommentSection } from "./subComponents/CommentSection";
+import { Comment } from "./subComponents/Comment";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import { LikeIcon } from "../icons/like/LikeIcon";
 import { Bookmark } from "../icons/bookmark/Bookmark";

@@ -1,0 +1,36 @@
+.iconsContainer {
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
+
+.subText {
+  color: var(--sub-text-color);
+  font-size: 90%;
+}
+
+.likesCount{
+  color: var(--sub-text-color);
+}
+
+.unliked {
+  cursor: pointer;
+  display: inline-block;
+  color: var(--sub-text-color);
+  text-align: center;
+}
+
+.unliked:hover {
+  color: var(--splash-color);
+}
+
+.liked {
+  cursor: pointer;
+  color: var(--splash-color);
+  display: inline-block;
+  fill: currentColor;
+
+  & > * {
+    color: var(--splash-color);
+  };
+}
