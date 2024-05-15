@@ -16,6 +16,8 @@ export function CreatePost() {
     clearErrors,
   } = useForm();
 
+  const { allTags, tagsLoading } = useTags();
+
   const [imagesToUpload, setImagesToUpload] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [title, setTitle] = useState("");
@@ -100,9 +102,7 @@ export function CreatePost() {
           }}
         />
 
-        <input type="text" placeholder="Add tags" />
-        <select name="" id=""></select>
-        <Select />
+        <Select options={allTags} />
 
         <p className={styles.subText}>
           {exceededDescriptionLimit()
