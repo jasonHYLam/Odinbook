@@ -4,6 +4,7 @@ import { fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 import { TagInput } from "./inputs/TagInput";
 import { TitleInput } from "./inputs/TitleInput";
+import { DescriptionInput } from "./inputs/DescriptionInput";
 import { DisplayImage } from "./DisplayImage";
 import styles from "./CreatePost.module.css";
 
@@ -23,12 +24,6 @@ export function CreatePost() {
   const [selectedTags, setSelectedTags] = useState([]);
 
   const fileInputRef = useRef(null);
-
-  // const DESCRIPTION_LIMIT = 500;
-  // const remainingDescriptionChars = DESCRIPTION_LIMIT - description.length;
-
-  // const exceededDescriptionLimit = () =>
-  //   DESCRIPTION_LIMIT - description.length < 0;
 
   function selectImage(e) {
     setImagesToUpload(e.target.files[0]);
@@ -106,25 +101,13 @@ export function CreatePost() {
 
         <TagInput setSelectedTags={setSelectedTags} />
 
-        {/* <p className={styles.subText}>
-          {exceededDescriptionLimit()
-            ? "Exceeded description limit"
-            : remainingDescriptionChars}
-        </p>
-        <textarea
-          name=""
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Add your thoughts!"
-          {...register("description", { maxLength: 500 })}
-          value={description}
-          onChange={(e) => {
-            if (description.length > 0 || description.length < 500)
-              clearErrors();
-            setDescription(e.target.value);
-          }}
-        ></textarea> */}
+        <DescriptionInput
+          register={register}
+          description={description}
+          setDescription={setDescription}
+          clearErrors={clearErrors}
+        />
+
         <section className={styles.buttonRow}>
           <input type="submit" value="Post" disabled={isSubmitting} />
         </section>
