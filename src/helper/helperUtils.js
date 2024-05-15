@@ -21,6 +21,8 @@ export async function fetchData(endpoint, method, data) {
 
 export async function fetchDataWithImage(endpoint, method, data) {
   try {
+    console.log("checking adata");
+    console.log(data);
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_DOMAIN}${endpoint}`,
       {

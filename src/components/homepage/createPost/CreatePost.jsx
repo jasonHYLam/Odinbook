@@ -118,7 +118,7 @@ export function CreatePost() {
           }}
         ></textarea>
         <section className={styles.buttonRow}>
-          <input type="submit" value="Post" />
+          <input type="submit" value="Post" disabled={isSubmitting} />
         </section>
 
         {errors.image && errors.image.type === "required" && (
