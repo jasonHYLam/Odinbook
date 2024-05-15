@@ -45,9 +45,6 @@ export function Post() {
   const [bookmarksCount, setBookmarksCount] = useState(0);
   const [isSubmittingBookmark, setIsSubmittingBookmark] = useState(false);
 
-  console.log("checking isBookmarked");
-  console.log(isBookmarked);
-
   const [commentText, setCommentText] = useState("");
   const CHAR_LIMIT = 100;
   const remainingChars = CHAR_LIMIT - commentText.length;
@@ -193,7 +190,8 @@ export function Post() {
                 <img className={styles.img} src={post.imageURL} alt="" />
               ) : null}
 
-              <p className={styles.postText}>{post.text}</p>
+              <p className={styles.postText}>{post.title}</p>
+              <p className={styles.postText}>{post.description}</p>
 
               <section className={styles.iconContainer}>
                 <div onClick={() => (isLiked ? unlikePost() : likePost())}>
