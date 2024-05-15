@@ -23,15 +23,15 @@ export function CreatePost() {
   const [description, setDescription] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
 
-  const fileInputRef = useRef(null);
+  // const fileInputRef = useRef(null);
 
-  function selectImage(e) {
-    setImagesToUpload(e.target.files[0]);
-  }
+  // function selectImage(e) {
+  //   setImagesToUpload(e.target.files[0]);
+  // }
 
-  const { ref: registerRef, ...rest } = register("image", {
-    required: true,
-  });
+  // const { ref: registerRef, ...rest } = register("image", {
+  //   required: true,
+  // });
 
   async function post() {
     if (isSubmitting) return;
@@ -75,7 +75,7 @@ export function CreatePost() {
         onSubmit={handleSubmit(post)}
         // onSubmit={handleSubmit(test)}
       >
-        <DisplayImage
+        {/* <DisplayImage
           imageURL={imagesToUpload ? URL.createObjectURL(imagesToUpload) : null}
         />
         <button onClick={() => fileInputRef.current.click()}>
@@ -90,7 +90,7 @@ export function CreatePost() {
             registerRef(input);
             fileInputRef.current = input;
           }}
-        />
+        /> */}
 
         <TitleInput
           register={register}
