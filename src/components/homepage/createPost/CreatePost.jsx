@@ -102,7 +102,7 @@ export function CreatePost() {
           }}
         />
 
-        <Select options={allTags} />
+        <Select options={tagsLoading ? [] : allTags} placeholder="Add tags" />
 
         <p className={styles.subText}>
           {exceededDescriptionLimit()
