@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // import { CommentSection } from "./CommentSection";
+import { IconsContainer } from "./subComponents/IconsContainer";
 import { CommentSection } from "./subComponents/CommentSection";
 import { Comment } from "./subComponents/Comment";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
@@ -78,70 +79,70 @@ export function Post() {
     fetchPostAndComments();
   }, [navigate, postID]);
 
-  async function likePost() {
-    if (isSubmittingLike) return;
-    setIsSubmittingLike(true);
-    const likePostResponse = await fetchData(`post/${postID}/like`, "PUT");
-    if (!likePostResponse.ok || likePostResponse instanceof Error) {
-      navigate("/error");
-    } else {
-      const { likedPost } = await likePostResponse.json();
-      setLikesCount(likesCount + 1);
-      setIsLiked(true);
-      setIsSubmittingLike(false);
-      setLikedPosts([...likedPosts, likedPost]);
-    }
-  }
+  // async function likePost() {
+  //   if (isSubmittingLike) return;
+  //   setIsSubmittingLike(true);
+  //   const likePostResponse = await fetchData(`post/${postID}/like`, "PUT");
+  //   if (!likePostResponse.ok || likePostResponse instanceof Error) {
+  //     navigate("/error");
+  //   } else {
+  //     const { likedPost } = await likePostResponse.json();
+  //     setLikesCount(likesCount + 1);
+  //     setIsLiked(true);
+  //     setIsSubmittingLike(false);
+  //     setLikedPosts([...likedPosts, likedPost]);
+  //   }
+  // }
 
-  async function unlikePost() {
-    if (isSubmittingUnlike) return;
-    setIsSubmittingUnlike(true);
-    const unlikePostResponse = await fetchData(`post/${postID}/unlike`, "PUT");
-    if (!unlikePostResponse.ok || unlikePostResponse instanceof Error) {
-      navigate("/error");
-    } else {
-      const { unlikedPost } = await unlikePostResponse.json();
-      setLikesCount(likesCount - 1);
-      setIsLiked(false);
-      setIsSubmittingUnlike(false);
+  // async function unlikePost() {
+  //   if (isSubmittingUnlike) return;
+  //   setIsSubmittingUnlike(true);
+  //   const unlikePostResponse = await fetchData(`post/${postID}/unlike`, "PUT");
+  //   if (!unlikePostResponse.ok || unlikePostResponse instanceof Error) {
+  //     navigate("/error");
+  //   } else {
+  //     const { unlikedPost } = await unlikePostResponse.json();
+  //     setLikesCount(likesCount - 1);
+  //     setIsLiked(false);
+  //     setIsSubmittingUnlike(false);
 
-      const updatedLikedPosts = likedPosts.filter(
-        (post) => post._id !== unlikedPost._id
-      );
+  //     const updatedLikedPosts = likedPosts.filter(
+  //       (post) => post._id !== unlikedPost._id
+  //     );
 
-      setLikedPosts(updatedLikedPosts);
-    }
-  }
+  //     setLikedPosts(updatedLikedPosts);
+  //   }
+  // }
 
-  async function toggleBookmarkPost() {
-    if (isSubmittingBookmark) return;
-    setIsSubmittingBookmark(true);
+  // async function toggleBookmarkPost() {
+  //   if (isSubmittingBookmark) return;
+  //   setIsSubmittingBookmark(true);
 
-    if (isBookmarked) {
-      setIsBookmarked(false);
-      setBookmarksCount(bookmarksCount - 1);
-    } else {
-      setIsBookmarked(true);
-      setBookmarksCount(bookmarksCount + 1);
-    }
+  //   if (isBookmarked) {
+  //     setIsBookmarked(false);
+  //     setBookmarksCount(bookmarksCount - 1);
+  //   } else {
+  //     setIsBookmarked(true);
+  //     setBookmarksCount(bookmarksCount + 1);
+  //   }
 
-    const response = await fetchData(`post/${postID}/toggle_bookmark`, "PUT");
+  //   const response = await fetchData(`post/${postID}/toggle_bookmark`, "PUT");
 
-    if (!response.ok || response instanceof Error) {
-      navigate("/error");
-    } else {
-      const { matchingPost } = await response.json();
-      if (isBookmarked) {
-        const updatedBookmarkedPosts = bookmarkedPosts.filter(
-          (post) => post._id !== matchingPost._id
-        );
-        setBookmarkedPosts(updatedBookmarkedPosts);
-      } else {
-        setBookmarkedPosts([...bookmarkedPosts, matchingPost]);
-      }
-      setIsSubmittingBookmark(false);
-    }
-  }
+  //   if (!response.ok || response instanceof Error) {
+  //     navigate("/error");
+  //   } else {
+  //     const { matchingPost } = await response.json();
+  //     if (isBookmarked) {
+  //       const updatedBookmarkedPosts = bookmarkedPosts.filter(
+  //         (post) => post._id !== matchingPost._id
+  //       );
+  //       setBookmarkedPosts(updatedBookmarkedPosts);
+  //     } else {
+  //       setBookmarkedPosts([...bookmarkedPosts, matchingPost]);
+  //     }
+  //     setIsSubmittingBookmark(false);
+  //   }
+  // }
 
   return (
     <>
@@ -168,7 +169,7 @@ export function Post() {
               <p className={styles.title}>{post.title}</p>
               <p className={styles.description}>{post.description}</p>
 
-              <section className={styles.iconContainer}>
+              {/* <section className={styles.iconContainer}>
                 <div onClick={() => (isLiked ? unlikePost() : likePost())}>
                   <LikeIcon isLiked={isLiked} />
                   <span className={styles.likesCount}>{likesCount}</span>
@@ -177,7 +178,8 @@ export function Post() {
                   <Bookmark isBookmarked={isBookmarked} />
                   <span className={styles.likesCount}>{bookmarksCount}</span>
                 </div>
-              </section>
+              </section> */}
+              {/* <IconsContainer postID={postID} isLiked={isLiked} setIsLiked={setIsLiked} isS /> */}
             </section>
 
             <CommentSection

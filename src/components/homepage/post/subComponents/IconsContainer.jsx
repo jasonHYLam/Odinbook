@@ -4,16 +4,13 @@ import styles from "./iconsContainer.module.css";
 
 import { fetchData } from "../../../../helper/helperUtils";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { useState } from "react";
 
-export function IconContainer({
+export function IconsContainer({
   postID,
 
   isLiked,
   setIsLiked,
-  isSubmittingLike,
-  setIsSubmittingLike,
-  isSubmittingUnlike,
-  setIsSubmittingUnlike,
   likesCount,
   setLikesCount,
 
@@ -21,17 +18,16 @@ export function IconContainer({
   setIsBookmarked,
   bookmarksCount,
   setBookmarksCount,
-  isSubmittingBookmark,
-  setIsSubmittingBookmark,
 }) {
+  const [isSubmittingIconUpdate, setIsSubmittingIconUpdate] = useState(false);
   const { likedPosts, setLikedPosts, bookmarkedPosts, setBookmarkedPosts } =
     useOutletContext();
 
   const navigate = useNavigate();
 
   async function likePost() {
-    if (isSubmittingLike) return;
-    setIsSubmittingLike(true);
+    if (isSubmittingIconUpdate) return;
+    setIsSubmittingIconUpdate(true);
     const likePostResponse = await fetchData(`post/${postID}/like`, "PUT");
     if (!likePostResponse.ok || likePostResponse instanceof Error) {
       navigate("/error");
@@ -39,14 +35,14 @@ export function IconContainer({
       const { likedPost } = await likePostResponse.json();
       setLikesCount(likesCount + 1);
       setIsLiked(true);
-      setIsSubmittingLike(false);
+      setIsSubmittingIconUpdate(false);
       setLikedPosts([...likedPosts, likedPost]);
     }
   }
 
   async function unlikePost() {
-    if (isSubmittingUnlike) return;
-    setIsSubmittingUnlike(true);
+    if (isSubmittingIconUpdate) return;
+    setIsSubmittingIconUpdate(true);
     const unlikePostResponse = await fetchData(`post/${postID}/unlike`, "PUT");
     if (!unlikePostResponse.ok || unlikePostResponse instanceof Error) {
       navigate("/error");
@@ -54,7 +50,7 @@ export function IconContainer({
       const { unlikedPost } = await unlikePostResponse.json();
       setLikesCount(likesCount - 1);
       setIsLiked(false);
-      setIsSubmittingUnlike(false);
+      setIsSubmittingIconUpdate(false);
 
       const updatedLikedPosts = likedPosts.filter(
         (post) => post._id !== unlikedPost._id
@@ -65,8 +61,8 @@ export function IconContainer({
   }
 
   async function toggleBookmarkPost() {
-    if (isSubmittingBookmark) return;
-    setIsSubmittingBookmark(true);
+    if (isSubmittingIconUpdate) return;
+    setIsSubmittingIconUpdate(true);
 
     if (isBookmarked) {
       setIsBookmarked(false);
@@ -90,7 +86,7 @@ export function IconContainer({
       } else {
         setBookmarkedPosts([...bookmarkedPosts, matchingPost]);
       }
-      setIsSubmittingBookmark(false);
+      setIsSubmittingIconUpdate(false);
     }
   }
   return (
