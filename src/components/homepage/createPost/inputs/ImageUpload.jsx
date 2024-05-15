@@ -1,4 +1,4 @@
-import styles from "./input.module.css";
+import styles from "./inputs.module.css";
 import { DisplayImage } from "../DisplayImage";
 import { useRef } from "react";
 

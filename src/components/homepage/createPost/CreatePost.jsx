@@ -6,6 +6,7 @@ import { TagInput } from "./inputs/TagInput";
 import { TitleInput } from "./inputs/TitleInput";
 import { DescriptionInput } from "./inputs/DescriptionInput";
 import { DisplayImage } from "./DisplayImage";
+import { ImageUpload } from "./inputs/ImageUpload";
 import styles from "./CreatePost.module.css";
 
 export function CreatePost() {
@@ -23,16 +24,6 @@ export function CreatePost() {
   const [description, setDescription] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
 
-  // const fileInputRef = useRef(null);
-
-  // function selectImage(e) {
-  //   setImagesToUpload(e.target.files[0]);
-  // }
-
-  // const { ref: registerRef, ...rest } = register("image", {
-  //   required: true,
-  // });
-
   async function post() {
     if (isSubmitting) return;
     setIsSubmitting(true);
@@ -47,23 +38,18 @@ export function CreatePost() {
     console.log([...postData]);
 
     const postResponse = await fetchDataWithImage(
-      // `post/create_post_with_image`,
-      `post/tag_test`,
+      `post/create_post_with_image`,
+      // `post/tag_test`,
       "POST",
       postData
     );
 
-    // if (!postResponse.ok || postResponse instanceof Error) {
-    //   navigate("/error");
-    // } else {
-    //   const { newPost } = await postResponse.json();
-    //   navigate(`/posts/${newPost.id}`);
-    // }
-  }
-
-  async function test(data) {
-    console.log("checking data");
-    console.log(data);
+    if (!postResponse.ok || postResponse instanceof Error) {
+      navigate("/error");
+    } else {
+      const { newPost } = await postResponse.json();
+      navigate(`/posts/${newPost.id}`);
+    }
   }
 
   return (
@@ -73,24 +59,12 @@ export function CreatePost() {
         className={styles.form}
         encType="multipart/form-data"
         onSubmit={handleSubmit(post)}
-        // onSubmit={handleSubmit(test)}
       >
-        {/* <DisplayImage
-          imageURL={imagesToUpload ? URL.createObjectURL(imagesToUpload) : null}
+        <ImageUpload
+          imagesToUpload={imagesToUpload}
+          setImagesToUpload={setImagesToUpload}
+          register={register}
         />
-        <button onClick={() => fileInputRef.current.click()}>
-          {imagesToUpload ? "Change image" : "Upload image"}
-        </button>
-        <input
-          className={styles.imageInput}
-          type="file"
-          {...rest}
-          onChange={selectImage}
-          ref={(input) => {
-            registerRef(input);
-            fileInputRef.current = input;
-          }}
-        /> */}
 
         <TitleInput
           register={register}
