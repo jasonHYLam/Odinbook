@@ -2,7 +2,8 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
-import Select from "react-select";
+// import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import { DisplayImage } from "./DisplayImage";
 import { useTags } from "../../../helper/hooks";
 import styles from "./CreatePost.module.css";
@@ -22,6 +23,11 @@ export function CreatePost() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  console.log("selectedTags");
+  console.log(selectedTags);
+  console.log(selectedTags.map((tag) => tag.value));
 
   const fileInputRef = useRef(null);
 
@@ -45,10 +51,12 @@ export function CreatePost() {
   async function post() {
     if (isSubmitting) return;
     setIsSubmitting(true);
+    const tags = selectedTags.map((tag) => tag.value);
     const postData = new FormData();
     postData.append("images", imagesToUpload);
     postData.append("title", title);
     postData.append("description", description);
+    postData.append("tags", tags);
 
     const postResponse = await fetchDataWithImage(
       `post/create_post_with_image`,
@@ -63,13 +71,19 @@ export function CreatePost() {
     }
   }
 
+  async function test(data) {
+    console.log("checking data");
+    console.log(data);
+  }
+
   return (
     <main>
       <h2>Creating post</h2>
       <form
         className={styles.form}
         encType="multipart/form-data"
-        onSubmit={handleSubmit(post)}
+        // onSubmit={handleSubmit(post)}
+        onSubmit={handleSubmit(test)}
       >
         <DisplayImage
           imageURL={imagesToUpload ? URL.createObjectURL(imagesToUpload) : null}
@@ -102,7 +116,13 @@ export function CreatePost() {
           }}
         />
 
-        <Select options={tagsLoading ? [] : allTags} placeholder="Add tags" />
+        <CreatableSelect
+          // {...register("test")}
+          options={tagsLoading ? [] : allTags}
+          isMulti
+          placeholder="Add tags"
+          onChange={setSelectedTags}
+        />
 
         <p className={styles.subText}>
           {exceededDescriptionLimit()
