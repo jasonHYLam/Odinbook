@@ -29,8 +29,8 @@ export function useTags() {
         navigate("/error");
       } else {
         const { allTags } = await getTagsResponse.json();
-        console.log(`allTags`);
-        console.log(allTags);
+        // console.log(`allTags`);
+        // console.log(allTags);
         setAllTags(allTags);
         setTagsLoading(false);
       }

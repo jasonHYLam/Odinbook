@@ -2,10 +2,8 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
-// import Select from "react-select";
-import CreatableSelect from "react-select/creatable";
+import { TagInput } from "./inputs/TagInput";
 import { DisplayImage } from "./DisplayImage";
-import { useTags } from "../../../helper/hooks";
 import styles from "./CreatePost.module.css";
 
 export function CreatePost() {
@@ -17,17 +15,11 @@ export function CreatePost() {
     clearErrors,
   } = useForm();
 
-  const { allTags, tagsLoading } = useTags();
-
   const [imagesToUpload, setImagesToUpload] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
-
-  console.log("selectedTags");
-  console.log(selectedTags);
-  console.log(selectedTags.map((tag) => tag.value));
 
   const fileInputRef = useRef(null);
 
@@ -51,24 +43,29 @@ export function CreatePost() {
   async function post() {
     if (isSubmitting) return;
     setIsSubmitting(true);
-    const tags = selectedTags.map((tag) => tag.value);
+    const tags = JSON.stringify(selectedTags.map((tag) => tag.value));
     const postData = new FormData();
     postData.append("images", imagesToUpload);
     postData.append("title", title);
     postData.append("description", description);
     postData.append("tags", tags);
 
+    console.log("postData");
+    console.log([...postData]);
+
     const postResponse = await fetchDataWithImage(
-      `post/create_post_with_image`,
+      // `post/create_post_with_image`,
+      `post/tag_test`,
       "POST",
       postData
     );
-    if (!postResponse.ok || postResponse instanceof Error) {
-      navigate("/error");
-    } else {
-      const { newPost } = await postResponse.json();
-      navigate(`/posts/${newPost.id}`);
-    }
+
+    // if (!postResponse.ok || postResponse instanceof Error) {
+    //   navigate("/error");
+    // } else {
+    //   const { newPost } = await postResponse.json();
+    //   navigate(`/posts/${newPost.id}`);
+    // }
   }
 
   async function test(data) {
@@ -82,8 +79,8 @@ export function CreatePost() {
       <form
         className={styles.form}
         encType="multipart/form-data"
-        // onSubmit={handleSubmit(post)}
-        onSubmit={handleSubmit(test)}
+        onSubmit={handleSubmit(post)}
+        // onSubmit={handleSubmit(test)}
       >
         <DisplayImage
           imageURL={imagesToUpload ? URL.createObjectURL(imagesToUpload) : null}
@@ -115,14 +112,9 @@ export function CreatePost() {
             setTitle(e.target.value);
           }}
         />
+        <option />
 
-        <CreatableSelect
-          // {...register("test")}
-          options={tagsLoading ? [] : allTags}
-          isMulti
-          placeholder="Add tags"
-          onChange={setSelectedTags}
-        />
+        <TagInput setSelectedTags={setSelectedTags} />
 
         <p className={styles.subText}>
           {exceededDescriptionLimit()
