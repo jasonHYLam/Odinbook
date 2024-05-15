@@ -1,11 +1,11 @@
-import styles from "Comment.module.css";
+import styles from "./Comment.module.css";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 import { Comment } from "./Comment";
 
-export function CommentSection({ postID }) {
+export function CommentSection({ postID, comments, setComments }) {
   const {
     register,
     handleSubmit,
@@ -16,7 +16,7 @@ export function CommentSection({ postID }) {
 
   const navigate = useNavigate();
 
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
   const [isSubmittingComment, setIsSubmittingComment] = useState(false);
   const [commentText, setCommentText] = useState("");
   const CHAR_LIMIT = 100;
@@ -26,6 +26,8 @@ export function CommentSection({ postID }) {
   }
 
   async function postComment(data) {
+    console.log("checking call");
+    console.log(data);
     if (isSubmittingComment) return;
     setIsSubmittingComment(true);
     const dataToSubmit = JSON.stringify(data);
@@ -34,6 +36,8 @@ export function CommentSection({ postID }) {
       "POST",
       dataToSubmit
     );
+    console.log("checking call");
+    console.log();
     if (!commentResponse.ok || commentResponse instanceof Error) {
       navigate("/error");
     } else {
