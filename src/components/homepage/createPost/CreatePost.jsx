@@ -4,6 +4,7 @@ import { fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { DisplayImage } from "./DisplayImage";
+import { useTags } from "../../../helper/hooks";
 import styles from "./CreatePost.module.css";
 
 export function CreatePost() {

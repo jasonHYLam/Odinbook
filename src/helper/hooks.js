@@ -20,6 +20,7 @@ export function useMobileView() {
 export function useTags() {
   const navigate = useNavigate();
   const [allTags, setAllTags] = useState([]);
+  const [tagsLoading, setTagsLoading] = useState(true);
 
   useEffect(() => {
     async function getTags() {
@@ -31,10 +32,11 @@ export function useTags() {
         console.log(`allTags`);
         console.log(allTags);
         setAllTags(allTags);
+        setTagsLoading(false);
       }
     }
 
     getTags();
   }, [navigate]);
-  return { allTags };
+  return { allTags, tagsLoading };
 }
