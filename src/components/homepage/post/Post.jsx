@@ -190,8 +190,8 @@ export function Post() {
                 <img className={styles.img} src={post.imageURL} alt="" />
               ) : null}
 
-              <p className={styles.postText}>{post.title}</p>
-              <p className={styles.postText}>{post.description}</p>
+              <p className={styles.title}>{post.title}</p>
+              <p className={styles.description}>{post.description}</p>
 
               <section className={styles.iconContainer}>
                 <div onClick={() => (isLiked ? unlikePost() : likePost())}>
