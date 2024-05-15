@@ -1,5 +1,5 @@
 import styles from "./inputs.module.css";
-import { DisplayImage } from "../DisplayImage";
+import { DisplayImage } from "./DisplayImage";
 import { useRef } from "react";
 
 export function ImageUpload({ imagesToUpload, setImagesToUpload, register }) {

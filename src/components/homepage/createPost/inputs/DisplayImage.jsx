@@ -1,4 +1,4 @@
-import styles from "./DisplayImage.module.css";
+import styles from "./inputs.module.css";
 
 const PLACEHOLDER_DISPLAY_IMAGE_PATH = "../../../assets/emoticon.svg";
 

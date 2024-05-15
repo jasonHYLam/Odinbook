@@ -6,3 +6,23 @@
 .imageInput {
   display: none;
 }
+
+.displayImage {
+  width: 200px;
+  height: auto;
+}
+
+.textInputContainer {
+  position: relative;
+}
+
+.textInput {
+  width: 100%;
+}
+
+.characterCount {
+  margin-bottom: 5px;
+  position: absolute;
+  bottom: 0;
+  right: 10px;
+}

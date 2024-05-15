@@ -1,11 +1,10 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 import { TagInput } from "./inputs/TagInput";
 import { TitleInput } from "./inputs/TitleInput";
 import { DescriptionInput } from "./inputs/DescriptionInput";
-import { DisplayImage } from "./DisplayImage";
 import { ImageUpload } from "./inputs/ImageUpload";
 import styles from "./CreatePost.module.css";
 

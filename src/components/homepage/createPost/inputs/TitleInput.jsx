@@ -7,19 +7,23 @@ export function TitleInput({ register, title, setTitle, clearErrors }) {
 
   return (
     <>
-      <p className={styles.subText}>
-        {exceededTitleLimit() ? "Exceeded title limit" : remainingTitleChars}
-      </p>
-      <input
-        type="text"
-        {...register("title", { required: true, maxLength: 30 })}
-        placeholder="Give your post a name! (required)"
-        value={title}
-        onChange={(e) => {
-          if (title.length > 0 || title.length < 30) clearErrors();
-          setTitle(e.target.value);
-        }}
-      />
+      <div className={styles.textInputContainer}>
+        <p className={`${styles.subText} ${styles.characterCount}`}>
+          {exceededTitleLimit() ? "Exceeded title limit" : remainingTitleChars}
+        </p>
+
+        <input
+          className={styles.textInput}
+          type="text"
+          {...register("title", { required: true, maxLength: 30 })}
+          placeholder="Give your post a name! (required)"
+          value={title}
+          onChange={(e) => {
+            if (title.length > 0 || title.length < 30) clearErrors();
+            setTitle(e.target.value);
+          }}
+        />
+      </div>
     </>
   );
 }

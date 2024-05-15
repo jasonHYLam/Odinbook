@@ -13,24 +13,28 @@ export function DescriptionInput({
 
   return (
     <>
-      <p className={styles.subText}>
-        {exceededDescriptionLimit()
-          ? "Exceeded description limit"
-          : remainingDescriptionChars}
-      </p>
-      <textarea
-        name=""
-        id=""
-        cols="30"
-        rows="10"
-        placeholder="Add your thoughts!"
-        {...register("description", { maxLength: 500 })}
-        value={description}
-        onChange={(e) => {
-          if (description.length > 0 || description.length < 500) clearErrors();
-          setDescription(e.target.value);
-        }}
-      ></textarea>
+      <div className={styles.textInputContainer}>
+        <p className={`${styles.subText} ${styles.characterCount}`}>
+          {exceededDescriptionLimit()
+            ? "Exceeded description limit"
+            : remainingDescriptionChars}
+        </p>
+        <textarea
+          className={styles.textInput}
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+          placeholder="Add your thoughts!"
+          {...register("description", { maxLength: 500 })}
+          value={description}
+          onChange={(e) => {
+            if (description.length > 0 || description.length < 500)
+              clearErrors();
+            setDescription(e.target.value);
+          }}
+        ></textarea>
+      </div>
     </>
   );
 }
