@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { fetchDataWithImage } from "../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 import { TagInput } from "./inputs/TagInput";
+import { TitleInput } from "./inputs/TitleInput";
 import { DisplayImage } from "./DisplayImage";
 import styles from "./CreatePost.module.css";
 
@@ -23,14 +24,11 @@ export function CreatePost() {
 
   const fileInputRef = useRef(null);
 
-  const TITLE_LIMIT = 30;
-  const DESCRIPTION_LIMIT = 500;
-  const remainingTitleChars = TITLE_LIMIT - title.length;
-  const remainingDescriptionChars = DESCRIPTION_LIMIT - description.length;
+  // const DESCRIPTION_LIMIT = 500;
+  // const remainingDescriptionChars = DESCRIPTION_LIMIT - description.length;
 
-  const exceededTitleLimit = () => TITLE_LIMIT - title.length < 0;
-  const exceededDescriptionLimit = () =>
-    DESCRIPTION_LIMIT - description.length < 0;
+  // const exceededDescriptionLimit = () =>
+  //   DESCRIPTION_LIMIT - description.length < 0;
 
   function selectImage(e) {
     setImagesToUpload(e.target.files[0]);
@@ -99,24 +97,16 @@ export function CreatePost() {
           }}
         />
 
-        <p className={styles.subText}>
-          {exceededTitleLimit() ? "Exceeded title limit" : remainingTitleChars}
-        </p>
-        <input
-          type="text"
-          {...register("title", { required: true, maxLength: 30 })}
-          placeholder="Give your post a name! (required)"
-          value={title}
-          onChange={(e) => {
-            if (title.length > 0 || title.length < 30) clearErrors();
-            setTitle(e.target.value);
-          }}
+        <TitleInput
+          register={register}
+          title={title}
+          setTitle={setTitle}
+          clearErrors={clearErrors}
         />
-        <option />
 
         <TagInput setSelectedTags={setSelectedTags} />
 
-        <p className={styles.subText}>
+        {/* <p className={styles.subText}>
           {exceededDescriptionLimit()
             ? "Exceeded description limit"
             : remainingDescriptionChars}
@@ -134,7 +124,7 @@ export function CreatePost() {
               clearErrors();
             setDescription(e.target.value);
           }}
-        ></textarea>
+        ></textarea> */}
         <section className={styles.buttonRow}>
           <input type="submit" value="Post" disabled={isSubmitting} />
         </section>
