@@ -16,9 +16,14 @@ export function PostPreview({ post }) {
       <article className={styles.postPreview}>
         <div>
           <Link to={`/posts/${post.id}`}>
-            {post.thumbnailImageURL ? (
-              <img className={styles.img} src={post.thumbnailImageURL} />
-            ) : null}
+            <div className={styles.thumbnailContainer}>
+              {post.thumbnailImageURL ? (
+                <img
+                  className={styles.thumbnail}
+                  src={post.thumbnailImageURL}
+                />
+              ) : null}
+            </div>
           </Link>
           <Link to={`/posts/${post.id}`}>
             <p className={styles.title}>{post.title}</p>

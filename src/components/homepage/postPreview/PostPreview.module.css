@@ -32,12 +32,22 @@
   gap: 10px;
 }
 
-.img {
+.thumbnailContainer {
+  border-radius: 10px;
+  overflow:hidden;
+}
+
+.thumbnail {
   width: var(--thumbnail-size);
+  transition: scale 0.2s;
+}
+
+.thumbnail:hover {
+  scale: 1.1;
 }
 
 @media screen and (max-width: 400px) {
-  .img {
+  .thumbnail {
     width: 150px;
   }
 }
