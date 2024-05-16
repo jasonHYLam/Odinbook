@@ -7,9 +7,19 @@ import { ProfilePic } from "../icons/profilePic/ProfilePic";
 // check properties of post in backend
 export function PostPreview({ post }) {
   const { loggedInUser } = useOutletContext();
+  // console.log("checking loggedInUser");
+  // console.log(loggedInUser);
+
+  console.log("checking post");
+  console.log(post);
+  // console.log(`checking postcreatorid ${post.creator.id}`);
+  // console.log(`checking loggedInUserid${loggedInUser._id}`);
 
   const userID =
     loggedInUser.id === post.creator.id ? loggedInUser.id : post.creator.id;
+
+  // console.log("checking userID");
+  // console.log(userID);
 
   return (
     <>

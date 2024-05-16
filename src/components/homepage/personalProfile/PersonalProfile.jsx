@@ -13,7 +13,7 @@ import { Loading } from "../../loading/Loading";
 
 export function PersonalProfile() {
   const navigate = useNavigate();
-  const { loggedInUser, likedPosts } = useOutletContext();
+  const { loggedInUser, likedPosts, bookmarkedPosts } = useOutletContext();
   const [userPosts, setUserPosts] = useState([]);
   const [postsToShow, setPostsToShow] = useState("user");
   const [isLoading, setIsLoading] = useState(true);
@@ -64,11 +64,22 @@ export function PersonalProfile() {
 
             <nav className={styles.navOptions}>
               <span onClick={() => setPostsToShow("user")}>Your Posts</span>
-              <span onClick={() => setPostsToShow("liked")}>Liked Posts</span>
+              <span onClick={() => setPostsToShow("liked")}>Liked</span>
+              <span onClick={() => setPostsToShow("bookmarked")}>
+                Bookmarked
+              </span>
             </nav>
 
             <PostsContainer
-              posts={postsToShow === "user" ? userPosts : likedPosts}
+              posts={
+                postsToShow === "user"
+                  ? userPosts
+                  : postsToShow === "liked"
+                  ? likedPosts
+                  : postsToShow === "bookmarked"
+                  ? bookmarkedPosts
+                  : null
+              }
             />
 
             <EditProfileModal

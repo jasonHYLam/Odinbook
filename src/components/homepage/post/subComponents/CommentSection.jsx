@@ -25,8 +25,6 @@ export function CommentSection({ postID, comments, setComments }) {
   }
 
   async function postComment(data) {
-    console.log("checking call");
-    console.log(data);
     if (isSubmittingComment) return;
     setIsSubmittingComment(true);
     const dataToSubmit = JSON.stringify(data);
@@ -35,13 +33,12 @@ export function CommentSection({ postID, comments, setComments }) {
       "POST",
       dataToSubmit
     );
-    console.log("checking call");
-    console.log();
     if (!commentResponse.ok || commentResponse instanceof Error) {
+      console.log("1");
       navigate("/error");
     } else {
       const { newComment } = await commentResponse.json();
-      reset();
+      reset({ text: "" });
       setComments([...comments, newComment]);
       setIsSubmittingComment(false);
     }

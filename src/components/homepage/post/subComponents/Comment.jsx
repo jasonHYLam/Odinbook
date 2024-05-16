@@ -48,18 +48,21 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
   }
 
   async function deleteComment() {
-    const deleteResponse = fetchData(
+    console.log("1");
+    const deleteResponse = await fetchData(
       `comment/${postID}/${comment._id}/delete`,
       "DELETE"
     );
+
     if (!deleteResponse.ok || deleteResponse instanceof Error) {
       navigate("/error");
     } else {
       const { deletedComment } = deleteResponse.json();
+      console.log("checking deleteC");
+      console.log(deletedComment);
 
-      const updatedComments = allPostComments.map((comment) => {
-        if (comment._id === deletedComment._id) return deletedComment;
-        return comment;
+      const updatedComments = allPostComments.filter((postComment) => {
+        if (postComment._id !== comment._id) return postComment;
       });
 
       setComments(updatedComments);
@@ -83,11 +86,11 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
   );
 
   const deleteForm = (
-    <form>
+    <section>
       <p>Are you sure you want to delete?</p>
       <button onClick={deleteComment}>Delete</button>
       <button onClick={() => setStatus("")}>Cancel</button>
-    </form>
+    </section>
   );
 
   return (
