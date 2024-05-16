@@ -2,8 +2,20 @@
   height: var(--profile-pic-height-s);
 }
 
-.username{
+.title {
+  display: inline-block;
+}
+
+.title:hover {
+  text-decoration: underline;
+}
+
+.username {
   color: var(--sub-text-color);
+}
+
+.username:hover {
+  text-decoration: underline;
 }
 
 .postPreview {
@@ -15,21 +27,9 @@
 
 }
 
-.postPreview:hover {
-  background-color: var(--post-hover-color);
-}
-
-.text {
-  word-break: break-all;
-}
-
 .topRow {
   display: flex;
   gap: 10px;
-}
-
-.date, .likesCount {
-  color: var(--sub-text-color);
 }
 
 .img {
