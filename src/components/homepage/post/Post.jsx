@@ -7,15 +7,10 @@ import {
   useParams,
   Link,
 } from "react-router-dom";
-import { useForm } from "react-hook-form";
-// import { CommentSection } from "./CommentSection";
 import { Tags } from "./subComponents/Tags";
 import { IconsContainer } from "./subComponents/IconsContainer";
 import { CommentSection } from "./subComponents/CommentSection";
-import { Comment } from "./subComponents/Comment";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
-import { LikeIcon } from "../icons/like/LikeIcon";
-import { Bookmark } from "../icons/bookmark/Bookmark";
 import { Loading } from "../../loading/Loading";
 
 export function Post() {
@@ -31,9 +26,6 @@ export function Post() {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [bookmarksCount, setBookmarksCount] = useState(0);
   const [tags, setTags] = useState([]);
-
-  console.log("tags");
-  console.log(tags);
 
   let CREATOR_PROFILE_URL = "";
   if (!isLoading) {
