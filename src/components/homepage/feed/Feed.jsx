@@ -1,4 +1,5 @@
 import { useOutletContext } from "react-router-dom";
+import { PostsContainer } from "../postsContainer/PostsContainer";
 import { PostPreview } from "../postPreview/PostPreview";
 
 export function Feed() {
@@ -7,6 +8,8 @@ export function Feed() {
     <>
       <main>
         <h2>Your feed</h2>
+
+        {/* <PostsContainer posts={feed} /> */}
 
         <section>
           <ul>
