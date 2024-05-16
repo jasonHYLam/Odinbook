@@ -7,6 +7,7 @@ import { FollowersModal } from "./modals/FollowersModal";
 import { FollowingModal } from "./modals/FollowingModal";
 import { LogoutModal } from "./modals/LogoutModal";
 import { PostPreview } from "../postPreview/PostPreview";
+import { PostsContainer } from "../postsContainer/PostsContainer";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import { Loading } from "../../loading/Loading";
 
@@ -66,23 +67,9 @@ export function PersonalProfile() {
               <span onClick={() => setPostsToShow("liked")}>Liked Posts</span>
             </nav>
 
-            {postsToShow === "user" ? (
-              <>
-                <ul>
-                  {userPosts.map((post) => (
-                    <PostPreview post={post} key={post.id} />
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <>
-                <ul>
-                  {likedPosts.map((post) => (
-                    <PostPreview post={post} key={post.id} />
-                  ))}
-                </ul>
-              </>
-            )}
+            <PostsContainer
+              posts={postsToShow === "user" ? userPosts : likedPosts}
+            />
 
             <EditProfileModal
               openModal={showSettings}

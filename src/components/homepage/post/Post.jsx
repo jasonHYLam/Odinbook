@@ -68,19 +68,23 @@ export function Post() {
         <>
           <main>
             <section className={styles.postSection}>
-              <section>
-                <Link to={CREATOR_PROFILE_URL} className={styles.profileInfo}>
-                  <ProfilePic URL={post.creator.profilePicURL} size="small" />
-                  <span>{post.creator.username}</span>
-                  <span className={styles.date}>
-                    {post.datePostedFormatted}
-                  </span>
-                </Link>
-              </section>
-
               {post.imageURL ? (
                 <img className={styles.img} src={post.imageURL} alt="" />
               ) : null}
+
+              <section className={styles.userRow}>
+                <div className={styles.userRowOptions}>
+                  <Link to={CREATOR_PROFILE_URL}>
+                    <ProfilePic URL={post.creator.profilePicURL} size="small" />
+                  </Link>
+                  <Link to={CREATOR_PROFILE_URL} className={styles.username}>
+                    <span>{post.creator.username}</span>
+                  </Link>
+                  <span className={styles.date}>
+                    {post.datePostedFormatted}
+                  </span>
+                </div>
+              </section>
 
               <p className={styles.title}>{post.title}</p>
               <p className={styles.description}>{post.description}</p>

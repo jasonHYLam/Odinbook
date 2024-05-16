@@ -3,6 +3,7 @@ import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostPreview } from "../postPreview/PostPreview";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
+import { PostsContainer } from "../postsContainer/PostsContainer";
 import { Loading } from "../../loading/Loading";
 
 export function UserProfile() {
@@ -91,11 +92,7 @@ export function UserProfile() {
           </section>
           <section>
             <p>Posts</p>
-            <ul>
-              {posts.map((post) => (
-                <PostPreview key={post.id} post={post} />
-              ))}
-            </ul>
+            <PostsContainer posts={posts} />
           </section>
         </section>
       )}

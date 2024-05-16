@@ -2,11 +2,6 @@
   height: var(--profile-pic-height-s);
 }
 
-.profileInfo {
-  display: flex;
-  gap: 20px;
-}
-
 .postSection {
   margin-bottom: 40px;
 }
@@ -16,9 +11,24 @@
   word-break: break-all;
 }
 
+.username:hover {
+  text-decoration: underline;
+
+}
+
 .description {
 
 }
+
+.userRow {
+  display: block;
+}
+
+.userRowOptions {
+  display: flex;
+  gap: 10px;
+}
+
 
 .date, .likesCount{
   color: var(--sub-text-color);
