@@ -9,15 +9,15 @@ export function Feed() {
       <main>
         <h2>Your feed</h2>
 
-        {/* <PostsContainer posts={feed} /> */}
+        <PostsContainer posts={feed} />
 
-        <section>
+        {/* <section>
           <ul>
             {feed.map((post) => (
               <PostPreview key={post.id} post={post} />
             ))}
           </ul>
-        </section>
+        </section> */}
       </main>
     </>
   );

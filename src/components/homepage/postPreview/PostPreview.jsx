@@ -10,20 +10,15 @@ export function PostPreview({ post }) {
     <>
       <Link to={`/posts/${post.id}`}>
         <article className={styles.postPreview}>
-          <ProfilePic URL={post.creator.profilePicURL} size="small" />
           <div>
-            <div className={styles.topRow}>
-              <span>{post.creator.username}</span>
-              {/* <span className={styles.date}>{post.datePostedFormatted}</span> */}
-            </div>
-
             {post.thumbnailImageURL ? (
-              // <img className={styles.img} src={post.imageURL} />
               <img className={styles.img} src={post.thumbnailImageURL} />
             ) : null}
-            {/* <p className={styles.text}>{post.text}</p> */}
             <p className={styles.text}>{post.title}</p>
-            {/* <p className={styles.likesCount}>{post.likesCount}</p> */}
+            <div className={styles.topRow}>
+              <ProfilePic URL={post.creator.profilePicURL} size="small" />
+              <span className={styles.username}>{post.creator.username}</span>
+            </div>
           </div>
         </article>
       </Link>

@@ -2,6 +2,10 @@
   height: var(--profile-pic-height-s);
 }
 
+.username{
+  color: var(--sub-text-color);
+}
+
 .postPreview {
   display: flex;
   border-bottom: 1px solid var(--border-color);
@@ -29,12 +33,11 @@
 }
 
 .img {
-  width: 400px;
+  width: var(--thumbnail-size);
 }
 
 @media screen and (max-width: 400px) {
   .img {
     width: 150px;
   }
-  
 }

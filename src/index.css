@@ -16,14 +16,16 @@
 
   --bg: white;
   --main-text-color: black;
-  --sub-text-color: #848484;
+  --sub-text-color: #484848;
   --border-color : #848484;
   --splash-color: blue;
   --tag-color: #006eff;
   --post-hover-color: #dfeaff;
   --shadow-color: rgb(172, 172, 172);
 
-  --profile-pic-height-s: 40px;
+  --thumbnail-size: 200px;
+
+  --profile-pic-height-s: 25px;
   --profile-pic-height-m: 60px;
   --profile-pic-height-l: 150px;
 
