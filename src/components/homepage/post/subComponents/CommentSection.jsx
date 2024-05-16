@@ -88,7 +88,6 @@ export function CommentSection({ postID, comments, setComments }) {
                 <Comment
                   key={comment.id}
                   comment={comment}
-                  // postID={post._id}
                   postID={postID}
                   setComments={setComments}
                   allPostComments={comments}
