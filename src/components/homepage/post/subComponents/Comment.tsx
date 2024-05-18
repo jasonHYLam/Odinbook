@@ -14,6 +14,10 @@ interface CommentProps {
   allPostComments: Comment[];
 }
 
+interface LoggedInUserType {
+  loggedInUser: UserType;
+}
+
 export function Comment({
   comment,
   postID,
@@ -21,7 +25,7 @@ export function Comment({
   allPostComments,
 }: CommentProps) {
   const navigate = useNavigate();
-  const { loggedInUser }: UserType = useOutletContext();
+  const { loggedInUser }: LoggedInUserType = useOutletContext();
   const [status, setStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
