@@ -5,9 +5,23 @@ import { useForm } from "react-hook-form";
 import { fetchData } from "../../../../helper/helperUtils";
 import { ProfilePic } from "../../icons/profilePic/ProfilePic";
 
-export function Comment({ comment, postID, setComments, allPostComments }) {
+import { CommentType, UserType } from "../../../../helper/types";
+
+interface CommentProps {
+  comment: CommentType;
+  postID: string;
+  setComments: (comments: Comment[]) => void;
+  allPostComments: Comment[];
+}
+
+export function Comment({
+  comment,
+  postID,
+  setComments,
+  allPostComments,
+}: CommentProps) {
   const navigate = useNavigate();
-  const { loggedInUser } = useOutletContext();
+  const { loggedInUser }: UserType = useOutletContext();
   const [status, setStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
@@ -48,7 +62,6 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
   }
 
   async function deleteComment() {
-    console.log("1");
     const deleteResponse = await fetchData(
       `comment/${postID}/${comment._id}/delete`,
       "DELETE"
@@ -58,8 +71,6 @@ export function Comment({ comment, postID, setComments, allPostComments }) {
       navigate("/error");
     } else {
       const { deletedComment } = deleteResponse.json();
-      console.log("checking deleteC");
-      console.log(deletedComment);
 
       const updatedComments = allPostComments.filter((postComment) => {
         if (postComment._id !== comment._id) return postComment;
