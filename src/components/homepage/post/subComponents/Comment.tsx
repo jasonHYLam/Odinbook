@@ -1,7 +1,7 @@
 import styles from "./Comment.module.css";
 import { useState } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { fetchData } from "../../../../helper/helperUtils";
 import { ProfilePic } from "../../icons/profilePic/ProfilePic";
 
