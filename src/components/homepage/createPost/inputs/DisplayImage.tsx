@@ -2,7 +2,10 @@ import styles from "./inputs.module.css";
 
 const PLACEHOLDER_DISPLAY_IMAGE_PATH = "../../../assets/emoticon.svg";
 
-export function DisplayImage({ imageURL }) {
+interface DisplayImageProps {
+  imageURL: string;
+}
+export function DisplayImage({ imageURL }: DisplayImageProps) {
   return imageURL ? (
     <img
       className={styles.displayImage}
