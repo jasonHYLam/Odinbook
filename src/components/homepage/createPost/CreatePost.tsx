@@ -18,14 +18,16 @@ export function CreatePost() {
     clearErrors,
   } = useForm();
 
-  const [imagesToUpload, setImagesToUpload] = useState(null);
+  const [imagesToUpload, setImagesToUpload] = useState<File>();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([]);
 
-  console.log("checking selectedTags");
-  console.log(selectedTags);
+  // console.log("checking selectedTags");
+  // console.log(selectedTags);
+  console.log("checking imageToUpload");
+  console.log(imagesToUpload);
 
   async function post() {
     if (isSubmitting) return;

@@ -1,8 +1,19 @@
 import styles from "./inputs.module.css";
 import { DisplayImage } from "./DisplayImage";
 import { useRef } from "react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 
-export function ImageUpload({ imagesToUpload, setImagesToUpload, register }) {
+interface ImageUploadProps {
+  imagesToUpload: File;
+  setImagesToUpload: (imagesToUpload: File) => void;
+  register: UseFormRegister<FieldValues>;
+}
+
+export function ImageUpload({
+  imagesToUpload,
+  setImagesToUpload,
+  register,
+}: ImageUploadProps) {
   const fileInputRef = useRef(null);
   const { ref: registerRef, ...rest } = register("image", {
     required: true,
