@@ -3,11 +3,16 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Homepage } from "./components/homepage/Homepage.jsx";
 import { CreatePost } from "./components/homepage/createPost/CreatePost.jsx";
-import { Feed } from "./components/homepage/feed/Feed.jsx";
+// import { Feed } from "./components/homepage/feed/Feed.jsx";
+import { Feed } from "./components/homepage/feed/Feed.tsx";
 // import { Post } from "./components/homepage/post/Post.jsx";
 import { Post } from "./components/homepage/post/Post.tsx";
-import { PersonalProfile } from "./components/homepage/personalProfile/PersonalProfile.jsx";
-import { SearchAddUsers } from "./components/homepage/searchAddUsers/SearchAddUsers.jsx";
+// import { PersonalProfile } from "./components/homepage/personalProfile/PersonalProfile.jsx";
+import { PersonalProfile } from "./components/homepage/personalProfile/PersonalProfile.tsx";
+
+// import { SearchAddUsers } from "./components/homepage/searchAddUsers/SearchAddUsers.jsx";
+import { SearchAddUsers } from "./components/homepage/searchAddUsers/SearchAddUsers.tsx";
+
 import { UserProfile } from "./components/homepage/userProfile/UserProfile.jsx";
 import { Login } from "./components/loginSignup/Login.jsx";
 import { Signup } from "./components/loginSignup/Signup.jsx";

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useParams } from "react-router-dom";
 import { PostPreview } from "../postPreview/PostPreview";
+
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import { PostsContainer } from "../postsContainer/PostsContainer";
 import { Loading } from "../../loading/Loading";

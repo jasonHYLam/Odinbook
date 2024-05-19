@@ -1,11 +1,19 @@
 import styles from "./SearchAddUsers.module.css";
 import { useOutletContext, Link } from "react-router-dom";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
+import { UserType } from "../../../helper/types";
+
+interface OutletContextForSearchAddUsers {
+  loggedInUser: UserType;
+  matchingUsers: UserType[];
+  resetSearchQuery: (searchQuery: string) => void;
+}
 
 export function SearchAddUsers() {
-  const { loggedInUser, matchingUsers, resetSearchQuery } = useOutletContext();
+  const { loggedInUser, matchingUsers, resetSearchQuery } =
+    useOutletContext<OutletContextForSearchAddUsers>();
 
-  function isFollowedByLoggedInUser(searchedUser) {
+  function isFollowedByLoggedInUser(searchedUser: UserType) {
     return searchedUser.followers.some(
       (follower) => follower === loggedInUser.id
     );
