@@ -43,9 +43,6 @@ export function Comment({
       ? "/me"
       : `/users/${comment.author.id}`;
 
-  // async function submitEdit(data: { text: string }) {
-
-  // might need to make a interface for FormValues
   const submitEdit = async (data: EditFormValues) => {
     if (isSubmitting) return;
     setIsSubmitting(true);

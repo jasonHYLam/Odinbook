@@ -1,6 +1,10 @@
 import CreatableSelect from "react-select/creatable";
 import { useTags } from "../../../../helper/hooks";
-export function TagInput({ setSelectedTags }) {
+
+interface TagInputProps {
+  setSelectedTags: (selectedTags: { label: string; value: string }) => void;
+}
+export function TagInput({ setSelectedTags }: TagInputProps) {
   const { allTags, tagsLoading } = useTags();
 
   return (

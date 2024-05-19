@@ -23,6 +23,9 @@ export function CreatePost() {
   const [description, setDescription] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
 
+  console.log("checking selectedTags");
+  console.log(selectedTags);
+
   async function post() {
     if (isSubmitting) return;
     setIsSubmitting(true);
@@ -33,12 +36,8 @@ export function CreatePost() {
     postData.append("description", description);
     postData.append("tags", tags);
 
-    console.log("postData");
-    console.log([...postData]);
-
     const postResponse = await fetchDataWithImage(
       `post/create_post_with_image`,
-      // `post/tag_test`,
       "POST",
       postData
     );

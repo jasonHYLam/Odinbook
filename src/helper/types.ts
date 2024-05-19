@@ -35,3 +35,7 @@ export interface PostType {
     profilePicURL: string;
   };
 }
+
+export interface AllTags {
+  allTags: string[];
+}

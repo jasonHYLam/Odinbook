@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "./helperUtils";
 import { useNavigate } from "react-router-dom";
+import { AllTags } from "./types";
 
 export function useMobileView() {
   const [isMobileView, setIsMobileView] = useState(false);
@@ -19,7 +20,7 @@ export function useMobileView() {
 
 export function useTags() {
   const navigate = useNavigate();
-  const [allTags, setAllTags] = useState([]);
+  const [allTags, setAllTags] = useState<string[]>([]);
   const [tagsLoading, setTagsLoading] = useState(true);
 
   useEffect(() => {
@@ -28,9 +29,7 @@ export function useTags() {
       if (!getTagsResponse.ok || getTagsResponse instanceof Error) {
         navigate("/error");
       } else {
-        const { allTags } = await getTagsResponse.json();
-        // console.log(`allTags`);
-        // console.log(allTags);
+        const { allTags }: AllTags = await getTagsResponse.json();
         setAllTags(allTags);
         setTagsLoading(false);
       }
