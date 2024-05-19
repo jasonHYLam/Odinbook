@@ -1,12 +1,19 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { fetchData } from "../../../helper/helperUtils";
+import { UserType } from "../../../helper/types";
+
+interface SearchUsersBarProps {
+  searchQuery: string;
+  setSearchQuery: (searchQuery: string) => void;
+  setMatchingUsers: (matchingUsers: UserType[]) => void;
+}
 
 export function SearchUsersBar({
   searchQuery,
   setSearchQuery,
   setMatchingUsers,
-}) {
+}: SearchUsersBarProps) {
   const location = useLocation();
   const navigate = useNavigate();
 
