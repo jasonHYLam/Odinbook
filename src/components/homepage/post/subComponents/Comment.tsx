@@ -1,7 +1,7 @@
 import styles from "./Comment.module.css";
 import { useState } from "react";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { fetchData } from "../../../../helper/helperUtils";
 import { ProfilePic } from "../../icons/profilePic/ProfilePic";
 
@@ -10,12 +10,16 @@ import { CommentType, UserType } from "../../../../helper/types";
 interface CommentProps {
   comment: CommentType;
   postID: string;
-  setComments: (comments: Comment[]) => void;
-  allPostComments: Comment[];
+  setComments: (comments: CommentType[]) => void;
+  allPostComments: CommentType[];
 }
 
 interface LoggedInUserType {
   loggedInUser: UserType;
+}
+
+interface EditFormValues {
+  text: string;
 }
 
 export function Comment({
@@ -32,15 +36,17 @@ export function Comment({
     register,
     handleSubmit,
     formState: { errors },
-    reset,
-  } = useForm();
+  } = useForm<EditFormValues>();
 
   const authorURL =
     comment.author.id === loggedInUser.id
       ? "/me"
       : `/users/${comment.author.id}`;
 
-  async function submitEdit(data) {
+  // async function submitEdit(data: { text: string }) {
+
+  // might need to make a interface for FormValues
+  const submitEdit = async (data: EditFormValues) => {
     if (isSubmitting) return;
     setIsSubmitting(true);
     const dataToSubmit = JSON.stringify(data);
@@ -63,7 +69,7 @@ export function Comment({
 
       setStatus("");
     }
-  }
+  };
 
   async function deleteComment() {
     const deleteResponse = await fetchData(
@@ -74,8 +80,6 @@ export function Comment({
     if (!deleteResponse.ok || deleteResponse instanceof Error) {
       navigate("/error");
     } else {
-      const { deletedComment } = deleteResponse.json();
-
       const updatedComments = allPostComments.filter((postComment) => {
         if (postComment._id !== comment._id) return postComment;
       });
