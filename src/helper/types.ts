@@ -5,6 +5,7 @@ export interface CommentType {
   dateCommentedFormatted: Date;
   _id: string;
   id: string;
+  isDeleted: boolean;
 }
 
 export interface UserType {
@@ -18,4 +19,8 @@ export interface UserType {
     _id: string;
     id: string;
   };
+}
+
+export interface SetCommentType {
+  setComments: (comments: CommentType[]) => void;
 }

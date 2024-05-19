@@ -5,14 +5,30 @@ import { fetchData } from "../../../../helper/helperUtils";
 import { useNavigate } from "react-router-dom";
 import { Comment } from "./Comment";
 
-export function CommentSection({ postID, comments, setComments }) {
+import { CommentType } from "../../../../helper/types";
+
+interface CommentSectionProps {
+  postID: string;
+  comments: CommentType[];
+  setComments: (comments: CommentType[]) => void;
+}
+
+interface CommentFormValues {
+  text: string;
+}
+
+export function CommentSection({
+  postID,
+  comments,
+  setComments,
+}: CommentSectionProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
     clearErrors,
-  } = useForm();
+  } = useForm<CommentFormValues>();
 
   const navigate = useNavigate();
 
@@ -24,7 +40,7 @@ export function CommentSection({ postID, comments, setComments }) {
     return CHAR_LIMIT - commentText.length < 0;
   }
 
-  async function postComment(data) {
+  async function postComment(data: CommentFormValues) {
     if (isSubmittingComment) return;
     setIsSubmittingComment(true);
     const dataToSubmit = JSON.stringify(data);
@@ -34,7 +50,6 @@ export function CommentSection({ postID, comments, setComments }) {
       dataToSubmit
     );
     if (!commentResponse.ok || commentResponse instanceof Error) {
-      console.log("1");
       navigate("/error");
     } else {
       const { newComment } = await commentResponse.json();
@@ -64,7 +79,8 @@ export function CommentSection({ postID, comments, setComments }) {
                 {...register("text", { required: true, maxLength: 100 })}
                 value={commentText}
                 onChange={(e) => {
-                  if (commentText > 0 || commentText < 100) clearErrors("text");
+                  if (commentText.length > 0 || commentText.length < 100)
+                    clearErrors("text");
                   setCommentText(e.target.value);
                 }}
               />
