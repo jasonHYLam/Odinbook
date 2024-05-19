@@ -12,24 +12,12 @@ import { IconsContainer } from "./subComponents/IconsContainer";
 import { CommentSection } from "./subComponents/CommentSection";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import { Loading } from "../../loading/Loading";
-import { PostType, UserType } from "../../../helper/types";
+import { PostType, UserType, CommentType } from "../../../helper/types";
+import { defaultPostState } from "../../../helper/defaultStates";
 
 interface OutletContextForPost {
   loggedInUser: UserType;
 }
-
-const defaultPostState = {
-  _id: "",
-  id: "",
-  title: "",
-  description: "",
-  imageURL: "",
-  thumbnailImageURL: "",
-  creator: { _id: "", id: "", profilePicURL: "", username: "" },
-  likedBy: [],
-  bookmarkedBy: [],
-  datePosted: new Date(),
-};
 
 export function Post() {
   const { loggedInUser }: OutletContextForPost = useOutletContext();
@@ -37,7 +25,7 @@ export function Post() {
   const { postID } = useParams() as { postID: string };
   const navigate = useNavigate();
   const [post, setPost] = useState<PostType>(defaultPostState);
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState<CommentType[]>([]);
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
