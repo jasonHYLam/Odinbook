@@ -1,7 +1,11 @@
 import styles from "./Logo.module.css";
 import LOGO from "../../../../assets/handLogo.png";
 
-export function Logo({ size }) {
+interface LogoProps {
+  size: string;
+}
+
+export function Logo({ size }: LogoProps) {
   let CLASSNAME;
   if (size === "small") {
     CLASSNAME = styles.logoSmall;
