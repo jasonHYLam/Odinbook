@@ -1,25 +1,21 @@
 import styles from "./PostPreview.module.css";
 import { Link, useOutletContext } from "react-router-dom";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
+import { PostType, UserType } from "../../../helper/types";
 
-// create default thumbnail if doesn't exist
-// create some stuff here i guess...
-// check properties of post in backend
-export function PostPreview({ post }) {
-  const { loggedInUser } = useOutletContext();
-  // console.log("checking loggedInUser");
-  // console.log(loggedInUser);
+interface PostPreviewProps {
+  post: PostType;
+}
 
-  console.log("checking post");
-  console.log(post);
-  // console.log(`checking postcreatorid ${post.creator.id}`);
-  // console.log(`checking loggedInUserid${loggedInUser._id}`);
+interface OutletContextForPostPreview {
+  loggedInUser: UserType;
+}
+
+export function PostPreview({ post }: PostPreviewProps) {
+  const { loggedInUser } = useOutletContext<OutletContextForPostPreview>();
 
   const userID =
     loggedInUser.id === post.creator.id ? loggedInUser.id : post.creator.id;
-
-  // console.log("checking userID");
-  // console.log(userID);
 
   return (
     <>
