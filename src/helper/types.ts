@@ -39,3 +39,12 @@ export interface PostType {
 export interface AllTags {
   allTags: string[];
 }
+
+export interface SelectedTag {
+  label: string;
+  value: string;
+}
+
+export interface SelectedTags {
+  selectedTags: { label: string; value: string };
+}

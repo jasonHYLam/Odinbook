@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Homepage } from "./components/homepage/Homepage.jsx";
-import { CreatePost } from "./components/homepage/createPost/CreatePost.jsx";
+import { CreatePost } from "./components/homepage/createPost/CreatePost.tsx";
 import { Feed } from "./components/homepage/feed/Feed.tsx";
 import { Post } from "./components/homepage/post/Post.tsx";
 import { PersonalProfile } from "./components/homepage/personalProfile/PersonalProfile.tsx";

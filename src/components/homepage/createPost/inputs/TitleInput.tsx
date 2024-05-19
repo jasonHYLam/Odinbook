@@ -1,6 +1,23 @@
 import styles from "./inputs.module.css";
+import {
+  UseFormRegister,
+  FieldValues,
+  UseFormClearErrors,
+} from "react-hook-form";
 
-export function TitleInput({ register, title, setTitle, clearErrors }) {
+interface TitleInputProps {
+  register: UseFormRegister<FieldValues>;
+  title: string;
+  setTitle: (title: string) => void;
+  clearErrors: UseFormClearErrors<FieldValues>;
+}
+
+export function TitleInput({
+  register,
+  title,
+  setTitle,
+  clearErrors,
+}: TitleInputProps) {
   const TITLE_LIMIT = 30;
   const remainingTitleChars = TITLE_LIMIT - title.length;
   const exceededTitleLimit = () => TITLE_LIMIT - title.length < 0;

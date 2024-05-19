@@ -5,6 +5,7 @@ interface TagInputProps {
   setSelectedTags: (selectedTags: { label: string; value: string }) => void;
 }
 export function TagInput({ setSelectedTags }: TagInputProps) {
+  // export function TagInput({ setSelectedTags }) {
   const { allTags, tagsLoading } = useTags();
 
   return (

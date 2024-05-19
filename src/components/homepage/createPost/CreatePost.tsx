@@ -7,6 +7,7 @@ import { TitleInput } from "./inputs/TitleInput";
 import { DescriptionInput } from "./inputs/DescriptionInput";
 import { ImageUpload } from "./inputs/ImageUpload";
 import styles from "./CreatePost.module.css";
+import { SelectedTag } from "../../../helper/types";
 
 export function CreatePost() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export function CreatePost() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([]);
 
   console.log("checking selectedTags");
   console.log(selectedTags);
