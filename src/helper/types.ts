@@ -21,6 +21,20 @@ export interface UserType {
   };
 }
 
-export interface SetCommentType {
-  setComments: (comments: CommentType[]) => void;
+export interface PostType {
+  _id: string;
+  id: string;
+  title: string;
+  description: string;
+  imageURL: string;
+  thumbnailImageURL: string;
+  datePosted: Date;
+  likedBy: { _id: string }[];
+  bookmarkedBy: { _id: string }[];
+  creator: {
+    _id: string;
+    id: string;
+    username: string;
+    profilePicURL: string;
+  };
 }
