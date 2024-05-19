@@ -24,11 +24,6 @@ export function CreatePost() {
   const [description, setDescription] = useState("");
   const [selectedTags, setSelectedTags] = useState<SelectedTag[]>([]);
 
-  // console.log("checking selectedTags");
-  // console.log(selectedTags);
-  console.log("checking imageToUpload");
-  console.log(imagesToUpload);
-
   async function post() {
     if (isSubmitting) return;
     setIsSubmitting(true);

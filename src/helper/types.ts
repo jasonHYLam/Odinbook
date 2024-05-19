@@ -48,3 +48,5 @@ export interface SelectedTag {
 export interface SelectedTags {
   selectedTags: { label: string; value: string };
 }
+
+export interface ImagesToUpload {}
