@@ -15,7 +15,7 @@ export function SearchAddUsers() {
 
   function isFollowedByLoggedInUser(searchedUser: UserType) {
     return searchedUser.followers.some(
-      (follower) => follower === loggedInUser.id
+      (followerID) => followerID === loggedInUser.id
     );
   }
 

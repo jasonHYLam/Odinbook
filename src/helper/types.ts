@@ -13,18 +13,8 @@ export interface UserType {
   id: string;
   username: string;
   profilePicURL: string;
-  following: {
-    username: string;
-    profilePicURL: string;
-    _id: string;
-    id: string;
-  }[];
-  followers: {
-    username: string;
-    profilePicURL: string;
-    _id: string;
-    id: string;
-  }[];
+  following: string[];
+  followers: string[];
 }
 
 export interface PostType {
