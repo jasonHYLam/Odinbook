@@ -29,6 +29,7 @@ export interface PostType {
   imageURL: string;
   thumbnailImageURL: string;
   datePosted: Date;
+  datePostedFormatted: Date;
   likedBy: { _id: string }[];
   bookmarkedBy: { _id: string }[];
   creator: {

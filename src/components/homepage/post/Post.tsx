@@ -12,13 +12,31 @@ import { IconsContainer } from "./subComponents/IconsContainer";
 import { CommentSection } from "./subComponents/CommentSection";
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import { Loading } from "../../loading/Loading";
+import { PostType, UserType } from "../../../helper/types";
+
+interface OutletContextForPost {
+  loggedInUser: UserType;
+}
+
+const defaultPostState = {
+  _id: "",
+  id: "",
+  title: "",
+  description: "",
+  imageURL: "",
+  thumbnailImageURL: "",
+  creator: { _id: "", id: "", profilePicURL: "", username: "" },
+  likedBy: [],
+  bookmarkedBy: [],
+  datePosted: new Date(),
+};
 
 export function Post() {
-  const { loggedInUser } = useOutletContext();
+  const { loggedInUser }: OutletContextForPost = useOutletContext();
 
-  const { postID } = useParams();
+  const { postID } = useParams() as { postID: string };
   const navigate = useNavigate();
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState<PostType>(defaultPostState);
   const [comments, setComments] = useState([]);
   const [isLiked, setIsLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(0);
@@ -81,7 +99,7 @@ export function Post() {
                     <span>{post.creator.username}</span>
                   </Link>
                   <span className={styles.date}>
-                    {post.datePostedFormatted}
+                    {post.datePostedFormatted.toString()}
                   </span>
                 </div>
               </section>
