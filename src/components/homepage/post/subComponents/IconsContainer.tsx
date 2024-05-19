@@ -6,6 +6,8 @@ import { fetchData } from "../../../../helper/helperUtils";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
 
+import { PostType } from "../../../../helper/types";
+
 interface IconsContainerProps {
   postID: string;
   isLiked: boolean;
@@ -16,6 +18,13 @@ interface IconsContainerProps {
   setIsBookmarked: (isBookmarked: boolean) => void;
   bookmarksCount: number;
   setBookmarksCount: (bookmarksCount: number) => void;
+}
+
+interface OutletContextForIconsContainer {
+  likedPosts: PostType[];
+  setLikedPosts: (likedPosts: PostType[]) => void;
+  bookmarkedPosts: PostType[];
+  setBookmarkedPosts: (bookmarkedPosts: PostType[]) => void;
 }
 
 export function IconsContainer({
@@ -32,8 +41,12 @@ export function IconsContainer({
   setBookmarksCount,
 }: IconsContainerProps) {
   const [isSubmittingIconUpdate, setIsSubmittingIconUpdate] = useState(false);
-  const { likedPosts, setLikedPosts, bookmarkedPosts, setBookmarkedPosts } =
-    useOutletContext();
+  const {
+    likedPosts,
+    setLikedPosts,
+    bookmarkedPosts,
+    setBookmarkedPosts,
+  }: OutletContextForIconsContainer = useOutletContext();
 
   const navigate = useNavigate();
 
