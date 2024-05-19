@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../helper/helperUtils";
 import { useNavigate, useParams } from "react-router-dom";
-import { PostPreview } from "../postPreview/PostPreview";
-
 import { ProfilePic } from "../icons/profilePic/ProfilePic";
 import { PostsContainer } from "../postsContainer/PostsContainer";
 import { Loading } from "../../loading/Loading";
+import { defaultPostState } from "../../../helper/defaultStates.js";
 
 export function UserProfile() {
   const navigate = useNavigate();
   const { userID } = useParams();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(defaultPostState);
   const [posts, setPosts] = useState([]);
   const [isLoggedInUserFollowing, setIsLoggedInUserFollowing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,7 +37,7 @@ export function UserProfile() {
     fetchUserData();
   }, [navigate, userID]);
 
-  async function followUser(userID) {
+  async function followUser(userID: string) {
     if (isFollowingPending) return;
     setIsFollowingPending(true);
     const followResponse = await fetchData(`user/${userID}/follow`, "POST");
@@ -51,7 +50,7 @@ export function UserProfile() {
     }
   }
 
-  async function unfollowUser(userID) {
+  async function unfollowUser(userID: string) {
     if (isFollowingPending) return;
     setIsFollowingPending(true);
     const followResponse = await fetchData(`user/${userID}/unfollow`, "POST");
