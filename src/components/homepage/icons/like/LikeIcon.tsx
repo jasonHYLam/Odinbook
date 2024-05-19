@@ -1,6 +1,10 @@
 import styles from "./LikeIcon.module.css";
 
-export function LikeIcon({ isLiked }) {
+interface LikeIconProps {
+  isLiked: boolean;
+}
+
+export function LikeIcon({ isLiked }: LikeIconProps) {
   const likeStyle = isLiked ? "liked" : "unliked";
   return (
     <div className={`${styles[likeStyle]}`}>

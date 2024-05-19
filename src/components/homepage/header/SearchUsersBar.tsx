@@ -32,8 +32,6 @@ export function SearchUsersBar({
       } else {
         const { users } = await searchResponse.json();
         setMatchingUsers(users);
-        console.log("checking location");
-        console.log(location);
         navigate("/search_users");
       }
     }

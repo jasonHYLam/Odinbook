@@ -1,6 +1,9 @@
 import styles from "./Bookmark.module.css";
 
-export function Bookmark({ isBookmarked }) {
+interface BookmarkProps {
+  isBookmarked: boolean;
+}
+export function Bookmark({ isBookmarked }: BookmarkProps) {
   const bookmarkStyle = isBookmarked ? "bookmarked" : "unbookmarked";
 
   return (
