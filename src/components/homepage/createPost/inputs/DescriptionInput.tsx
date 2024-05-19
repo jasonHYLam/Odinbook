@@ -1,11 +1,23 @@
 import styles from "./inputs.module.css";
+import {
+  UseFormRegister,
+  FieldValues,
+  UseFormClearErrors,
+} from "react-hook-form";
+
+interface DescriptionInputProps {
+  register: UseFormRegister<FieldValues>;
+  description: string;
+  setDescription: (title: string) => void;
+  clearErrors: UseFormClearErrors<FieldValues>;
+}
 
 export function DescriptionInput({
   register,
   description,
   setDescription,
   clearErrors,
-}) {
+}: DescriptionInputProps) {
   const DESCRIPTION_LIMIT = 500;
   const remainingDescriptionChars = DESCRIPTION_LIMIT - description.length;
   const exceededDescriptionLimit = () =>
@@ -21,10 +33,8 @@ export function DescriptionInput({
         </p>
         <textarea
           className={styles.textInput}
-          name=""
-          id=""
-          cols="30"
-          rows="10"
+          cols={30}
+          rows={10}
           placeholder="Add your thoughts!"
           {...register("description", { maxLength: 500 })}
           value={description}
