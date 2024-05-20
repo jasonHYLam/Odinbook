@@ -23,9 +23,11 @@
   --post-hover-color: #dfeaff;
   --shadow-color: rgb(172, 172, 172);
 
-  --thumbnail-size: 200px;
+  --thumbnail-size-desktop: 200px;
+  --thumbnail-size-mobile: 70px;
 
   --profile-pic-height-s: 25px;
+  --profile-pic-height-xs: 15px;
   --profile-pic-height-m: 60px;
   --profile-pic-height-l: 150px;
 
