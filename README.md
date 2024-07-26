@@ -1,7 +1,7 @@
 # Tabasco
 
 [Live link](https://tabasco.netlify.app/)
-[Backend repo](https://github.com/jasonHYLam/Odinbook-Server/tree/main)
+[Backend repo](https://github.com/jasonHYLam/Tabasco-Server/tree/main)
 
 ![tabasco2](https://github.com/user-attachments/assets/8e2178ee-9f8a-4aa7-b1f8-83ea8aff15d9)
 
