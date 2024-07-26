@@ -25,6 +25,8 @@ When the user begins typing in the Search users typebar, the relevant users with
 
 The user's own profile has many features, including the ability to change their settings, view followers and followed users, own posts, liked posts and bookmarked posts, as well as logging out.
 
+![tabasco1](https://github.com/user-attachments/assets/fff14d6d-7eaa-41f6-8a27-5ec40c0eee88)
+
 ## Features:
 
 - Image uploads
